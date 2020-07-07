@@ -1,0 +1,34 @@
+{
+  "name": "ddata-core",
+  "version": "0.0.1",
+  "description": "DData Core module, models & services",
+  "author": {
+    "name": "Balázs Winkler",
+    "email": "djw@djw.hu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/netdjw/ddata-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/netdjw/ddata-core/issues"
+  },
+  "homepage": "https://github.com/netdjw/ddata-core",
+  "keywords": [
+    "angular",
+    "localstorage",
+    "remote storage",
+    "proxy",
+    "service",
+    "data service"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^10.0.2",
+    "@angular/core": "^10.0.2",
+    "pluralize": "^8.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

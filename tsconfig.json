@@ -15,6 +15,12 @@
     },
     {
       "path": "./e2e/tsconfig.json"
+    },
+    {
+      "path": "./projects/ddata-core/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ddata-core/tsconfig.spec.json"
     }
 ]
 }

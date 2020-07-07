@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/doc"
             ],
             "styles": [
               "src/styles.scss"
@@ -89,7 +90,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/doc"
             ],
             "styles": [
               "src/styles.scss"
@@ -120,6 +122,46 @@
             "production": {
               "devServerTarget": "ddata-lib:serve:production"
             }
+          }
+        }
+      }
+    },
+    "ddata-core": {
+      "projectType": "library",
+      "root": "projects/ddata-core",
+      "sourceRoot": "projects/ddata-core/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ddata-core/tsconfig.lib.json",
+            "project": "projects/ddata-core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ddata-core/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ddata-core/src/test.ts",
+            "tsConfig": "projects/ddata-core/tsconfig.spec.json",
+            "karmaConfig": "projects/ddata-core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ddata-core/tsconfig.lib.json",
+              "projects/ddata-core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
