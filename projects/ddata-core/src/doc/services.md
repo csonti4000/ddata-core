@@ -79,14 +79,34 @@ Responsibility:
 
 [Read more here](src/doc/service-spinner.md)
 
-### Abstract Component
+### Base Components
 
 Responsibility:
 - help to avoid code repeating
 
-[AbstractListComponent](src/doc/component-abstract-list.md)
-[AbstractCreateEditComponent](src/doc/component-abstract-create-edit.md)
+[BaseListComponent](src/doc/component-base-list.md)
+[BaseCreateEditComponent](src/doc/component-base-create-edit.md)
 
 ### Your Final Component
 
-In this last component maybe you want to extend the capability of Abstract Components, overwrite methods, etc. Contains your custom extension of this module's goods.
+In this last component maybe you want to extend the capability of Base Components, overwrite methods, etc. Contains your custom extension of this module's goods.
+
+# How to create your custom typed service?
+
+Easy:
+
+```typescript
+export class MyCustomService extends ProxyService<MyCustomInterface> {
+  
+  constructor() {
+    super(new MyCustom());
+  }
+
+  // here is your custom functions
+}
+```
+Now you can use all functions from `ProxyService` with typed datas. The service will know your API endpoints from your model and that's all.
+
+# Read more about expectations for remote storage API
+
+This package has several expectations for remote storage API. You can [read more about this here](expectations-for-backend.md).
