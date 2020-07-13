@@ -4,8 +4,8 @@
 Responsibility:
 - help to avoid code repeating
 
-[AbstractListComponent](src/doc/component-abstract-list.md)
-[AbstractCreateEditComponent](src/doc/component-abstract-create-edit.md)
+[AbstractListComponent](src/doc/component-base-list.md)
+[AbstractCreateEditComponent](src/doc/component-base-create-edit.md)
 
 ### Your Final Component
 

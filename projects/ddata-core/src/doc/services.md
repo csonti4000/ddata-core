@@ -85,6 +85,7 @@ Responsibility:
 - help to avoid code repeating
 
 [BaseListComponent](src/doc/component-base-list.md)
+
 [BaseCreateEditComponent](src/doc/component-base-create-edit.md)
 
 ### Your Final Component
