@@ -5,7 +5,7 @@ import { FileUploadProcessInterface } from '../../models/file/file-upload-proces
 
 export interface ProxyServiceInterface<T extends BaseModelInterface<T>> {
   getOne(id: number): Observable<T | Observable<T>>;
-  getAll(): Observable<PaginateInterface>;
+  getAll(pageNumber?: number): Observable<PaginateInterface>;
   getAllSortedBy(fieldName?: string): Observable<T[]>;
   getAllSortedByDesc(fieldName: string): Observable<T[]>;
   getAllWithoutPaginate(): Observable<T[]>;

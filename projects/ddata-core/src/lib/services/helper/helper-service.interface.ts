@@ -18,7 +18,7 @@ export interface HelperServiceInterface<T extends BaseModelInterface<T>> {
   changeToPage(turnToPage: number, paginate: PaginateInterface, models: T[]): Observable<boolean>;
 
   getOne(model: T, isModal: boolean, handleLoader?: boolean): Observable<boolean | Observable<boolean>>;
-  getAll(paginate: PaginateInterface, models: T[], isModal?: boolean): Observable<PaginateInterface>;
+  getAll(paginate: PaginateInterface, models: T[], isModal?: boolean, pageNumber?: number): Observable<PaginateInterface>;
 
   search(data: any, pageNumber?: number): Observable<PaginateInterface>;
   searchWithoutPaginate(data: any): Observable<T[]>;

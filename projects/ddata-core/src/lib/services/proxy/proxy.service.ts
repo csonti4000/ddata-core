@@ -39,14 +39,14 @@ export class ProxyService<T extends BaseModelInterface<T>> extends DataServiceAb
     }
   }
 
-  getAll(): Observable<PaginateInterface> {
+  getAll(pageNumber: number = 0): Observable<PaginateInterface> {
     if (this.instance.use_localstorage) {
       const paginate = new Paginate(this.instance);
       paginate.data = this.localStorageService.allFromLocal();
 
       return of(paginate);
     } else {
-      return this.remoteStorageService.getAll().pipe(map((result: PaginateInterface) => result));
+      return this.remoteStorageService.getAll(pageNumber).pipe(map((result: PaginateInterface) => result));
     }
   }
 

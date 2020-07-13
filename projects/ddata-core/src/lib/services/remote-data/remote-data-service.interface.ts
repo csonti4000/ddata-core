@@ -6,7 +6,7 @@ import { PaginateInterface } from '../../models/paginate/paginate.interface';
 export interface RemoteDataServiceInterface<T> {
   setupHeaders(): void;
 
-  getAll(): Observable<PaginateInterface>;
+  getAll(pageNumber?: number): Observable<PaginateInterface>;
   getAllWithoutPaginate(): Observable<T[]>;
   getPage(pageNumber: number, uniqueUrl?: string): Observable<PaginateInterface>;
   getOne(id: number): Observable<T>;

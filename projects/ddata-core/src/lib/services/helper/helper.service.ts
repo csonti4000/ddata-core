@@ -189,14 +189,14 @@ export class HelperService<T extends BaseModelInterface<T>> extends DataServiceA
     if (isModal && !!model.id) {
       const paramId = model.id;
       if (handleLoader) {
-        this.spinner.on('getOne Modal mode ' + this.modelTypeName);
+        this.spinner.on('getOne modal mode ' + this.modelTypeName);
       }
 
       return this.proxy.getOne(Number(paramId)).pipe(map((result: T) => {
         Object.assign(model, result);
 
         if (handleLoader) {
-          this.spinner.off('getOne Modal mode ' + this.modelTypeName);
+          this.spinner.off('getOne modal mode ' + this.modelTypeName);
         }
 
         return true;
@@ -217,23 +217,19 @@ export class HelperService<T extends BaseModelInterface<T>> extends DataServiceA
 
             return true;
           });
-        } else {
-          // if (handleLoader) {
-          //   this.spinner.off('getOne ' + this.modelTypeName);
-          // }
-
-          return false;
         }
+
+        return false;
       }));
     }
   }
 
-  getAll(paginate: PaginateInterface, models: T[], isModal: boolean = false): Observable<PaginateInterface> {
+  getAll(paginate: PaginateInterface, models: T[], isModal: boolean = false, pageNumber: number = 0): Observable<PaginateInterface> {
     const spinnerName = 'getAll ' + Math.random();
     this.spinner.on(spinnerName);
 
     if (!this.activatedRoute.snapshot.queryParams.filter) {
-      return this.proxy.getAll().pipe(map((result: PaginateInterface) => {
+      return this.proxy.getAll(pageNumber).pipe(map((result: PaginateInterface) => {
         // set paginate reference
         Object.assign(paginate, result);
         // clear models[]

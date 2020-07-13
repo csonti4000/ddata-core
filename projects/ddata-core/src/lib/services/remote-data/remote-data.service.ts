@@ -90,9 +90,9 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
    *   this.myRemotStorageService.getAll().subscribe();
    * }
    */
-  getAll(): Observable<PaginateInterface> {
+  getAll(pageNumber: number = 0): Observable<PaginateInterface> {
     this.setupHeaders();
-    const url = this.url + this.model.api_endpoint;
+    const url = this.url + this.model.api_endpoint + (!!pageNumber ? '?page=' + pageNumber : '');
 
     if (!!this.environment.debug) {
       console.log('URL - getAll()', url);
