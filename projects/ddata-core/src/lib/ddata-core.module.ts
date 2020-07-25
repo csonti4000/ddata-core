@@ -1,14 +1,10 @@
-import { NgModule, Injector, ErrorHandler } from '@angular/core';
-import { DdataCoreErrorHandler } from './services/error-handler/app-error-handler';
-
+import { NgModule, Injector } from '@angular/core';
 
 // @dynamic
 @NgModule({
   declarations: [],
   imports: [],
-  providers: [
-    { provide: ErrorHandler, useClass: DdataCoreErrorHandler },
-  ],
+  providers: [],
   exports: [],
 })
 export class DdataCoreModule {
