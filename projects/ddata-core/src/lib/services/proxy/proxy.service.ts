@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { BaseModelInterface } from '../../models/base/base-model.model';
@@ -13,9 +12,7 @@ import { NotificationService } from '../notification/notification.service';
 import { RemoteDataServiceInterface } from '../remote-data/remote-data-service.interface';
 import { RemoteDataService } from '../remote-data/remote-data.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @dynamic
 export class ProxyService<T extends BaseModelInterface<T>> extends DataServiceAbstract<T> {
   private notificationService: NotificationServiceInterface;
   private localStorageService: LocalDataServiceInterface<T>;

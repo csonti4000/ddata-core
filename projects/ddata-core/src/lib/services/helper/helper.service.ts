@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,10 +13,7 @@ import { PaginateInterface } from '../../models/paginate/paginate.interface';
 import { Paginate } from '../../models/paginate/paginate.model';
 import { ID } from '../../models/base/base-data.type';
 
-@Injectable({
-  providedIn: 'root'
-})
-
+// @dynamic
 export class HelperService<T extends BaseModelInterface<T>> extends DataServiceAbstract<T> {
   private proxy: ProxyServiceInterface<T>;
   private router: Router;

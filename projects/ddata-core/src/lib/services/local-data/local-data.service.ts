@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import * as pluralize from '../../../../../../node_modules/pluralize';
+import * as pluralize_ from '../../../../../../node_modules/pluralize';
 import { ID } from '../../models/base/base-data.type';
 import { BaseModelInterface } from '../../models/base/base-model.model';
 import { DataServiceAbstract } from '../data/data-service.abstract';
@@ -10,9 +9,9 @@ import { StorageServiceInterface } from '../storage/storage-service.interface';
 import { StorageService } from '../storage/storage.service';
 import { LocalDataServiceInterface } from './local-data-service.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+const pluralize = pluralize_;
+
+// @dynamic
 export class LocalDataService<T extends BaseModelInterface<T>>
   extends DataServiceAbstract<T>
   implements LocalDataServiceInterface<T> {
