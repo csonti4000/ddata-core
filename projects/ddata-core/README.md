@@ -4,7 +4,7 @@ DData Core module, models & services
 
 ## Install
 
-`npm install ddata-core`
+`npm install ddata-core --save`
 
 ## Why?
 
