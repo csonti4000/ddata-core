@@ -79,4 +79,10 @@ export * from './lib/services/error-handler/unauthorized-error';
 export * from './lib/services/error-handler/unprocessable-entity-error';
 export * from './lib/services/error-handler/validation-error';
 
+// base abstract components
+export * from './lib/components/base-create-edit/base-create-edit-component.interface';
+export * from './lib/components/base-create-edit/base-create-edit.component';
+export * from './lib/components/base-list/base-list-component.interface';
+export * from './lib/components/base-list/base-list.component';
+
 export * from './lib/ddata-core.module';
