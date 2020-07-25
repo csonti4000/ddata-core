@@ -2,6 +2,7 @@ import { NgModule, Injector, ErrorHandler } from '@angular/core';
 import { DdataCoreErrorHandler } from './services/error-handler/app-error-handler';
 
 
+// @dynamic
 @NgModule({
   declarations: [],
   imports: [],
