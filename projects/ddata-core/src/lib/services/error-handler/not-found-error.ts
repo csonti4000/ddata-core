@@ -1,5 +1,6 @@
 import { DdataCoreError } from './ddata-core-error';
 import { NotificationService } from '../notification/notification.service';
+import { NotificationType } from '../../models/base/base-data.type';
 
 export class NotFoundError extends DdataCoreError {
 
@@ -9,7 +10,7 @@ export class NotFoundError extends DdataCoreError {
   ) {
     super(originalError);
     console.error('Not Found Error: ', originalError.error.message);
-    notificationService.add('Hiba', 'A keresett oldal nem található.', 'danger');
+    notificationService.add('Hiba', 'A keresett oldal nem található.', 'danger' as NotificationType);
   }
 
 }

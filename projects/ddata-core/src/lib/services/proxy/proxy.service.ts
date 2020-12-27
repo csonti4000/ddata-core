@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { BaseModelInterface } from '../../models/base/base-model.model';
@@ -13,6 +14,7 @@ import { RemoteDataServiceInterface } from '../remote-data/remote-data-service.i
 import { RemoteDataService } from '../remote-data/remote-data.service';
 
 // @dynamic
+@Injectable()
 export class ProxyService<T extends BaseModelInterface<T>> extends DataServiceAbstract<T> {
   private notificationService: NotificationServiceInterface;
   private localStorageService: LocalDataServiceInterface<T>;
@@ -122,7 +124,7 @@ export class ProxyService<T extends BaseModelInterface<T>> extends DataServiceAb
     const uri = '/search?paginate=off';
 
     return this.remoteStorageService.postUri(data, uri).pipe(map((result: T[]) => {
-      result = this.setModels(result);
+      result = this.hydrateArray(result);
       return result;
     }));
   }

@@ -1,5 +1,5 @@
 import { Observable, Subject } from 'rxjs';
-import * as pluralize_ from '../../../../../../node_modules/pluralize';
+// import * as pluralize_ from '../../../../../../node_modules/pluralize';
 import { ID } from '../../models/base/base-data.type';
 import { BaseModelInterface } from '../../models/base/base-model.model';
 import { DataServiceAbstract } from '../data/data-service.abstract';
@@ -8,10 +8,13 @@ import { SorterService } from '../sorter/sorter.service';
 import { StorageServiceInterface } from '../storage/storage-service.interface';
 import { StorageService } from '../storage/storage.service';
 import { LocalDataServiceInterface } from './local-data-service.interface';
+import * as pluralize from 'pluralize';
+import { Injectable } from '@angular/core';
 
-const pluralize = pluralize_;
+// const pluralize = pluralize_;
 
 // @dynamic
+@Injectable()
 export class LocalDataService<T extends BaseModelInterface<T>>
   extends DataServiceAbstract<T>
   implements LocalDataServiceInterface<T> {
@@ -48,7 +51,7 @@ export class LocalDataService<T extends BaseModelInterface<T>>
   allFromLocal(): T[] {
     const data = JSON.parse( localStorage.getItem(this.localStorageItemName) ) || [];
 
-    this.db = this.setModels(data);
+    this.db = this.hydrateArray(data);
 
     return this.db;
   }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { NotificationType } from '../../models/base/base-data.type';
 import { BaseModelInterface } from '../../models/base/base-model.model';
 import { NotificationInterface } from '../../models/notification/notification.interface';
 import { Notification } from '../../models/notification/notification.model';
@@ -14,7 +15,7 @@ export class NotificationService implements NotificationServiceInterface {
 
   constructor() { }
 
-  add(title: string, text: string, type: string): void {
+  add(title: string, text: string, type: NotificationType): void {
     const notificationModel: NotificationInterface = new Notification(text, title, type);
 
     setTimeout(() => {
@@ -35,6 +36,7 @@ export class NotificationService implements NotificationServiceInterface {
   }
 
   showValidationError(fields: BaseModelInterface<any>): void {
-    this.add('Hiba', 'A következő mezők rosszul lettek kitöltve:<br>' + fields.getValidatedErrorFields().join(', '), 'danger');
+    const type: NotificationType = 'danger' as NotificationType;
+    this.add('Hiba', 'A következő mezők rosszul lettek kitöltve:<br>' + fields.getValidatedErrorFields().join(', '), type);
   }
 }

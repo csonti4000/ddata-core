@@ -17,9 +17,9 @@ export abstract class DataServiceAbstract<T> {
    * @returns PaginateInterface
    */
   protected getNewPaginateObject(type: any, returnedPaginateObject: any): PaginateInterface {
-    const paginate = this.createNewInstanceFrom(new Paginate(type), returnedPaginateObject);
+    const paginate = this.hydrate(new Paginate(type), returnedPaginateObject);
 
-    paginate.data = this.setModels(returnedPaginateObject.data);
+    paginate.data = this.hydrateArray(returnedPaginateObject.data);
 
     return paginate;
   }
@@ -29,7 +29,7 @@ export abstract class DataServiceAbstract<T> {
    *
    * @param data any JSON object
    */
-  protected setModels(data: any[]): T[] {
+  hydrateArray(data: any[]): T[] {
     const models: T[] = [];
 
     data.forEach((item: any) => {
@@ -41,7 +41,7 @@ export abstract class DataServiceAbstract<T> {
       }
 
       // copy `this.model` into a clone object
-      const newModel = this.createNewInstanceFrom(this.model, this.model);
+      const newModel = this.hydrate(this.model, this.model);
 
       // initialize the new model with the instance of datas
       newModel.init(item);
@@ -59,7 +59,7 @@ export abstract class DataServiceAbstract<T> {
    * @param fromModel object what you want to clone
    * @param datas datas what you want to put into the clone object
    */
-  protected createNewInstanceFrom = (fromModel: any, datas: any): any =>
+  hydrate = (fromModel: any, datas: any): any =>
     Object.assign( Object.create( Object.getPrototypeOf(fromModel)), datas)
 
 }

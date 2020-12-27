@@ -85,6 +85,9 @@ export declare type FileName = string & { readonly [fileName]: 'FileName' };
 declare const fileNameSlug: unique symbol;
 export declare type FileNameSlug = string & { readonly [fileNameSlug]: 'FileNameSlug' };
 
+declare const fileNameWithPath: unique symbol;
+export declare type FileNameWithPath = string & { readonly [fileNameWithPath]: 'FileNameWithPath' };
+
 declare const foreignAPIStatus: unique symbol;
 export declare type ForeignAPIStatus = 'Unprocessed' | 'Pending' | 'Failed' | 'OK';
 
@@ -140,6 +143,9 @@ export declare type Month = number & { readonly [month]: 'Month' };
 
 declare const noteTitle: unique symbol;
 export declare type NoteTitle = string & { readonly [noteTitle]: 'NoteTitle' };
+
+declare const notificationType: unique symbol;
+export declare type NotificationType = string & { readonly [notificationType]: 'NotificationType' };
 
 declare const orderNumber: unique symbol;
 export declare type OrderNumber = number & { readonly [orderNumber]: 'OrderNumber' };

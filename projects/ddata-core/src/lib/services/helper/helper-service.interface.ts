@@ -5,8 +5,8 @@ import { PaginateInterface } from '../../models/paginate/paginate.interface';
 
 export interface HelperServiceInterface<T extends BaseModelInterface<T>> {
   booleanChange(model: T, fieldName: string): Observable<boolean | Observable<boolean>>;
-  save(model: T, isModal: boolean, emitter: EventEmitter<T>, saveBackend?: boolean
-    ): Observable<boolean | Observable<boolean> | number | Observable<number>>;
+  save(model: T, isModal: boolean, emitter: EventEmitter<T>, saveBackend?: boolean,
+       navigateAfterSuccess?: string): Observable<boolean | Observable<boolean> | number | Observable<number>>;
   saveAsNew(model: T): Observable<boolean | Observable<boolean> | number | Observable<number>>;
 
   edit(model: T, reference: any): void;

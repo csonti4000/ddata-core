@@ -2,8 +2,9 @@ import { Observable } from 'rxjs';
 import { BaseModelInterface } from '../../models/base/base-model.model';
 import { PaginateInterface } from '../../models/paginate/paginate.interface';
 import { FileUploadProcessInterface } from '../../models/file/file-upload-process.interface';
+import { DataServiceAbstractInterface } from '../data/data-service-abstract.interface';
 
-export interface ProxyServiceInterface<T extends BaseModelInterface<T>> {
+export interface ProxyServiceInterface<T extends BaseModelInterface<T>> extends DataServiceAbstractInterface<T> {
   getOne(id: number): Observable<T | Observable<T>>;
   getAll(pageNumber?: number): Observable<PaginateInterface>;
   getAllSortedBy(fieldName?: string): Observable<T[]>;

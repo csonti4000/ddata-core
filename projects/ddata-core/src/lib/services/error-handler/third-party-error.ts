@@ -1,5 +1,6 @@
 import { DdataCoreError } from './ddata-core-error';
 import { NotificationService } from '../notification/notification.service';
+import { NotificationType } from '../../models/base/base-data.type';
 
 export class ThirdPartyError extends DdataCoreError {
   constructor(
@@ -8,9 +9,9 @@ export class ThirdPartyError extends DdataCoreError {
   ) {
     super(originalError);
 
-    console.error('580 - Api message: ', originalError.error);
+    console.error('580 - API message: ', originalError.error);
 
-    notificationService.add('Hiba', originalError.error, 'danger');
+    notificationService.add('Hiba', originalError.error, 'danger' as NotificationType);
 
   }
 

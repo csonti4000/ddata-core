@@ -1,6 +1,6 @@
 
 export class DdataCoreError {
-  public msg = '';
+  msg = '';
 
   constructor(
     public originalError?: any,

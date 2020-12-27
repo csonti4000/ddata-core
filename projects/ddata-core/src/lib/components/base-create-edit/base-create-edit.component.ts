@@ -1,4 +1,4 @@
-import { EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Injectable, Input, OnInit, Output } from '@angular/core';
 import { BaseModelInterface } from '../../models/base/base-model.model';
 import { HelperFactoryService } from '../../services/helper/helper-service.factory';
 import { HelperServiceInterface } from '../../services/helper/helper-service.interface';
@@ -26,6 +26,10 @@ import { BaseCreateEditComponentInterface } from './base-create-edit-component.i
  *
  * @see HelperService
  */
+// @dynamic
+@Component({
+  template: '',
+})
 export abstract class BaseCreateEditComponent<T extends BaseModelInterface<T>>
   implements OnInit, BaseCreateEditComponentInterface<T> {
 
@@ -47,7 +51,7 @@ export abstract class BaseCreateEditComponent<T extends BaseModelInterface<T>>
   helperService: HelperServiceInterface<T> = new HelperFactoryService<T>().get(this.type);
 
   constructor(
-    private type: new () => T,
+    @Inject('type') private type: new () => T,
   ) {}
 
   ngOnInit(): void {

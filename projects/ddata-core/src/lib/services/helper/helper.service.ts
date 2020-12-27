@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,6 +14,7 @@ import { Paginate } from '../../models/paginate/paginate.model';
 import { ID } from '../../models/base/base-data.type';
 
 // @dynamic
+@Injectable()
 export class HelperService<T extends BaseModelInterface<T>> extends DataServiceAbstract<T> {
   private proxy: ProxyServiceInterface<T>;
   private router: Router;
@@ -65,7 +66,8 @@ export class HelperService<T extends BaseModelInterface<T>> extends DataServiceA
     model: T,
     isModal: boolean = false,
     emitter: EventEmitter<T> = new EventEmitter(),
-    saveBackend: boolean = true
+    saveBackend: boolean = true,
+    navigateAfterSuccess?: string
   ): Observable<boolean | Observable<boolean> | number | Observable<number>> {
     model.validate();
     if (!model.isValid) {
@@ -84,9 +86,16 @@ export class HelperService<T extends BaseModelInterface<T>> extends DataServiceA
       model.id = result as ID;
       if (isModal) {
         emitter.emit(model);
-        model = this.createNewInstanceFrom(model, {});
+        model = this.hydrate(model, {});
       } else {
-        const url = model.api_endpoint + '/list' + (this.route.getUniqueListId() !== 0 ? '/' + this.route.getUniqueListId() : '');
+        let url = model.api_endpoint;
+
+        if (!navigateAfterSuccess) {
+          url += '/list' + (this.route.getUniqueListId() !== 0 ? '/' + this.route.getUniqueListId() : '');
+        } else {
+          url = navigateAfterSuccess;
+        }
+
         this.router.navigateByUrl(url);
       }
       this.spinner.off('save');

@@ -1,7 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
-import { DdataCoreModule } from '../../ddata-core.module';
+import { DdataInjectorModule } from '../../ddata-injector.module';
 import { NotificationService } from '../notification/notification.service';
 import { SpinnerService } from '../spinner/spinner.service';
 import { StorageService } from '../storage/storage.service';
@@ -18,16 +18,20 @@ import { AppValidationError } from './validation-error';
 
 @Injectable()
 export class DdataCoreErrorHandler extends ErrorHandler {
-  storageService: StorageService = DdataCoreModule.InjectorInstance.get<StorageService>(StorageService);
-  spinner: SpinnerService = DdataCoreModule.InjectorInstance.get<SpinnerService>(SpinnerService);
-  notificationService: NotificationService = DdataCoreModule.InjectorInstance.get<NotificationService>(NotificationService);
+  // storageService: StorageService = DdataInjectorModule.InjectorInstance.get<StorageService>(StorageService);
+  // spinner: SpinnerService = DdataInjectorModule.InjectorInstance.get<SpinnerService>(SpinnerService);
+  // notificationService: NotificationService = DdataInjectorModule.InjectorInstance.get<NotificationService>(NotificationService);
 
-  constructor() {
+  constructor(
+    private storageService: StorageService,
+    private spinner: SpinnerService,
+    private notificationService: NotificationService,
+  ) {
     super();
   }
 
   handleError(err: any): any {
-    const router = DdataCoreModule.InjectorInstance.get(Router);
+    const router = DdataInjectorModule.InjectorInstance.get(Router);
     const error = !!err.originalError ? err.originalError : err;
     let result: any;
 

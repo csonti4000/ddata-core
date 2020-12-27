@@ -1,4 +1,4 @@
-import { EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Injectable, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DdataCoreModule } from '../../ddata-core.module';
@@ -9,6 +9,10 @@ import { HelperFactoryService } from '../../services/helper/helper-service.facto
 import { HelperServiceInterface } from '../../services/helper/helper-service.interface';
 import { BaseListComponentInterface } from './base-list-component.interface';
 
+// @dynamic
+@Component({
+  template: '',
+})
 export abstract class BaseListComponent<T extends BaseModelInterface<T>>
   implements OnInit, BaseListComponentInterface<T> {
 
@@ -40,7 +44,7 @@ export abstract class BaseListComponent<T extends BaseModelInterface<T>>
   currentPageNumber = 0;
 
   constructor(
-    private type: new () => T,
+    @Inject('type') private type: new () => T,
   ) {}
 
   ngOnInit(): void {

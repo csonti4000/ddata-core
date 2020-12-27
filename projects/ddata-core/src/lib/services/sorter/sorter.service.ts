@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { SorterServiceInterface } from './sorter-service.interface';
 
+@Injectable()
 export class SorterService<T> implements SorterServiceInterface<T> {
   sortBy(objects: T[], key: string): T[] {
     const elements = !!objects ? objects : [];
