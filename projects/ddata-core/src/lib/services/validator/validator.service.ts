@@ -12,7 +12,7 @@ export class ValidatorService {
   private creditCardDiscoverRegExp = new RegExp(/^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/);
   private creditCardMastercardRegExp = new RegExp(/^(?:5[1-5][0-9]{14})$/);
   private creditCardVisaRegExp = new RegExp(/^(?:4[0-9]{12}(?:[0-9]{3})?)$/);
-  private domainRegExp: RegExp = new RegExp(/^(?:(?:(?:[a-zA-z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9-\.]){1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/);
+  private domainRegExp: RegExp = new RegExp(/^(?:(?:(?:[a-zA-Z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9-\.]){1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/);
   private drivingLicenceRegExp: RegExp = new RegExp(/^([A-Z]{2}\d{6})$/);
   private emailRegExp: RegExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   private ibanCodeRegExp: RegExp = new RegExp(/^([A-Z]{2}\d{2})|([A-Z]{4})|(\d{4})$/);
@@ -44,7 +44,7 @@ export class ValidatorService {
    * }
    * ```
    */
-  validateObject(data: any, rules: any, isThrowError: boolean = true, settings?: ValidationErrorSettingsInterface): [boolean, string[]] {
+  validateObject(data: any, rules: any, isThrowError = true, settings?: ValidationErrorSettingsInterface): [boolean, string[]] {
     const results: boolean[] = [];
     const invalids: string[] = [];
 
@@ -226,7 +226,7 @@ export class ValidatorService {
   }
 
   isNumber(data: any): boolean {
-    return !isNaN(data);
+    return !Number.isNaN(data);
   }
 
   isInteger(data: any): boolean {
