@@ -1,15 +1,16 @@
 import { HttpClient, HttpErrorResponse, HttpEvent, HttpEventType, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable, Subject, throwError, of } from 'rxjs';
-import { catchError, last, map, tap } from 'rxjs/operators';
-import { DataServiceAbstract } from '../data/data-service.abstract';
-import { RemoteDataServiceInterface } from './remote-data-service.interface';
+import { Observable, of, Subject, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { DdataInjectorModule } from '../../ddata-injector.module';
 import { BaseModelInterface } from '../../models/base/base-model.model';
-import { DdataCoreModule } from '../../ddata-core.module';
-import { PaginateInterface } from '../../models/paginate/paginate.interface';
 import { FileUploadProcessInterface } from '../../models/file/file-upload-process.interface';
+import { PaginateInterface } from '../../models/paginate/paginate.interface';
+import { DataServiceAbstract } from '../data/data-service.abstract';
+import { EnvService } from '../env/env.service';
 import { DdataCoreError } from '../error-handler/ddata-core-error';
-import { Inject } from '@angular/core';
+import { RemoteDataServiceInterface } from './remote-data-service.interface';
 
+// @dynamic
 export class RemoteDataService<T extends BaseModelInterface<T>>
   extends DataServiceAbstract<T>
   implements RemoteDataServiceInterface<T> {
@@ -17,12 +18,12 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
   /**
    * Application environment variable from the root application
    */
-  @Inject('env') private environment: any;
+  private appEnv = DdataInjectorModule.InjectorInstance.get(EnvService);
 
   /**
    * Application URL
    */
-  public url = this.environment.apiUrl;
+  public url = this.appEnv.environment.apiUrl;
 
   /**
    * Headers to all requests
@@ -44,13 +45,15 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
    */
   public type: new () => T;
 
+  // @Inject('DdataInjectorModule') private data: DdataInjectorModule;
+
   constructor(
     model: T,
   ) {
     super(model);
     this.setupHeaders();
 
-    this.http = DdataCoreModule.InjectorInstance.get(HttpClient);
+    this.http = DdataInjectorModule.InjectorInstance.get(HttpClient);
   }
 
   /**
@@ -94,7 +97,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
     this.setupHeaders();
     const url = this.url + this.model.api_endpoint + (!!pageNumber ? '?page=' + pageNumber : '');
 
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('URL - getAll()', url);
     }
 
@@ -134,7 +137,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
     this.setupHeaders();
     const url = this.url + this.model.api_endpoint + uniqueUri + '?page=' + pageNumber;
 
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('URL - getPaginatePage()', url);
     }
 
@@ -165,11 +168,11 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
     this.setupHeaders();
     const url = this.url + this.model.api_endpoint +  '/list';
 
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('URL - getAllWithoutPaginate()', url);
     }
 
-    return this.http.get(url, this.options).pipe(map((result: any) => this.setModels(result)));
+    return this.http.get(url, this.options).pipe(map((result: any) => this.hydrateArray(result)));
   }
 
   /**
@@ -197,12 +200,12 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
     this.setupHeaders();
     const url = this.url + this.model.api_endpoint + '/' + id;
 
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('URL - getOne()', url);
     }
 
     return this.http.get(url, this.options).pipe(map((result: any) =>
-      this.createNewInstanceFrom(this.model, this.model).init(result)));
+      this.hydrate(this.model, this.model).init(result)));
   }
 
   /**
@@ -230,7 +233,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
     this.setupHeaders();
     const url = this.url + uri;
 
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('URL - getUri()', url);
     }
 
@@ -263,7 +266,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
     this.setupHeaders();
     const url = this.url + this.model.api_endpoint + uri;
 
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('URL - uniquePost()', url);
     }
 
@@ -313,7 +316,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
     if (!model.id) {
       // create
       const url = this.url + model.api_endpoint;
-      if (!!this.environment.debug) {
+      if (!!this.appEnv.environment.debug) {
         console.log('URL - create()', url, preparedData);
       }
 
@@ -326,7 +329,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
       // update
       const url = this.url + model.api_endpoint + '/' + model.id;
 
-      if (!!this.environment.debug) {
+      if (!!this.appEnv.environment.debug) {
         console.log('URL - update()', url, preparedData);
       }
 
@@ -361,7 +364,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
   delete(model: T): Observable<number> {
     const url = this.url + this.model.api_endpoint + '/' + model.id;
 
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('URL - delete()', url);
     }
 
@@ -402,7 +405,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
 
     const preparedData = JSON.stringify({data: idsForDelete});
 
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('URL - deleteMultiple()', url, preparedData);
     }
 
@@ -475,7 +478,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
       // create a variable to store the current progress in percent
       let percent = 0;
 
-      if (!!this.environment.debug) {
+      if (!!this.appEnv.environment.debug) {
         console.log('URL - sendFiles()', url, file, formData);
       }
 
@@ -526,7 +529,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
    * @param model Model of `T` type
    */
   private handleValidatioErrorFeedback(err: any, model: T): void {
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log(err);
     }
 

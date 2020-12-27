@@ -1,5 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { DdataInjectorModule } from '../../ddata-injector.module';
+import { EnvService } from '../env/env.service';
 import { SpinnerServiceInterface } from './spinner-service.interface';
 
 @Injectable({
@@ -9,7 +11,9 @@ export class SpinnerService implements SpinnerServiceInterface {
   /**
    * Application environment variable from the root application
    */
-  @Inject('env') private environment: any;
+  private appEnv = new EnvService();
+  // TODO ezt vissza kell csinálni
+  // private appEnv = DdataInjectorModule.InjectorInstance.get(EnvService);
 
   /**
    * Observable subject of spinner service
@@ -42,14 +46,14 @@ export class SpinnerService implements SpinnerServiceInterface {
    * @param starter any unique random string to avoid multiple spinners show
    */
   private setStatus(state: 'on' | 'off', starter: string): boolean {
-    if (!!this.environment.debug) {
+    if (!!this.appEnv.environment.debug) {
       console.log('global spinner set', state, starter);
     }
 
     if (starter === 'ERROR_HANDLER') {
       this.setValues();
 
-      if (!!this.environment.debug) {
+      if (!!this.appEnv.environment.debug) {
         console.log('Spinner set off by ERROR_HANDLER');
       }
 
