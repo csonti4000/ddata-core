@@ -165,6 +165,206 @@
           }
         }
       }
+    },
+    "ddata-ui": {
+      "projectType": "library",
+      "root": "projects/ddata-ui",
+      "sourceRoot": "projects/ddata-ui/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ddata-ui/tsconfig.lib.json",
+            "project": "projects/ddata-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ddata-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ddata-ui/src/test.ts",
+            "tsConfig": "projects/ddata-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/ddata-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ddata-ui/tsconfig.lib.json",
+              "projects/ddata-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ddata-ui-input": {
+      "projectType": "library",
+      "root": "projects/ddata-ui-input",
+      "sourceRoot": "projects/ddata-ui-input/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ddata-ui-input/tsconfig.lib.json",
+            "project": "projects/ddata-ui-input/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ddata-ui-input/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ddata-ui-input/src/test.ts",
+            "tsConfig": "projects/ddata-ui-input/tsconfig.spec.json",
+            "karmaConfig": "projects/ddata-ui-input/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ddata-ui-input/tsconfig.lib.json",
+              "projects/ddata-ui-input/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ddata-ui-file": {
+      "projectType": "library",
+      "root": "projects/ddata-ui-file",
+      "sourceRoot": "projects/ddata-ui-file/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ddata-ui-file/tsconfig.lib.json",
+            "project": "projects/ddata-ui-file/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ddata-ui-file/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ddata-ui-file/src/test.ts",
+            "tsConfig": "projects/ddata-ui-file/tsconfig.spec.json",
+            "karmaConfig": "projects/ddata-ui-file/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ddata-ui-file/tsconfig.lib.json",
+              "projects/ddata-ui-file/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ddata-ui-dialog": {
+      "projectType": "library",
+      "root": "projects/ddata-ui-dialog",
+      "sourceRoot": "projects/ddata-ui-dialog/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ddata-ui-dialog/tsconfig.lib.json",
+            "project": "projects/ddata-ui-dialog/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ddata-ui-dialog/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ddata-ui-dialog/src/test.ts",
+            "tsConfig": "projects/ddata-ui-dialog/tsconfig.spec.json",
+            "karmaConfig": "projects/ddata-ui-dialog/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ddata-ui-dialog/tsconfig.lib.json",
+              "projects/ddata-ui-dialog/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ddata-ui-common": {
+      "projectType": "library",
+      "root": "projects/ddata-ui-common",
+      "sourceRoot": "projects/ddata-ui-common/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ddata-ui-common/tsconfig.lib.json",
+            "project": "projects/ddata-ui-common/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ddata-ui-common/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ddata-ui-common/src/test.ts",
+            "tsConfig": "projects/ddata-ui-common/tsconfig.spec.json",
+            "karmaConfig": "projects/ddata-ui-common/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ddata-ui-common/tsconfig.lib.json",
+              "projects/ddata-ui-common/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ddata-lib"
 }

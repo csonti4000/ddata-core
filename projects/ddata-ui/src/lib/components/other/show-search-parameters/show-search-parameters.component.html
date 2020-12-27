@@ -1,0 +1,8 @@
+<div class="d-inline-block mr-2 mb-1" *ngFor="let data of datas; let index = index">
+  <div class="d-inline-block p-2 mr-2 bg-light">
+    <span>{{ data.name }}: </span>
+    <span>{{ data.value }}</span>
+  </div>
+
+  <span class="d-inline-block p-2 mr-2" *ngIf="index + 1 < datas.length">ÉS</span>
+</div>

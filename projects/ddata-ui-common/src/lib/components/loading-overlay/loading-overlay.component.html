@@ -1,0 +1,5 @@
+<div class="overlay" [class.active]="loadingInProgress">
+    <div class="spinner-container" *ngIf="_spinner">
+      <fa-icon [icon]="icon.spinner" [spin]="true" size="3x"></fa-icon>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="row justify-content-between">
+  <div class="col-12 py-2">
+    <div class="button-group">
+      <!-- emit seleted button -->
+      <button *ngIf="isSelectionList" class="mr-1 btn btn-primary" type="button" (click)="select()">
+        <fa-icon [icon]="icon.filePlus"></fa-icon>
+        Kijelölt{{ multipleSelectEnabled ? 'ek' : '' }} kiválasztása
+      </button>
+
+      <!-- add button -->
+      <button *ngIf="showAddButton" class="btn btn-light" type="button" (click)="create()">
+        <fa-icon [icon]="icon.plus"></fa-icon>
+        Új {{ transformToLowerCase ? model.fields.title.label.toLowerCase() : model.fields.title.label }}
+      </button>
+
+      <!-- additional buttons -->
+      <ng-content></ng-content>
+
+      <!-- xls, csv downloads -->
+      <ng-container *ngIf="showDownloadButtons">
+        <app-xls-button-export [model]="model" ></app-xls-button-export>
+      </ng-container>
+
+      <!-- delete selected button -->
+      <button *ngIf="selection.selected.length > 0" class="ml-1 btn btn-light" type="button" (click)="delete()">
+        <fa-icon [icon]="icon.trash"></fa-icon>
+        Kijelölt{{ selection.selected.length > 1 ? 'ek' : '' }} törlése
+      </button>
+    </div>
+  </div>
+</div>

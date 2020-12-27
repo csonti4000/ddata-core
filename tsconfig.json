@@ -21,6 +21,36 @@
     },
     {
       "path": "./projects/ddata-core/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ddata-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ddata-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ddata-ui-input/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ddata-ui-input/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ddata-ui-file/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ddata-ui-file/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ddata-ui-dialog/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ddata-ui-dialog/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ddata-ui-common/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ddata-ui-common/tsconfig.spec.json"
     }
 ]
 }

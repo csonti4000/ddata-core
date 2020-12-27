@@ -1,0 +1,9 @@
+<div class="user-profile-thumbnail" [title]="user.name">
+  <ng-container *ngIf="!!imageSrc">
+    <img [src]="imageSrc" [alt]="user.name">
+  </ng-container>
+
+  <ng-container *ngIf="!imageSrc">
+    {{ firstLetter }}
+  </ng-container>
+</div>

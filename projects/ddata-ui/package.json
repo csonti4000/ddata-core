@@ -1,0 +1,17 @@
+{
+  "name": "ddata-ui",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^10.0.2",
+    "@angular/core": "^10.0.2"
+  },
+  "dependencies": {
+    "@fortawesome/angular-fontawesome": "^0.7.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "ddata-core": "^0.0.2",
+    "ddata-ui-input": "^1.0.0",
+    "ngx-material-timepicker": "^5.5.3",
+    "tslib": "^2.0.0"
+  }
+}

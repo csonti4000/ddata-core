@@ -1,0 +1,65 @@
+<!-- modal overlay -->
+<div class="modal-overlay" [class.active]="showDialog" (click)="clickOnOverlay()"></div>
+
+<!-- dialog -->
+<div *ngIf="showDialog" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+
+      <!-- header -->
+      <div class="modal-header">
+        <!-- title -->
+        <h5 class="modal-title">{{ title }}</h5>
+
+        <!-- close button -->
+        <button type="button" class="close" data-dismiss="modal"
+          [attr.aria-label]="closeButtonText"
+          (click)="cancel()">
+
+          <fa-icon [icon]="icon.close"></fa-icon>
+        </button>
+      </div>
+
+      <!-- body -->
+      <div class="modal-body d-flex">
+        <div class="icon-container"
+          [ngClass]="{'text-primary': type === 'message' || type === 'warning', 'text-danger': type === 'delete'}">
+          <!-- alert icon -->
+          <div *ngIf="type === 'delete'">
+            <fa-icon [icon]="icon.alert"></fa-icon>
+          </div>
+
+          <!-- info icon -->
+          <div *ngIf="type === 'message'">
+            <fa-icon [icon]="icon.info"></fa-icon>
+          </div>
+
+        </div>
+
+        <div class="content-container px-3">
+          <p>{{ content }}</p>
+        </div>
+
+      </div>
+
+      <!-- footer -->
+      <div class="modal-footer">
+        <!-- confirmation button -->
+        <button type="button" class="btn"
+          [ngClass]="{'btn-primary': type === 'message' || type === 'warning', 'btn-danger': type === 'delete'}"
+          (click)="confirmModal()">
+
+          <span>{{ successButtonText }}</span>
+        </button>
+
+        <!-- cancel button -->
+        <button type="button" class="btn btn-secondary"
+          *ngIf="type === 'delete' || type === 'message' || type === 'warning'"
+          (click)="cancel()">
+
+          {{ cancelButtonText }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "name": "ddata-ui-file",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^10.0.2",
+    "@angular/core": "^10.0.2",
+    "ddata-core": "0.0.2"
+  },
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/angular-fontawesome": "^0.7.0",
+    "tslib": "^2.0.0"
+  }
+}

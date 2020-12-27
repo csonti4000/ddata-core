@@ -19,6 +19,26 @@
       "ddata-core": [
         "dist/ddata-core/ddata-core",
         "dist/ddata-core"
+      ],
+      "ddata-ui": [
+        "dist/ddata-ui/ddata-ui",
+        "dist/ddata-ui"
+      ],
+      "ddata-ui-input": [
+        "dist/ddata-ui-input/ddata-ui-input",
+        "dist/ddata-ui-input"
+      ],
+      "ddata-ui-file": [
+        "dist/ddata-ui-file/ddata-ui-file",
+        "dist/ddata-ui-file"
+      ],
+      "ddata-ui-dialog": [
+        "dist/ddata-ui-dialog/ddata-ui-dialog",
+        "dist/ddata-ui-dialog"
+      ],
+      "ddata-ui-common": [
+        "dist/ddata-ui-common/ddata-ui-common",
+        "dist/ddata-ui-common"
       ]
     }
   }

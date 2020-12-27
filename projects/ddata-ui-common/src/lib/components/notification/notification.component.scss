@@ -1,0 +1,21 @@
+
+.notification-container {
+  z-index: 20000;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.notification {
+  animation-name: hide;
+  animation-duration: 5s;
+
+  &:not(:last-child) {
+      display: none;
+  }
+}
+
+@keyframes hide {
+  0% {opacity: 1;}
+  75% {opacity: 1;}
+  100% {opacity: 0.3;}
+}

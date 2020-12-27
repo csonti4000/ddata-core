@@ -1,0 +1,31 @@
+<div class="modal-overlay" [class.active]="isModalVisible"></div>
+<div *ngIf="isModalVisible" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Biztos törölni szeretné?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCancel()">
+          <fa-icon [icon]="icon.close"></fa-icon>
+        </button>
+      </div>
+      <div class="modal-body d-flex">
+        <div class="icon-container text-danger">
+          <div>
+            <fa-icon [icon]="icon.alert"></fa-icon>
+          </div>
+        </div>
+        <div class="content-container px-3">
+          <p>{{ deleteText }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="confirmModal()">
+          Törlés
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+          Mégsem
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

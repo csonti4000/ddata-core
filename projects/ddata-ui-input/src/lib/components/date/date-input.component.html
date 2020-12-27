@@ -1,0 +1,49 @@
+<div [class]="wrapperClass">
+  <label [class]="labelClass" [for]="_field + '_' + random" *ngIf="showLabel">
+    {{ _label }}:
+    <span *ngIf="_is_required"> *</span>
+  </label>
+
+  <div [class]="inputBlockClass" [ngClass]="showLabel ? inputBlockExtraClass : ''">
+
+    <div class="input-group-prepend" *ngIf=" _prepend != '' ">
+      <div class="input-group-text">{{ _prepend }}</div>
+    </div>
+
+    <ng-container *ngIf="!isViewOnly">
+      <input
+        ngxDaterangepickerMd
+        type="text"
+
+        [autoApply]="autoApply"
+        [drops]="direction"
+        [locale]="locale"
+        [opens]="position"
+        [singleDatePicker]="singleDatePicker"
+
+        [class.invalid]="model.validationErrors.includes(_field)"
+        [class]="inputClass"
+        [disabled]="disabled"
+        [id]="_field + '_' + random"
+        [name]="_field + '_' + random"
+        [placeholder]="_placeholder"
+        [title]="_title"
+        [value]="model[_field]"
+        (change)="change($event)"
+        #inputBox>
+    </ng-container>
+
+    <ng-container *ngIf="isViewOnly">
+      <div [class]="viewOnlyClass">{{ model[_field] }}</div>
+    </ng-container>
+
+    <label [class]="buttonClass" *ngIf="!disabled && showIcon" [for]="_field + '_' + random">
+      <fa-icon [icon]="icon.calendar"></fa-icon>
+    </label>
+
+    <div class="input-group-append" *ngIf="_append != ''">
+      <div class="input-group-text">{{ _append }}</div>
+    </div>
+  </div>
+
+</div>
