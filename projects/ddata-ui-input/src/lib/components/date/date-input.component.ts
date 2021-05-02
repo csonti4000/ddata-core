@@ -117,15 +117,15 @@ export class DdataInputDateComponent implements OnInit {
     calendar: faCalendar,
   };
   random: string = this.helperService.randChars();
-  selectedValue = !!this.model[this.field] ? this.model[this.field] : '';
+  selectedValue = !!this.model[this._field] ? this.model[this._field] : '';
 
   constructor(
     private changeDetector: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
-    if (!!this.model[this.field]) {
-      this.selectedValue = this.model[this.field];
+    if (!!this.model[this._field]) {
+      this.selectedValue = this.model[this._field];
     }
 
     if (this.autoFocus) {
@@ -147,7 +147,7 @@ export class DdataInputDateComponent implements OnInit {
     // TODO remove changeDetector
     this.changeDetector.detectChanges();
 
-    this.model[this.field] = this.selectedValue;
+    this.model[this._field] = this.selectedValue;
 
     const isValid = this.helperService.validateField(this._model, this._field);
 
