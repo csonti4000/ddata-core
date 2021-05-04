@@ -33,7 +33,7 @@
     </div>
 
     <!-- multiple select - clickable input-like div -->
-    <div *ngIf="multipleSelect" class="form-control multiple-select text-muted" [ngClass]="{'disabled': disabled}" (click)="showListModal()">
+    <div *ngIf="multipleSelect" class="form-control multiple-select text-muted" [ngClass]="{'disabled': disabled}" (click)="showModal('list')">
       <!-- if there isn't any selected items -->
       <ng-container *ngIf="!_model[_field] || _model[_field].length === 0">
         {{ '-- ' + unselectedText + ' --' }}
