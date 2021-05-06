@@ -6,7 +6,7 @@ export interface SelectableListComponentInterface<T> {
   multipleSelectEnabled: boolean;
   isSelectionList: boolean;
   loadData: boolean;
-  selectedElements: Set<T>;
+  selectedElements: T[];
 
   removeSelection: EventEmitter<T[]>;
   setSelection: EventEmitter<T[]>;
