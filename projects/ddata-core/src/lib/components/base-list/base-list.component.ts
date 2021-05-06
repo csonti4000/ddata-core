@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Injectable, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { DdataCoreModule } from '../../ddata-core.module';
 import { BaseModelInterface } from '../../models/base/base-model.model';
 import { PaginateInterface } from '../../models/paginate/paginate.interface';
