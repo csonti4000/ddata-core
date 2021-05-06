@@ -16,7 +16,7 @@ export abstract class SelectableListComponent<T extends BaseModelInterface<T>>
   @Input() multipleSelectEnabled = true;
   @Input() isSelectionList = true;
   @Input() loadData = false;
-  @Input() selectedElements: T[] = [];
+  @Input() selectedElements: Set<T> = new Set();
 
   @Output() removeSelection: EventEmitter<T[]> = new EventEmitter();
   @Output() setSelection: EventEmitter<T[]> = new EventEmitter();
@@ -26,20 +26,20 @@ export abstract class SelectableListComponent<T extends BaseModelInterface<T>>
   select: BehaviorSubject<T[]> = new BehaviorSubject(null);
 
   toggleSelect(model: T): void {
-    const index = this.selectedElements.indexOf(model);
+    const found: boolean = this.selectedElements.has(model);
 
-    if (index === -1) {
-      this.selectedElements.push(model);
-      this.setSelection.emit(this.selectedElements);
+    if (found) {
+      this.selectedElements.delete(model);
+      this.removeSelection.emit(Array.from(this.selectedElements));
     } else {
-      this.selectedElements.splice(index, 1);
-      this.removeSelection.emit(this.selectedElements);
+      this.selectedElements.add(model);
+      this.setSelection.emit(Array.from(this.selectedElements));
     }
 
-    this.select.next(this.selectedElements);
+    this.select.next(Array.from(this.selectedElements));
   }
 
   chooseSelect(): void {
-    this.emitSelected.emit(this.selectedElements);
+    this.emitSelected.emit(Array.from(this.selectedElements));
   }
 }
