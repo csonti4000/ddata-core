@@ -38,11 +38,10 @@ export abstract class SelectableListComponent<T extends BaseModelInterface<T>>
       this._selectedElements.add(model);
       this.setSelection.emit(Array.from(this._selectedElements));
     }
-
-    this.select.next(Array.from(this._selectedElements));
   }
 
   chooseSelect(): void {
+    this.select.next(Array.from(this._selectedElements));
     this.emitSelected.emit(Array.from(this._selectedElements));
   }
 }
