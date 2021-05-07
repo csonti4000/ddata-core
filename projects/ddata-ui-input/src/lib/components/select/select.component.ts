@@ -1,7 +1,7 @@
 // tslint:disable: variable-name
 // tslint:disable: no-string-literal
 // tslint:disable: max-line-length
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BaseModelWithoutTypeDefinitionInterface, FieldsInterface, BaseModel, DdataCoreModule } from 'ddata-core';
 import { DialogContentWithOptionsInterface, DialogContentInterface } from '../../models/dialog/content/dialog-content.interface';
@@ -15,7 +15,7 @@ import { InputHelperService } from '../../services/input/helper/input-helper.ser
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css']
 })
-export class DdataSelectComponent implements OnInit {
+export class DdataSelectComponent implements OnInit, OnDestroy {
   helperService: InputHelperServiceInterface = DdataCoreModule.InjectorInstance.get<InputHelperServiceInterface>(InputHelperService);
 
   _field = '';
@@ -167,6 +167,10 @@ export class DdataSelectComponent implements OnInit {
     if (this.fakeSingleSelect) {
       this._selectedModelName = !!this._model[this.getObjectFieldName()] && !!this._model[this.getObjectFieldName()][0] ? this._model[this.getObjectFieldName()][this.text] : '';
     }
+  }
+
+  ngOnDestroy(): void {
+    this.componentSubscription.unsubscribe();
   }
 
   selectItem(value: any): void {
