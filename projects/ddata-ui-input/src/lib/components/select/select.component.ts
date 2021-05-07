@@ -130,6 +130,9 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
     edit: 'Kiválasztott érték módosítása',
     search: 'Keresés',
   };
+  @Input() set forceCloseModal(value: any) {
+    this.hideModal();
+  }
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() selectModel: EventEmitter<any> = new EventEmitter();
   _selectedModel: any;
