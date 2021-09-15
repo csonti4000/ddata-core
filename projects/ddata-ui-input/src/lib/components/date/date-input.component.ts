@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, 
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface } from 'ddata-core';
 import * as moment from 'moment';
-import { LocaleConfig } from 'ngx-daterangepicker-material';
+import { DaterangepickerDirective, LocaleConfig } from 'ngx-daterangepicker-material';
 import { InputHelperServiceInterface } from '../../services/input/helper/input-helper-service.interface';
 import { InputHelperService } from '../../services/input/helper/input-helper.service';
 
@@ -12,6 +12,7 @@ import { InputHelperService } from '../../services/input/helper/input-helper.ser
   styleUrls: ['./date-input.component.scss']
 })
 export class DdataInputDateComponent implements OnInit {
+  @ViewChild(DaterangepickerDirective, { static: false }) pickerDirective: DaterangepickerDirective;
   helperService: InputHelperServiceInterface = DdataCoreModule.InjectorInstance.get<InputHelperServiceInterface>(InputHelperService);
 
   // tslint:disable: variable-name
@@ -154,6 +155,10 @@ export class DdataInputDateComponent implements OnInit {
     if (isValid) {
       this.changed.emit(this._model);
     }
+  }
+
+  openDatePiceker(): void {
+    this.pickerDirective.open();
   }
 
 }
