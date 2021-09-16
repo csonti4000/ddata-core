@@ -14,6 +14,7 @@ import { DdataInputSearchComponent } from './components/search/search.component'
 import { DdataInputTimeComponent } from './components/time/time-input.component';
 import { DdataTextareaComponent } from './components/textarea/textarea.component';
 import { DdataSelectComponent } from './components/select/select.component';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { DdataSelectComponent } from './components/select/select.component';
     FormsModule,
     NgxMaterialTimepickerModule,
     DdataUiCommonModule,
+    NgxDaterangepickerMd.forRoot()
   ],
   exports: [
     DdataInputCheckboxComponent,
