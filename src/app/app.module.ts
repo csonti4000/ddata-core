@@ -6,6 +6,7 @@ import { DdataUiInputModule, InputHelperService } from 'ddata-ui-input';
 import { DdataCoreModule, ValidatorService } from 'ddata-core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     DdataUiInputModule,
     DdataCoreModule,
     RouterModule.forRoot([]),
-    FormsModule
+    FormsModule,
+    NgxDaterangepickerMd.forRoot(),
   ],
   providers: [
     InputHelperService,
