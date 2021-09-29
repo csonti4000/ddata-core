@@ -29,7 +29,6 @@
     "moment": "^2.29.1",
     "ngx-color-picker": "^10.1.0",
     "ngx-daterangepicker-material": "^5.0.1",
-    "ngx-dates-picker": "^9.0.2",
     "ngx-material-timepicker": "^5.5.3",
     "pluralize": "^8.0.0",
     "rxjs": "~6.5.5",
