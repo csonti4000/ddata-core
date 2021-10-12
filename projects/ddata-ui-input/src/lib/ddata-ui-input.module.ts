@@ -35,7 +35,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
     FormsModule,
     NgxMaterialTimepickerModule,
     DdataUiCommonModule,
-    NgxDaterangepickerMd.forRoot()
+    NgxDaterangepickerMd
   ],
   exports: [
     DdataInputCheckboxComponent,

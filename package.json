@@ -28,7 +28,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "moment": "^2.29.1",
     "ngx-color-picker": "^10.1.0",
-    "ngx-daterangepicker-material": "^4.0.1",
+    "ngx-daterangepicker-material": "^5.0.1",
     "ngx-material-timepicker": "^5.5.3",
     "pluralize": "^8.0.0",
     "rxjs": "~6.5.5",
