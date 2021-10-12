@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BaseModel } from 'ddata-core';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,4 @@ import { BaseModel } from 'ddata-core';
 })
 export class AppComponent {
   title = 'ddata-lib';
-  model = new Teszt();
-}
-
-class Teszt extends BaseModel {
-  date: Date = new Date();
 }
