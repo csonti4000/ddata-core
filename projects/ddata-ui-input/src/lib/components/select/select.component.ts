@@ -1,7 +1,7 @@
 // tslint:disable: variable-name
 // tslint:disable: no-string-literal
 // tslint:disable: max-line-length
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BaseModelWithoutTypeDefinitionInterface, FieldsInterface, BaseModel, DdataCoreModule } from 'ddata-core';
 import { DialogContentWithOptionsInterface, DialogContentInterface } from '../../models/dialog/content/dialog-content.interface';
@@ -15,7 +15,7 @@ import { InputHelperService } from '../../services/input/helper/input-helper.ser
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css']
 })
-export class DdataSelectComponent implements OnInit {
+export class DdataSelectComponent implements OnInit, OnDestroy {
   helperService: InputHelperServiceInterface = DdataCoreModule.InjectorInstance.get<InputHelperServiceInterface>(InputHelperService);
 
   _field = '';
@@ -130,6 +130,9 @@ export class DdataSelectComponent implements OnInit {
     edit: 'Kiválasztott érték módosítása',
     search: 'Keresés',
   };
+  @Input() set forceCloseModal(value: any) {
+    this.hideModal();
+  }
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @Output() selectModel: EventEmitter<any> = new EventEmitter();
   _selectedModel: any;
@@ -144,7 +147,7 @@ export class DdataSelectComponent implements OnInit {
   _selectedModelName = '';
 
   componentRef: any;
-  componentSubscription: Subscription;
+  componentSubscription: Subscription = new Subscription();
   icon = {
     menu: faEllipsisV,
   };
@@ -167,6 +170,10 @@ export class DdataSelectComponent implements OnInit {
     if (this.fakeSingleSelect) {
       this._selectedModelName = !!this._model[this.getObjectFieldName()] && !!this._model[this.getObjectFieldName()][0] ? this._model[this.getObjectFieldName()][this.text] : '';
     }
+  }
+
+  ngOnDestroy(): void {
+    this.componentSubscription.unsubscribe();
   }
 
   selectItem(value: any): void {
@@ -218,19 +225,21 @@ export class DdataSelectComponent implements OnInit {
       new DialogContentItem(this.dialogSettings.listComponent, this.dialogSettings.listOptions);
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(dialogContent.component);
 
-    if (method === 'list') {
-      this.setListComponent(dialogContent);
-    }
-
     this.dialogHost.clear();
 
     this.componentRef = this.dialogHost.createComponent(componentFactory);
 
+    if (method === 'list') {
+      this.setListComponent(dialogContent);
+    }
+
     this.componentRef.instance.model = dialogContent.data.model;
 
     (this.componentRef.instance as DialogContentInterface).isModal = true;
-    this.componentSubscription = (this.componentRef.instance as DialogContentInterface).saveModel
-      .subscribe((model: any) => this.setModel(model));
+    this.componentSubscription.add(
+      (this.componentRef.instance as DialogContentInterface).saveModel
+        .subscribe((model: any) => this.setModel(model))
+    );
   }
 
   setModel(model: any): any {
@@ -269,18 +278,22 @@ export class DdataSelectComponent implements OnInit {
 
       // if there is selected elements...
       if (this.multipleSelect) {
-        (this.componentRef.instance as DialogContentInterface).selectedElements = [...this._model[this.field]];
+        (this.componentRef.instance as DialogContentInterface).selectedElements = [...this._model[this._field]];
       } else {
-        (this.componentRef.instance as DialogContentInterface).selectedElements = this._model[this.field] !== 0 ? [this._model[this.getObjectFieldName()]] : [];
+        (this.componentRef.instance as DialogContentInterface).selectedElements = this._model[this._field] !== 0 ? [this._model[this.getObjectFieldName()]] : [];
       }
 
-      this.componentSubscription = (this.componentRef.instance as DialogContentInterface).select
+      this.componentSubscription.add((this.componentRef.instance as DialogContentInterface).select
         .subscribe((models: any[]) => {
 
           // kezelni kell, hogy a korábban már kiválasztottak újra hozzáadásra kerüljenek, és amikből a user kivette
           // a pipát azok eltűnjenek. Ennek érdekében kiürítjük a tömböt.
           if (this.multipleSelect) {
-            this._model[this.field] = [];
+            this._model[this._field] = [];
+          }
+
+          if (!models) {
+            return;
           }
 
           // selection return always an array
@@ -299,11 +312,11 @@ export class DdataSelectComponent implements OnInit {
               // If the multipleSelect is true, then this component will be handle the selection and put selected elements
               // into this._model[this.filed] array. Because in this case it MUST be an array.
               if (this.multipleSelect) {
-                if (!(this._model[this.field] instanceof Array)) {
-                  console.error(`The ${this._model.model_name}'s ${this.field} field is not an array. If you use select-box as multipleSelect, then the 'field' parameter must be array.`);
+                if (!(this._model[this._field] instanceof Array)) {
+                  console.error(`The ${this._model.model_name}'s ${this._field} field is not an array. If you use select-box as multipleSelect, then the 'field' parameter must be array.`);
                 }
 
-                this._model[this.field].push(model);
+                this._model[this._field].push(model);
               }
 
             }
@@ -313,7 +326,8 @@ export class DdataSelectComponent implements OnInit {
           });
 
           this.hideModal();
-        });
+        })
+      );
     }
   }
 

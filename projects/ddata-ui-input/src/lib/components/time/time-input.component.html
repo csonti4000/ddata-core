@@ -15,7 +15,7 @@
         [format]="format"
         [class.invalid]="model.validationErrors.includes(_field)"
         [class]="inputClass"
-        [(ngModel)]="model[_field]"
+        [(ngModel)]="_model[_field]"
         [id]="_field + '_' + random"
         [attr.name]="_field + '_' + random"
         [placeholder]="_placeholder"

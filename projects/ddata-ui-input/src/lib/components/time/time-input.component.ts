@@ -111,7 +111,6 @@ export class DdataInputTimeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-
   ngAfterViewInit(): void {
     if (this.autoFocus) {
       this.inputBox.nativeElement.focus();
