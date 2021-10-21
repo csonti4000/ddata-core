@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface } from 'ddata-core';
 import * as moment from 'moment';
-import { DaterangepickerDirective, LocaleConfig } from 'ngx-daterangepicker-material';
 import { InputHelperServiceInterface } from '../../services/input/helper/input-helper-service.interface';
 import { InputHelperService } from '../../services/input/helper/input-helper.service';
 
@@ -12,7 +12,6 @@ import { InputHelperService } from '../../services/input/helper/input-helper.ser
   styleUrls: ['./date-input.component.scss']
 })
 export class DdataInputDateComponent implements OnInit {
-  @ViewChild(DaterangepickerDirective, { static: false }) pickerDirective: DaterangepickerDirective;
   helperService: InputHelperServiceInterface = DdataCoreModule.InjectorInstance.get<InputHelperServiceInterface>(InputHelperService);
 
   // tslint:disable: variable-name
@@ -99,16 +98,16 @@ export class DdataInputDateComponent implements OnInit {
   @Input() showIcon = true;
   @Input() autoApply = true;
   @Input() singleDatePicker = true;
-  @Input() locale: LocaleConfig = {
-    format: this.format,
-    displayFormat: this.format,
-    separator: this.separator,
-    cancelLabel: this.labelCancel,
-    applyLabel: this.labelApply,
-    daysOfWeek: this._moment.weekdaysMin(),
-    monthNames: this._moment.monthsShort(),
-    firstDay: this._moment.localeData().firstDayOfWeek(),
-  };
+  // @Input() locale: LocaleConfig = {
+  //   format: this.format,
+  //   displayFormat: this.format,
+  //   separator: this.separator,
+  //   cancelLabel: this.labelCancel,
+  //   applyLabel: this.labelApply,
+  //   daysOfWeek: this._moment.weekdaysMin(),
+  //   monthNames: this._moment.monthsShort(),
+  //   firstDay: this._moment.localeData().firstDayOfWeek(),
+  // };
 
   @Output() changed: EventEmitter<BaseModelInterface<any> & FieldsInterface<any>> = new EventEmitter();
 
@@ -156,9 +155,4 @@ export class DdataInputDateComponent implements OnInit {
       this.changed.emit(this._model);
     }
   }
-
-  openDatePiceker(): void {
-    this.pickerDirective.open();
-  }
-
 }
