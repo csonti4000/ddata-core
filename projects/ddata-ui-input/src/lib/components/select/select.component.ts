@@ -165,7 +165,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
     }
 
     if (!!this.items) {
-      this._selectedModel = this.items.find(item => item.id === this._model[this.field]);
+      this._selectedModel = this.items.find(item => item.id === this._model[this._field]);
     }
     if (this.fakeSingleSelect) {
       this._selectedModelName = !!this._model[this.getObjectFieldName()] && !!this._model[this.getObjectFieldName()][0] ? this._model[this.getObjectFieldName()][this.text] : '';
@@ -182,7 +182,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   }
 
   private setSelected(selectedValue: any, emit: boolean = true, model?: any): void {
-    this._model[this.field] = selectedValue;
+    this._model[this._field] = selectedValue;
 
     if (!this.disableAdditionalModelUpdate) {
       const additionalModelFieldName = this.getObjectFieldName();
@@ -244,8 +244,8 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
 
   setModel(model: any): any {
     if (!!model) {
-      this._model[this.field.split('_id')[0]] = model;
-      this._model[this.field] = model.id;
+      this._model[this._field.split('_id')[0]] = model;
+      this._model[this._field] = model.id;
       this.items.push(model);
       this._selectedModel = model;
       this.selected.emit(model[this.valueField]);
@@ -277,7 +277,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
       }
 
       // if there is selected elements...
-      if (this.multipleSelect) {
+      if (this.multipleSelect && !this.fakeSingleSelect) {
         (this.componentRef.instance as DialogContentInterface).selectedElements = [...this._model[this._field]];
       } else {
         (this.componentRef.instance as DialogContentInterface).selectedElements = this._model[this._field] !== 0 ? [this._model[this.getObjectFieldName()]] : [];
@@ -288,7 +288,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
 
           // kezelni kell, hogy a korábban már kiválasztottak újra hozzáadásra kerüljenek, és amikből a user kivette
           // a pipát azok eltűnjenek. Ennek érdekében kiürítjük a tömböt.
-          if (this.multipleSelect) {
+          if (this.multipleSelect && !this.fakeSingleSelect) {
             this._model[this._field] = [];
           }
 
@@ -300,7 +300,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
           models.forEach((model: any) => {
             this._selectedModelName = model[this.text];
 
-            if (models.length === 1 && !this.multipleSelect) {
+            if (models.length === 1 && ( !this.multipleSelect || this.fakeSingleSelect) ) {
               // single select - only a single element can be selected
               this.setSelected(model[this.valueField], false, model);
               this.selected.emit(model[this.valueField]);
@@ -311,7 +311,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
               // In this case the caller component has to be handle the results.
               // If the multipleSelect is true, then this component will be handle the selection and put selected elements
               // into this._model[this.filed] array. Because in this case it MUST be an array.
-              if (this.multipleSelect) {
+              if (this.multipleSelect && !this.fakeSingleSelect) {
                 if (!(this._model[this._field] instanceof Array)) {
                   console.error(`The ${this._model.model_name}'s ${this._field} field is not an array. If you use select-box as multipleSelect, then the 'field' parameter must be array.`);
                 }
@@ -332,12 +332,12 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   }
 
   deleteFromMultipleSelectedList(item: any): void {
-    this._model[this.field].splice(this._model[this.field].indexOf(item), 1);
+    this._model[this._field].splice(this._model[this._field].indexOf(item), 1);
   }
 
   getModelField(): string {
-    if (!!this.items.find(item => item.id === this._model[this.field])) {
-      this._selectedModel = this.items.find(item => item.id === this._model[this.field]);
+    if (!!this.items.find(item => item.id === this._model[this._field])) {
+      this._selectedModel = this.items.find(item => item.id === this._model[this._field]);
       return this._selectedModel[this.text];
     }
 
