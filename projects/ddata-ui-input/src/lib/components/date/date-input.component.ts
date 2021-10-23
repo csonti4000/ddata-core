@@ -98,16 +98,6 @@ export class DdataInputDateComponent implements OnInit {
   @Input() showIcon = true;
   @Input() autoApply = true;
   @Input() singleDatePicker = true;
-  // @Input() locale: LocaleConfig = {
-  //   format: this.format,
-  //   displayFormat: this.format,
-  //   separator: this.separator,
-  //   cancelLabel: this.labelCancel,
-  //   applyLabel: this.labelApply,
-  //   daysOfWeek: this._moment.weekdaysMin(),
-  //   monthNames: this._moment.monthsShort(),
-  //   firstDay: this._moment.localeData().firstDayOfWeek(),
-  // };
 
   @Output() changed: EventEmitter<BaseModelInterface<any> & FieldsInterface<any>> = new EventEmitter();
 
