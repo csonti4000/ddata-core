@@ -33,8 +33,10 @@
     "ddata-ui-common": "^0.1.9",
     "moment": "^2.27.0",
     "ngx-color-picker": "^10.0.1",
-    "ngx-daterangepicker-material": "^3.0.4",
-    "ngx-material-timepicker": "^5.5.3"
+    "ngx-material-timepicker": "^5.5.3",
+    "@ng-bootstrap/ng-bootstrap": "^11.0.0",
+    "@angular/localize": "^12.2.11"
+
   },
   "dependencies": {
     "tslib": "^2.0.0"
