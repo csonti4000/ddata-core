@@ -63,6 +63,7 @@ export interface BaseModelWithoutTypeDefinitionInterface  {
   getCurrentISODate(): ISODate;
   toISODate(date: Date): ISODate;
   calculateDateWithoutWeekend(date: string, days: number, sequence: string): ISODate;
+  getCurrentTime(): string;
 }
 
 export interface FieldsInterface<T> {
@@ -71,6 +72,19 @@ export interface FieldsInterface<T> {
 
 export interface BaseModelInterface<T> extends BaseModelWithoutTypeDefinitionInterface {
   tabs?: TabInterface<T>;
+  fieldAsBoolean(field: string, defaultValue: boolean, data: unknown): void;
+  fieldAsNumber(field: string, defaultValue: number, data: unknown): void;
+  fieldAsString(field: string, defaultValue: string, data: unknown): void;
+  initModelOrNull(fields: Partial<T>, data: unknown): void;
+  initAsBoolean(fields: Partial<T>, data: unknown): void;
+  initAsBooleanWithDefaults(fields: Array<string>, data: unknown): void;
+  initAsNumber(fields: Partial<T>, data: unknown): void;
+  initAsNumberWithDefaults(fields: Array<string>, data: unknown): void;
+  initAsString(fields: Partial<T>, data: unknown): void;
+  initAsStringWithDefaults(fields: Array<string>, data: unknown): void;
+  prepareFieldsToSaveAsBooelan(fields: Partial<T>): Partial<T>;
+  prepareFieldsToSaveAsNumber(fields: Partial<T>): Partial<T>;
+  prepareFieldsToSaveAsString(fields: Partial<T>): Partial<T>;
 }
 
 // tslint:disable-next-line: no-empty-interface
@@ -196,5 +210,98 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
     }
 
     return calculatedDate as ISODate;
+  }
+
+  prepareFieldsToSaveAsString(fields: Partial<ModelWithId>): Partial<ModelWithId> {
+    const result = {};
+
+    Object.keys(fields).forEach((field: string) => {
+      result[field] = this[field] ?? fields[field] ?? '';
+    });
+
+    return result;
+  }
+
+  prepareFieldsToSaveAsNumber(fields: Partial<ModelWithId>): Partial<ModelWithId> {
+    const result = {};
+
+    Object.keys(fields).forEach((field: string) => {
+      result[field] = this[field] ?? fields[field] ?? 0;
+    });
+
+    return result;
+  }
+
+  prepareFieldsToSaveAsBooelan(fields: Partial<ModelWithId>): Partial<ModelWithId> {
+    const result = {};
+
+    Object.keys(fields).forEach((field: string) => {
+      result[field] = this[field] ?? fields[field] ?? false;
+    });
+
+    return result;
+  }
+
+  initModelOrNull(fields: Partial<ModelWithId>, data: unknown): void {
+    Object.keys(fields).forEach((field: string) => {
+      this[field] = fields[field].init(data[field]);
+    });
+  }
+
+  initAsBoolean(fields: Partial<ModelWithId>, data: unknown): void {
+    Object.keys(fields).forEach((field: string) => {
+      this.fieldAsBoolean(field, fields[field], data);
+    });
+  }
+
+  initAsBooleanWithDefaults(fields: Array<string>, data: unknown): void {
+    fields.forEach((field: string) => {
+      this.fieldAsBoolean(field, false, data);
+    });
+  }
+
+  fieldAsBoolean(field: string, defaultValue: boolean, data: unknown): void {
+    this[field] =
+      data[field] !== undefined && data[field] !== null && typeof data[field] === 'boolean'
+        ? data[field]
+        : defaultValue;
+  }
+
+  initAsString(fields: Partial<ModelWithId>, data: unknown): void {
+    Object.keys(fields).forEach((field: string) => {
+      this.fieldAsString(field, fields[field], data);
+    });
+  }
+
+  initAsStringWithDefaults(fields: Array<string>, data: unknown): void {
+    fields.forEach((field: string) => {
+      this.fieldAsString(field, '', data);
+    });
+  }
+
+  fieldAsString(field: string, defaultValue: string, data: unknown): void {
+    this[field] = data[field].toString() ?? defaultValue ?? '';
+  }
+
+  initAsNumber(fields: Partial<ModelWithId>, data: unknown): void {
+    Object.keys(fields).forEach((field: string) => {
+      this.fieldAsNumber(field, fields[field], data);
+    });
+  }
+
+  initAsNumberWithDefaults(fields: Array<string>, data: unknown): void {
+    fields.forEach((field: string) => {
+      this.fieldAsNumber(field, 0, data);
+    });
+  }
+
+  fieldAsNumber(field: string, defaultValue: number, data: unknown): void {
+    this[field] = !!data[field] ? Number(data[field]) : defaultValue;
+  }
+
+  getCurrentTime(): string {
+    const currentdate = new Date();
+
+    return `${currentdate.getHours()}:${currentdate.getMinutes()}`;
   }
 }
