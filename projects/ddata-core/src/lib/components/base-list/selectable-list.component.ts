@@ -19,7 +19,7 @@ export abstract class SelectableListComponent<T extends BaseModelInterface<T>>
   @Input() loadData = false;
   @Input() set selectedElements(value: T[]) {
     this._selectedElements = new Set(!!value.length ? value : []);
-  };
+  }
 
   @Output() removeSelection: EventEmitter<T[]> = new EventEmitter();
   @Output() setSelection: EventEmitter<T[]> = new EventEmitter();
