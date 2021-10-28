@@ -7,7 +7,6 @@ import { DdataCoreModule, ValidatorService } from 'ddata-core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import { DdataUiCommonModule } from 'ddata-ui-common';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { DdataUiCommonModule } from 'ddata-ui-common';
     RouterModule.forRoot([]),
     FormsModule,
     NgxDaterangepickerMd.forRoot(),
-    DdataUiCommonModule
   ],
   providers: [
     InputHelperService,
