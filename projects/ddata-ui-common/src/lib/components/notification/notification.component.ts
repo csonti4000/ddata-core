@@ -16,8 +16,6 @@ export class DdataUiNotificationComponent implements OnInit, OnDestroy {
     this._notifications = notifications;
   }
 
-  noties: NotificationInterface[];
-
   constructor(
     private notificationService: NotificationService,
     private ref: ChangeDetectorRef
@@ -26,7 +24,7 @@ export class DdataUiNotificationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.notificationService.watch().pipe(
       map((result: NotificationInterface[]) => {
-        this.noties = result;
+        this._notifications = result;
         this.ref.detectChanges();
       }),
     ).subscribe();
