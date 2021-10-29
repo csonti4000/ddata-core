@@ -1,12 +1,12 @@
 // tslint:disable: variable-name
 // tslint:disable: no-string-literal
 // tslint:disable: max-line-length
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { BaseModelWithoutTypeDefinitionInterface, FieldsInterface, BaseModel, DdataCoreModule } from 'ddata-core';
-import { DialogContentWithOptionsInterface, DialogContentInterface } from '../../models/dialog/content/dialog-content.interface';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface } from 'ddata-core';
+import { Subscription } from 'rxjs';
 import { DialogContentItem } from '../../models/dialog/content/dialog-content-item';
+import { DialogContentInterface, DialogContentWithOptionsInterface } from '../../models/dialog/content/dialog-content.interface';
 import { InputHelperServiceInterface } from '../../services/input/helper/input-helper-service.interface';
 import { InputHelperService } from '../../services/input/helper/input-helper.service';
 
@@ -24,13 +24,13 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   _prepend = '';
   _append = '';
   _isRequired = false;
-  _model: BaseModelWithoutTypeDefinitionInterface & FieldsInterface<any> = new BaseModel();
+  _model: BaseModelInterface<any> & FieldsInterface<any> = new BaseModel();
   @Input() set close(value: boolean) {
     this.isModalVisible = false;
     this.changeDetector.detectChanges();
   }
   @Input() valueField = 'id';
-  @Input() set model(value: BaseModelWithoutTypeDefinitionInterface & FieldsInterface<any>) {
+  @Input() set model(value: BaseModelInterface<any> & FieldsInterface<any>) {
     if (!value) {
       return;
     }
@@ -60,7 +60,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
       this._isRequired = this.helperService.isRequired(this._model, this._field);
     }
   }
-  get model(): BaseModelWithoutTypeDefinitionInterface & FieldsInterface<any> {
+  get model(): BaseModelInterface<any> & FieldsInterface<any> {
     return this._model;
   }
   @Input() set field(value: string) {

@@ -18,12 +18,15 @@ export class SearchModelFunctions extends BaseModel {
   init(data?: any): any {
     data = !!data ? data : {};
 
-    this.id = !!data.id ? data.id : 0;
-    this.name = !!data.name ? data.name : '';
-    this.description = !!data.description ? data.description : '';
-    this.type = !!data.type ? data.type : '';
-    this.found_model_name = !!data.found_model_name ? data.found_model_name : '';
+    this.initAsNumberWithDefaults(['id'], data);
+
+    this.initAsStringWithDefaults(
+      ['name', 'description', 'type', 'found_model_name'],
+      data
+    );
+
     this.icon = this.setIcon(this.type);
+
     this.url = this.setUrl(this.type);
 
     return this;

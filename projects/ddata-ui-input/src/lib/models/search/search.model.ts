@@ -12,7 +12,7 @@ export abstract class Search extends SearchModelFunctions implements SearchInter
 
     super.init(data);
 
-    this.searchText = !!data.searchText ? data.searchText : '';
+    this.initAsStringWithDefaults(['searchText'], data);
 
     return this;
   }

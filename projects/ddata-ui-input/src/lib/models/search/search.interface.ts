@@ -1,5 +1,5 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { BaseModelWithoutTypeDefinitionInterface, ID } from 'ddata-core';
+import { BaseModelInterface, ID } from 'ddata-core';
 
 export interface SearchUIFieldsInterface {
   searchText: string;
@@ -12,7 +12,7 @@ export interface SearchUIFieldsInterface {
 
 export interface SearchInterface extends
 SearchUIFieldsInterface,
-BaseModelWithoutTypeDefinitionInterface {
+BaseModelInterface<any> {
 
   id: ID;
   icon: IconDefinition;
