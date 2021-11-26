@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface } from 'ddata-core';
 import * as moment from 'moment';
 import { InputHelperServiceInterface } from '../../services/input/helper/input-helper-service.interface';
@@ -124,18 +124,8 @@ export class DdataInputDateComponent implements OnInit {
   }
 
 
-  change(value: any): void {
-    if (!!value.startDate && !!value.startDate._d) {
-      let date = value.startDate._d;
-      // get UTC Date
-      date = new Date(date.getTime() - (date.getTimezoneOffset() * 60 * 1000));
-      this.selectedValue = date.toISOString().split('T')[0];
-    } else {
-      this.selectedValue = (value.target.value);
-    }
-
-    // TODO remove changeDetector
-    this.changeDetector.detectChanges();
+  change(value: NgbDate): void {
+    this.selectedValue = value.year + '-' + value.month + '-' + value.day;
 
     this.model[this._field] = this.selectedValue;
 
