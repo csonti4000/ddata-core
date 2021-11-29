@@ -62,6 +62,7 @@ export interface BaseModelWithoutTypeDefinitionInterface  {
   getCurrentUserId(): ID;
   getCurrentISODate(): ISODate;
   toISODate(date: Date): ISODate;
+  toISODatetime(date: Date): string;
   calculateDateWithoutWeekend(date: string, days: number, sequence: string): ISODate;
   getCurrentTime(): string;
 }
@@ -165,6 +166,18 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
    */
   toISODate(date: Date): ISODate {
     return date.toISOString().split('T')[0] as ISODate;
+  }
+
+  /**
+   * Return a datetime as YYYY-MM-DD hh:mm:ss format
+   */
+  toISODatetime(date: Date): string {
+    const iso_date = this.toISODate(date);
+    const hours = (date.getHours() < 10 ? '0' : '') + date.getHours();
+    const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    const seconds = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
+
+    return `${iso_date} ${hours}:${minutes}:${seconds}`;
   }
 
   /**
