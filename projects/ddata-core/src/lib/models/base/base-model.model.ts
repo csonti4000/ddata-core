@@ -280,7 +280,7 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
   }
 
   fieldAsString(field: string, defaultValue: string, data: unknown): void {
-    this[field] = data[field].toString() ?? defaultValue ?? '';
+    this[field] = data[field]?.toString() ?? defaultValue ?? '';
   }
 
   initAsNumber(fields: Partial<ModelWithId>, data: unknown): void {
