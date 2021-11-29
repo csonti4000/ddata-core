@@ -244,7 +244,7 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
 
   initModelOrNull(fields: Partial<ModelWithId>, data: unknown): void {
     Object.keys(fields).forEach((field: string) => {
-      this[field] = fields[field].init(data[field]);
+      this[field] = fields[field]?.init(data[field]) ?? null;
     });
   }
 
