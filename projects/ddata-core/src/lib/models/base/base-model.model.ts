@@ -62,6 +62,7 @@ export interface BaseModelWithoutTypeDefinitionInterface  {
   getCurrentUserId(): ID;
   getCurrentISODate(): ISODate;
   toISODate(date: Date): ISODate;
+  toISODatetime(date: Date): string;
   calculateDateWithoutWeekend(date: string, days: number, sequence: string): ISODate;
   getCurrentTime(): string;
 }
@@ -168,6 +169,18 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
   }
 
   /**
+   * Return a datetime as YYYY-MM-DD hh:mm:ss format
+   */
+  toISODatetime(date: Date): string {
+    const iso_date = this.toISODate(date);
+    const hours = (date.getHours() < 10 ? '0' : '') + date.getHours();
+    const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    const seconds = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
+
+    return `${iso_date} ${hours}:${minutes}:${seconds}`;
+  }
+
+  /**
    * Return current user's id as ID
    */
   getCurrentUserId(): ID {
@@ -244,7 +257,7 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
 
   initModelOrNull(fields: Partial<ModelWithId>, data: unknown): void {
     Object.keys(fields).forEach((field: string) => {
-      this[field] = fields[field].init(data[field]);
+      this[field] = fields[field]?.init(data[field]) ?? null;
     });
   }
 
@@ -280,7 +293,7 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
   }
 
   fieldAsString(field: string, defaultValue: string, data: unknown): void {
-    this[field] = data[field].toString() ?? defaultValue ?? '';
+    this[field] = data[field]?.toString() ?? defaultValue ?? '';
   }
 
   initAsNumber(fields: Partial<ModelWithId>, data: unknown): void {

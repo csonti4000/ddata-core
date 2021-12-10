@@ -177,8 +177,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   }
 
   selectItem(value: any): void {
-    const selectedValue: number | string = this.valueField === 'id' ? Number(value.value) : value.value;
-    this.setSelected(selectedValue);
+    this.setSelected(this._model[this._field]);
   }
 
   private setSelected(selectedValue: any, emit: boolean = true, model?: any): void {
