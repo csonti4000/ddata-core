@@ -7,7 +7,7 @@ Accessibility package for Angular projects.
 ### Find accessible text color pair
 
 Find out the right foreground color programatically for any background color what will pass on
-(jasmine-axe)[https://github.com/theodo/jasmine-axe] tests.
+[jasmine-axe](https://github.com/theodo/jasmine-axe) tests.
 
 Usage:
 
@@ -60,4 +60,4 @@ const luminance = new A11yColor()
 
 ## Thanks
 
-- (Karen Ying)[https://blog.karenying.com/posts/boost-visual-accessibility-by-auto-flipping-text-color]
+- [Karen Ying](https://blog.karenying.com/posts/boost-visual-accessibility-by-auto-flipping-text-color)
