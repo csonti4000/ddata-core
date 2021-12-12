@@ -51,6 +51,12 @@
     },
     {
       "path": "./projects/ddata-ui-common/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ddata-a11y/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ddata-a11y/tsconfig.spec.json"
     }
 ]
 }

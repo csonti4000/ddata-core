@@ -39,6 +39,10 @@
       "ddata-ui-common": [
         "dist/ddata-ui-common/ddata-ui-common",
         "dist/ddata-ui-common"
+      ],
+      "ddata-a11y": [
+        "dist/ddata-a11y/ddata-a11y",
+        "dist/ddata-a11y"
       ]
     }
   }

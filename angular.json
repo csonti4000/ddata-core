@@ -365,6 +365,46 @@
           }
         }
       }
+    },
+    "ddata-a11y": {
+      "projectType": "library",
+      "root": "projects/ddata-a11y",
+      "sourceRoot": "projects/ddata-a11y/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ddata-a11y/tsconfig.lib.json",
+            "project": "projects/ddata-a11y/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ddata-a11y/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ddata-a11y/src/test.ts",
+            "tsConfig": "projects/ddata-a11y/tsconfig.spec.json",
+            "karmaConfig": "projects/ddata-a11y/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ddata-a11y/tsconfig.lib.json",
+              "projects/ddata-a11y/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ddata-lib"
 }
