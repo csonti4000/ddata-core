@@ -173,11 +173,23 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
    */
   toISODatetime(date: Date): string {
     const iso_date = this.toISODate(date);
+    const iso_time = this.toISOTime(date);
+
+    return `${iso_date} ${iso_time}`;
+  }
+
+  /**
+   * Return a time as hh:mm:ss format
+   *
+   * @param date Date
+   * @returns string
+   */
+  toISOTime(date: Date): string {
     const hours = (date.getHours() < 10 ? '0' : '') + date.getHours();
     const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     const seconds = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
 
-    return `${iso_date} ${hours}:${minutes}:${seconds}`;
+    return `${hours}:${minutes}:${seconds}`;
   }
 
   /**
