@@ -11,7 +11,7 @@
     </div>
 
     <!-- single select -->
-    <select class="form-control"
+    <select class="form-select"
       *ngIf="!multipleSelect && !isViewOnly"
       (change)="selectItem($event)"
       [(ngModel)]="_model[_field]"
