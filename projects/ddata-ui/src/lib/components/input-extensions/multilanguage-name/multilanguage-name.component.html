@@ -2,7 +2,7 @@
 <ng-container>
     <div class="input-group pb-1" >
       <div class="input-group-prepend w-100 pr-md-5">
-        <select class="form-control col-12 col-sm-6 col-md-3 col-xl-2" name="lang" id="lang" [(ngModel)]="model.names[0].lang_id">
+        <select class="form-select col-12 col-sm-6 col-md-3 col-xl-2" name="lang" id="lang" [(ngModel)]="model.names[0].lang_id">
           <option [value]="lang.id" *ngFor="let lang of langs">{{ lang.name }}</option>
         </select>
 
@@ -17,7 +17,7 @@
     <ng-container *ngIf="name !== model.names[0]">
       <div class="input-group pb-1" *ngIf="show; else elseBlock">
         <div class="input-group-prepend w-100 pr-md-5">
-          <select class="form-control col-12 col-sm-6 col-md-3 col-xl-2" name="lang" id="lang" [(ngModel)]="name.lang_id">
+          <select class="form-select col-12 col-sm-6 col-md-3 col-xl-2" name="lang" id="lang" [(ngModel)]="name.lang_id">
             <option [value]="lang.id" *ngFor="let lang of langs">{{ lang.name }}</option>
           </select>
 
