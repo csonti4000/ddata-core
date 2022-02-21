@@ -12,7 +12,9 @@ describe('StorageService', () => {
   beforeAll(() => {
     TestBed.initTestEnvironment(
       BrowserDynamicTestingModule,
-      platformBrowserDynamicTesting()
+      platformBrowserDynamicTesting(), {
+    teardown: { destroyAfterEach: false }
+}
     );
   });
   beforeEach(async(() => {

@@ -10,7 +10,9 @@ describe('NotificationComponent', () => {
   beforeAll(() => {
     TestBed.initTestEnvironment(
       BrowserDynamicTestingModule,
-      platformBrowserDynamicTesting()
+      platformBrowserDynamicTesting(), {
+    teardown: { destroyAfterEach: false }
+}
     );
   });
 

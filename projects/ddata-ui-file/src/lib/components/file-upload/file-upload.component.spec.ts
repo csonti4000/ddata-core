@@ -15,7 +15,9 @@ describe('FileUploadComponent', () => {
   beforeAll(() => {
     TestBed.initTestEnvironment(
       BrowserDynamicTestingModule,
-      platformBrowserDynamicTesting()
+      platformBrowserDynamicTesting(), {
+    teardown: { destroyAfterEach: false }
+}
     );
   });
 

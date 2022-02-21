@@ -12,7 +12,9 @@ describe('CheckboxComponent', () => {
   beforeAll(() => {
     TestBed.initTestEnvironment(
       BrowserDynamicTestingModule,
-      platformBrowserDynamicTesting()
+      platformBrowserDynamicTesting(), {
+    teardown: { destroyAfterEach: false }
+}
     );
   });
 

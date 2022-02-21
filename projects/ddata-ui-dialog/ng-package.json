@@ -2,12 +2,6 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ddata-ui-dialog",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "@fortawesome/free-solid-svg-icons": "@fortawesome/free-solid-svg-icons",
-      "@fortawesome/angular-fontawesome": "@fortawesome/angular-fontawesome",
-      "ddata-core": "ddata-core",
-      "ddata-ui-common": "ddata-ui-common"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }

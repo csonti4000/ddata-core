@@ -6,6 +6,6 @@
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
-    "enableIvy": false
+    "compilationMode": "partial"
   }
 }

@@ -15,7 +15,9 @@ describe('DdataUiTagComponent', () => {
   beforeAll(() => {
     TestBed.initTestEnvironment(
       BrowserDynamicTestingModule,
-      platformBrowserDynamicTesting()
+      platformBrowserDynamicTesting(), {
+    teardown: { destroyAfterEach: false }
+}
     );
   });
 

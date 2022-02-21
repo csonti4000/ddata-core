@@ -56,7 +56,9 @@ describe('HelperService', () => {
   const routerSpy = {navigateByUrl: jasmine.createSpy('navigateByUrl')};
 
   beforeAll(() => {
-    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting(), {
+    teardown: { destroyAfterEach: false }
+});
   });
 
   beforeEach(async(() => {
