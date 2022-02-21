@@ -1,7 +1,7 @@
 // tslint:disable-next-line: max-line-length
 import { ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { BaseCreateEditComponent, BaseModel, BaseModelWithoutTypeDefinitionInterface } from 'ddata-core';
+import { BaseCreateEditComponent, BaseModel, BaseModelInterface, BaseModelWithoutTypeDefinitionInterface } from 'ddata-core';
 import { DdataUiNoDataComponent } from 'ddata-ui-common';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -82,7 +82,7 @@ export class DdataUiModalDialogComponent implements OnInit {
     this.componentRef = this.dialogHost.createComponent(componentFactory);
     if (!!this.dialogContent.data.model) {
       // tslint:disable-next-line: max-line-length
-      (this.componentRef.instance as BaseCreateEditComponent<BaseModelWithoutTypeDefinitionInterface>).model = this.dialogContent.data.model;
+      (this.componentRef.instance as BaseCreateEditComponent<BaseModelInterface<any>>).model = this.dialogContent.data.model;
     }
     (this.componentRef.instance as DialogContentInterface).data = this.dialogContent.data;
     (this.componentRef.instance as DialogContentInterface).isModal = true;

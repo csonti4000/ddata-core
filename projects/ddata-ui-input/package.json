@@ -1,6 +1,6 @@
 {
   "name": "ddata-ui-input",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "description": "DData UI Input module, components, models & services",
   "author": {
     "name": "Balázs Winkler",
@@ -24,19 +24,18 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^10.0.2",
-    "@angular/core": "^10.0.2",
-    "@fortawesome/angular-fontawesome": "^0.7.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "ddata-core": "^0.1.9",
-    "ddata-ui-common": "^0.1.9",
+    "@angular/common": ">=13.2.3",
+    "@angular/core": ">=13.2.3",
+    "@fortawesome/angular-fontawesome": ">=0.7.0",
+    "@fortawesome/fontawesome-svg-core": ">=1.2.30",
+    "@fortawesome/free-solid-svg-icons": ">=5.14.0",
+    "ddata-core": "^0.3.6",
+    "ddata-ui-common": "^0.1.13",
     "moment": "^2.27.0",
     "ngx-color-picker": "^10.0.1",
     "ngx-material-timepicker": "^5.5.3",
-    "@ng-bootstrap/ng-bootstrap": "^11.0.0-beta.0",
+    "@ng-bootstrap/ng-bootstrap": "^12.0.0",
     "@angular/localize": "^12.2.11"
-
   },
   "dependencies": {
     "tslib": "^2.0.0"
