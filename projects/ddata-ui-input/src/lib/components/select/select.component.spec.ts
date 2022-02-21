@@ -1,6 +1,6 @@
 // tslint:disable: ban-types
 // tslint:disable: max-line-length
-import 'zone.js/dist/zone-testing';
+import 'zone.js/testing';
 import { Injector, ComponentFactoryResolver, Type, ComponentFactory, ViewContainerRef, ElementRef, ViewRef, EmbeddedViewRef, ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';

@@ -1,5 +1,5 @@
 // tslint:disable: variable-name
-import 'zone.js/dist/zone-testing';
+import 'zone.js/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Injector } from '@angular/core';
 import { async, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';

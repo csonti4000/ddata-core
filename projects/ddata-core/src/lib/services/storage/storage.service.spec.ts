@@ -1,5 +1,5 @@
 
-import 'zone.js/dist/zone-testing';
+import 'zone.js/testing';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { StorageService } from './storage.service';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';

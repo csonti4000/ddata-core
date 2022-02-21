@@ -7,7 +7,7 @@ import { ColorHexaCode, ID } from 'src/app/models/base-model/base-data-type.mode
 import { CasefileInterface } from 'src/app/models/casefile/casefile.interface';
 import { KanbanStatusInterface } from 'src/app/models/kanban/status/kanban-status.interface';
 import { KanbanStatus } from 'src/app/models/kanban/status/kanban-status.model';
-import 'zone.js/dist/zone-testing';
+import 'zone.js/testing';
 import { KanbanCasefile } from './../../models/kanban/casefile/kanban-casefile.model';
 import { ViewKanban } from './../../models/view/kanban/view-kanban.model';
 import { ViewKanbanComponent } from './view-kanban.component';
