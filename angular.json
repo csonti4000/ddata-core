@@ -44,7 +44,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -133,7 +132,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ddata-core/tsconfig.lib.json",
             "project": "projects/ddata-core/ng-package.json"
@@ -173,7 +172,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ddata-ui/tsconfig.lib.json",
             "project": "projects/ddata-ui/ng-package.json"
@@ -213,7 +212,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ddata-ui-input/tsconfig.lib.json",
             "project": "projects/ddata-ui-input/ng-package.json"
@@ -253,7 +252,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ddata-ui-file/tsconfig.lib.json",
             "project": "projects/ddata-ui-file/ng-package.json"
@@ -293,7 +292,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ddata-ui-dialog/tsconfig.lib.json",
             "project": "projects/ddata-ui-dialog/ng-package.json"
@@ -333,7 +332,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ddata-ui-common/tsconfig.lib.json",
             "project": "projects/ddata-ui-common/ng-package.json"
@@ -373,7 +372,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ddata-a11y/tsconfig.lib.json",
             "project": "projects/ddata-a11y/ng-package.json"

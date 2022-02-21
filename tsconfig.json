@@ -1,62 +1,49 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./e2e/tsconfig.json"
-    },
-    {
-      "path": "./projects/ddata-core/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ddata-core/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/ddata-ui/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ddata-ui/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/ddata-ui-input/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ddata-ui-input/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/ddata-ui-file/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ddata-ui-file/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/ddata-ui-dialog/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ddata-ui-dialog/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/ddata-ui-common/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ddata-ui-common/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/ddata-a11y/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ddata-a11y/tsconfig.spec.json"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "ddata-core": [
+        "dist/ddata-core/ddata-core",
+        "dist/ddata-core"
+      ],
+      "ddata-ui": [
+        "dist/ddata-ui/ddata-ui",
+        "dist/ddata-ui"
+      ],
+      "ddata-ui-input": [
+        "dist/ddata-ui-input/ddata-ui-input",
+        "dist/ddata-ui-input"
+      ],
+      "ddata-ui-file": [
+        "dist/ddata-ui-file/ddata-ui-file",
+        "dist/ddata-ui-file"
+      ],
+      "ddata-ui-dialog": [
+        "dist/ddata-ui-dialog/ddata-ui-dialog",
+        "dist/ddata-ui-dialog"
+      ],
+      "ddata-ui-common": [
+        "dist/ddata-ui-common/ddata-ui-common",
+        "dist/ddata-ui-common"
+      ],
+      "ddata-a11y": [
+        "dist/ddata-a11y/ddata-a11y",
+        "dist/ddata-a11y"
+      ]
     }
-]
+  }
 }
