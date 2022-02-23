@@ -1,5 +1,4 @@
-import { ModuleWithProviders } from '@angular/compiler/src/core';
-import { ErrorHandler, Injector, NgModule } from '@angular/core';
+import { ErrorHandler, Injector, ModuleWithProviders, NgModule } from '@angular/core';
 import { DdataInjectorModule } from './ddata-injector.module';
 import { EnvService } from './services/env/env.service';
 import { DdataCoreErrorHandler } from './services/error-handler/app-error-handler';
@@ -25,7 +24,7 @@ export class DdataCoreModule {
     DdataCoreModule.InjectorInstance = injector;
   }
 
-  public static forRoot(environment: any): ModuleWithProviders {
+  public static forRoot(environment: any): ModuleWithProviders<DdataCoreModule> {
     return {
       ngModule: DdataCoreModule,
       providers: [

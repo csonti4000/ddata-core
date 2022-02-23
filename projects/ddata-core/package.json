@@ -1,6 +1,6 @@
 {
   "name": "ddata-core",
-  "version": "0.3.6",
+  "version": "0.3.10",
   "description": "DData Core module, models & services",
   "author": {
     "name": "Balázs Winkler",
@@ -24,8 +24,8 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": ">=10.0.2",
-    "@angular/core": ">=10.0.2",
+    "@angular/common": ">=13.2.3",
+    "@angular/core": ">=13.2.3",
     "pluralize": "^8.0.0"
   },
   "dependencies": {

@@ -1,5 +1,4 @@
 import { Observable, Subject } from 'rxjs';
-// import * as pluralize_ from '../../../../../../node_modules/pluralize';
 import { ID } from '../../models/base/base-data.type';
 import { BaseModelInterface } from '../../models/base/base-model.model';
 import { DataServiceAbstract } from '../data/data-service.abstract';
@@ -8,10 +7,8 @@ import { SorterService } from '../sorter/sorter.service';
 import { StorageServiceInterface } from '../storage/storage-service.interface';
 import { StorageService } from '../storage/storage.service';
 import { LocalDataServiceInterface } from './local-data-service.interface';
-import * as pluralize from 'pluralize';
+import pluralize from 'pluralize';
 import { Injectable } from '@angular/core';
-
-// const pluralize = pluralize_;
 
 // @dynamic
 @Injectable()
