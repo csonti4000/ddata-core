@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { FileAndFolderHelperService } from './file-and-folder-helper.service';
 
-describe('FileAndFolderHelperService', () => {
+xdescribe('FileAndFolderHelperService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [FileAndFolderHelperService]

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DdataUiLoadingOverlayComponent } from './loading-overlay.component';
 
-describe('DdataUiLoadingOverlayComponent', () => {
+xdescribe('DdataUiLoadingOverlayComponent', () => {
   let component: DdataUiLoadingOverlayComponent;
   let fixture: ComponentFixture<DdataUiLoadingOverlayComponent>;
 

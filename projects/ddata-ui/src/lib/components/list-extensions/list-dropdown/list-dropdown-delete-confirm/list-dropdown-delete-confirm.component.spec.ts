@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListDropdownDeleteConfirmComponent } from './list-dropdown-delete-confirm.component';
 
-describe('ListDropdownDeleteConfirmComponent', () => {
+xdescribe('ListDropdownDeleteConfirmComponent', () => {
   let component: ListDropdownDeleteConfirmComponent;
   let fixture: ComponentFixture<ListDropdownDeleteConfirmComponent>;
 

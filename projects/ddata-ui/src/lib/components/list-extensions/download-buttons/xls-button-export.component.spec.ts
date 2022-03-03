@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { XlsButtonExportComponent } from './xls-button-export.component';
 
-describe('XlsButtonExportComponent', () => {
+xdescribe('XlsButtonExportComponent', () => {
   let component: XlsButtonExportComponent;
   let fixture: ComponentFixture<XlsButtonExportComponent>;
 

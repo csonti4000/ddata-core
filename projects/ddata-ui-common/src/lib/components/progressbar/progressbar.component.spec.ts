@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DdataUiProgressbarComponent } from './progressbar.component';
 
-describe('DdataUiProgressbarComponent', () => {
+xdescribe('DdataUiProgressbarComponent', () => {
   let component: DdataUiProgressbarComponent;
   let fixture: ComponentFixture<DdataUiProgressbarComponent>;
 

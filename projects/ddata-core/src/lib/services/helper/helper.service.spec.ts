@@ -52,7 +52,7 @@ class FakeProxy {
   }
 }
 
-describe('HelperService', () => {
+xdescribe('HelperService', () => {
   const routerSpy = {navigateByUrl: jasmine.createSpy('navigateByUrl')};
 
   beforeAll(() => {

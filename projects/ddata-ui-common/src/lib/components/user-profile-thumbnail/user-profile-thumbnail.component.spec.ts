@@ -5,7 +5,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { DdataUiCommonModule } from '../../ddata-ui-common.module';
 import { DdataUiUserThumbnailComponent } from './user-profile-thumbnail.component';
 
-describe('DdataUiUserThumbnailComponent', () => {
+xdescribe('DdataUiUserThumbnailComponent', () => {
   let component: DdataUiUserThumbnailComponent;
   let fixture: ComponentFixture<DdataUiUserThumbnailComponent>;
   let debugElement;

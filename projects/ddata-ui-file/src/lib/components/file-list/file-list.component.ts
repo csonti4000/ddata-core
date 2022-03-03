@@ -1,12 +1,13 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { DialogContentItem } from 'ddata-ui-input';
 import { fileText } from '../../i18n/file.lang';
 import { FileModelInterface } from '../../models/file/file-model.interface';
 import { Global } from '../../models/global.model';
 import { ModuleConfiguration } from '../../models/module-configuration/module-configuration.interface';
 import { FileAndFolderHelperServiceInterface } from '../../services/file/file-and-folder-helper-service.interface';
 import { FileAndFolderHelperService } from '../../services/file/file-and-folder-helper.service';
-import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { DdataUiFileUploadComponent } from '../file-upload/file-upload.component';
 
 interface HasFileModel {
   files: FileModelInterface[];
@@ -24,7 +25,7 @@ export class DdataUiFileListComponent implements OnInit {
   @Input() model: HasFileModel = {files: []};
   @Input() showNoData = true;
 
-  fileUploadDialogContent: DialogContentItem = new DialogContentItem(FileUploadComponent, {});
+  fileUploadDialogContent: DialogContentItem = new DialogContentItem(DdataUiFileUploadComponent, {});
   showDialog = false;
   icon = new Global().icon;
   token = localStorage.getItem('token');

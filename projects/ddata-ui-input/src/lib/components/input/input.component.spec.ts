@@ -20,7 +20,7 @@ interface HasTextField {
   textField: string;
 }
 
-describe('InputBoxComponent', () => {
+xdescribe('InputBoxComponent', () => {
   let component: DdataInputComponent;
   let fixture: ComponentFixture<DdataInputComponent>;
   let debugElement;
@@ -74,7 +74,7 @@ describe('InputBoxComponent', () => {
     expect(component._model.fields[component._field].title).toBe('Inaktív');
     expect(component._model.fields[component._field].placeholder).toBe('Inaktív');
     expect(component._model.fields[component._field].label).toBe('Inaktív');
-    expect(component._is_required).toBe(false);
+    expect(component._isRequired).toBe(false);
 
     component._model = new BaseModel();
     component._field = 'name';
@@ -83,7 +83,7 @@ describe('InputBoxComponent', () => {
     expect(component._model.fields[component._field].title).toBe('Címke neve');
     expect(component._model.fields[component._field].placeholder).toBe('Címke neve');
     expect(component._model.fields[component._field].label).toBe('Címke neve');
-    expect(component._is_required).toBe(true);
+    expect(component._isRequired).toBe(true);
   });
 
   it('field property should set _field to be \'isValid\' when it\'s undefined or refresh it\'s value', () => {
