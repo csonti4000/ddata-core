@@ -14,7 +14,7 @@ class FakeNameClass implements MultilanguageNameInterface {
   names: import ('../../models/name/name.interface').NameInterface[] = [];
 }
 
-describe('MultilanguageNameComponent', () => {
+xdescribe('MultilanguageNameComponent', () => {
   let component: MultilanguageNameComponent;
   let fixture: ComponentFixture<MultilanguageNameComponent>;
   let debugElement;

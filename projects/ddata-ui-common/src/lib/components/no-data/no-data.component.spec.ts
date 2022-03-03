@@ -3,7 +3,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { DdataUiNoDataComponent } from './no-data.component';
 import { DdataUiCommonModule } from '../../ddata-ui-common.module';
 
-describe('DdataUiNoDataComponent', () => {
+xdescribe('DdataUiNoDataComponent', () => {
   let component: DdataUiNoDataComponent;
   let fixture: ComponentFixture<DdataUiNoDataComponent>;
   let debugElement;

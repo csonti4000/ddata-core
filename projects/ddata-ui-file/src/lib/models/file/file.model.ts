@@ -2,11 +2,11 @@
 // tslint:disable-next-line: max-line-length
 import { BaseModel, FieldContainerInterface, FileName, FileNameSlug, FileNameWithPath, FileSizeInByte, ID, MimeType, ValidationRuleInterface } from 'ddata-core';
 import { fileText } from '../../i18n/file.lang';
-import { FolderInterface } from '../folder/folder.interface';
-import { Folder } from '../folder/folder.model';
 import { FileModelInterface, FileModelUIFieldsInterface } from './file-model.interface';
 import { Inject } from '@angular/core';
 import { ModuleConfiguration } from '../module-configuration/module-configuration.interface';
+import { FolderInterface } from 'projects/ddata-ui/src/lib/models/folder/folder.interface';
+// import { Folder } from 'projects/ddata-ui/src/lib/models/folder/folder.model';
 
 export class FileModel extends BaseModel implements FileModelInterface {
   @Inject('config') private config: ModuleConfiguration;
@@ -36,7 +36,7 @@ export class FileModel extends BaseModel implements FileModelInterface {
     folder_id: ['required', 'integer'],
   };
 
-  fields: FieldContainerInterface<FileModelUIFieldsInterface> = fileText[this.config.lang];
+  fields: FieldContainerInterface<FileModelUIFieldsInterface>;
 
   init(data: any): FileModelInterface {
       data = !!data ? data : {};
@@ -51,9 +51,9 @@ export class FileModel extends BaseModel implements FileModelInterface {
       this.is_primary = !!data.is_primary ? true : false;
       this.is_image = !!this.mimetype.match(/^image\//) ? true : false;
 
-      if (!!data.folder) {
-        this.folder = new Folder().init(data.folder);
-      }
+      // if (!!data.folder) {
+      //   this.folder = new Folder().init(data.folder);
+      // }
 
       return this;
   }

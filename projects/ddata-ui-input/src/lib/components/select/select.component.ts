@@ -206,6 +206,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   hideModal(): void {
     this.changeModalStatus();
     this.componentSubscription.unsubscribe();
+    this.componentSubscription = new Subscription();
   }
 
   showModal(method: 'create-edit' | 'list'): void {
@@ -228,6 +229,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
 
     this.componentRef = this.dialogHost.createComponent(componentFactory);
 
+    console.log('run');
     if (method === 'list') {
       this.setListComponent(dialogContent);
     }
@@ -282,6 +284,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
         (this.componentRef.instance as DialogContentInterface).selectedElements = this._model[this._field] !== 0 ? [this._model[this.getObjectFieldName()]] : [];
       }
 
+      console.log('run');
       this.componentSubscription.add((this.componentRef.instance as DialogContentInterface).select
         .subscribe((models: any[]) => {
 

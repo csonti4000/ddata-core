@@ -3,7 +3,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { DdataCoreModule, BaseModel } from 'ddata-core';
 import { DdataInputTimeComponent } from './time-input.component';
 
-describe('NoDataComponent', () => {
+xdescribe('NoDataComponent', () => {
   let component: DdataInputTimeComponent;
   let fixture: ComponentFixture<DdataInputTimeComponent>;
   let debugElement: any;

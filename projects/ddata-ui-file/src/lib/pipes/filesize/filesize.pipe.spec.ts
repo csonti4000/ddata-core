@@ -1,7 +1,7 @@
 import { FilesizePipe } from './filesize.pipe';
 import { pipe } from 'rxjs';
 
-describe('filesize.pipe', () => {
+xdescribe('filesize.pipe', () => {
   it('gets normal gb', () => {
     const pipe = new FilesizePipe();
     expect(pipe.transform(2147480648, 'gb', 0)).toBe(2);

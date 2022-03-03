@@ -54,7 +54,7 @@ export class DdataUiFileUploadComponent implements OnInit {
   progress = {};
   summaryProgressbar = 0;
   progresses = {};
-  fileService: ProxyServiceInterface<FileModelInterface> = new ProxyFactoryService<FileModelInterface>().get(FileModel);
+  // fileService: ProxyServiceInterface<FileModelInterface> = new ProxyFactoryService<FileModelInterface>().get(FileModel);
   spinner: SpinnerServiceInterface = DdataUiFileModule.InjectorInstance.get<SpinnerServiceInterface>(SpinnerService);
 
   constructor(
@@ -84,11 +84,11 @@ export class DdataUiFileUploadComponent implements OnInit {
     const allProgressObservables = [];
 
     // create observables for each files
-    this.fileService.sendFiles('upload', 0, this.filesSet, {}).forEach((observable: Observable<FileUploadProcessInterface>) => {
-      allProgressObservables.push(
-        observable.pipe(map((result: any) => Object.assign(this.progress, {[result.file]: result}) ))
-      );
-    });
+    // this.fileService.sendFiles('upload', 0, this.filesSet, {}).forEach((observable: Observable<FileUploadProcessInterface>) => {
+    //   allProgressObservables.push(
+    //     observable.pipe(map((result: any) => Object.assign(this.progress, {[result.file]: result}) ))
+    //   );
+    // });
 
     // start upload, if done we emit the saveModel() and it closes the dialog
     this.spinner.on('file-upload');

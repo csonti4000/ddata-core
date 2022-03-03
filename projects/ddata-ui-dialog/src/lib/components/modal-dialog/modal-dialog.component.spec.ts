@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalDialogComponent } from './modal-dialog.component';
 
-describe('ModalDialogComponent', () => {
+xdescribe('ModalDialogComponent', () => {
   let component: ModalDialogComponent;
   let fixture: ComponentFixture<ModalDialogComponent>;
 

@@ -5,7 +5,7 @@ import { PasswordStrengthOMeterComponent } from './password-strength-o-meter.com
 import { of } from 'rxjs';
 
 
-describe('AddressListComponent', () => {
+xdescribe('AddressListComponent', () => {
   const httpClient = new HttpClient(null);
   // tslint:disable-next-line: prefer-const
   let injector: Injector;

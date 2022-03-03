@@ -5,7 +5,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { BaseModel, DdataCoreModule, ValidatorService } from 'ddata-core';
 import { DdataUiConfirmDialogComponent } from './confirm-dialog.component';
 
-describe('DdataUiConfirmDialogComponent', () => {
+xdescribe('DdataUiConfirmDialogComponent', () => {
   let component: DdataUiConfirmDialogComponent;
   let fixture: ComponentFixture<DdataUiConfirmDialogComponent>;
   let debugElement;
