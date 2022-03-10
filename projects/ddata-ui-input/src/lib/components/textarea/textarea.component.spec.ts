@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { BaseModel, ValidatorService } from 'ddata-core';
-import { AppModule } from 'src/app/app.module';
 import { DdataTextareaComponent } from './textarea.component';
 
 xdescribe('DdataTextareaComponent', () => {
@@ -56,76 +55,76 @@ xdescribe('DdataTextareaComponent', () => {
   });
   afterEach(() => {
     document.body.removeChild(fixture.debugElement.nativeElement);
-  })
+  });
 
   it('should create', () => {
     component = new DdataTextareaComponent();
     expect(component).toBeTruthy();
   });
 
-  // it('getTitle() should return title', () => {
-  //   component = new DdataTextareaComponent();
-  //   component.field = 'fake';
-  //   component.model = {
-  //     fields: {
-  //       fake: {
-  //         title: 'a',
-  //       }
-  //     }
-  //   } as unknown as BaseModel;
+  it('getTitle() should return title', () => {
+    component = new DdataTextareaComponent();
+    component.field = 'fake';
+    component.model = {
+      fields: {
+        fake: {
+          title: 'a',
+        }
+      }
+    } as unknown as BaseModel;
 
-  //   let fakestring = component.getTitle();
-  //   expect(fakestring).toBeDefined();
-  //   expect(fakestring).toBe('a');
+    let fakestring = component._title;
+    expect(fakestring).toBeDefined();
+    expect(fakestring).toBe('a');
 
-  //   component.model.fields = {};
+    component.model.fields = {};
 
-  //   fakestring = component.getTitle();
-  //   expect(fakestring).toBeDefined();
-  //   expect(fakestring).toBe('');
-  // });
+    fakestring = component._title;
+    expect(fakestring).toBeDefined();
+    expect(fakestring).toBe('');
+  });
 
-  // it('getLabel() should return label', () => {
-  //   component = new DdataTextareaComponent();
-  //   component.field = 'fake';
-  //   component.model = {
-  //     fields: {
-  //       fake: {
-  //         label: 'a',
-  //       }
-  //     }
-  //   } as unknown as BaseModel;
+  it('getLabel() should return label', () => {
+    component = new DdataTextareaComponent();
+    component.field = 'fake';
+    component.model = {
+      fields: {
+        fake: {
+          label: 'a',
+        }
+      }
+    } as unknown as BaseModel;
 
-  //   let fakestring = component.getLabel();
-  //   expect(fakestring).toBeDefined();
-  //   expect(fakestring).toBe('a');
+    let fakestring = component._label;
+    expect(fakestring).toBeDefined();
+    expect(fakestring).toBe('a');
 
-  //   component.model.fields = {};
+    component.model.fields = {};
 
-  //   fakestring = component.getLabel();
-  //   expect(fakestring).toBeDefined();
-  //   expect(fakestring).toBe('Az adatmező címke nincs definiálva a modelben.');
-  // });
+    fakestring = component._label;
+    expect(fakestring).toBeDefined();
+    expect(fakestring).toBe('Az adatmező címke nincs definiálva a modelben.');
+  });
 
-  // it('getPlaceholder() should return placeholder', () => {
-  //   component = new DdataTextareaComponent();
-  //   component.field = 'fake';
-  //   component.model = {
-  //     fields: {
-  //       fake: {
-  //         placeholder: 'a',
-  //       }
-  //     }
-  //   } as unknown as BaseModel;
+  it('getPlaceholder() should return placeholder', () => {
+    component = new DdataTextareaComponent();
+    component.field = 'fake';
+    component.model = {
+      fields: {
+        fake: {
+          placeholder: 'a',
+        }
+      }
+    } as unknown as BaseModel;
 
-  //   let fakestring = component.getPlaceholder();
-  //   expect(fakestring).toBeDefined();
-  //   expect(fakestring).toBe('a');
+    let fakestring = component._placeholder;
+    expect(fakestring).toBeDefined();
+    expect(fakestring).toBe('a');
 
-  //   component.model.fields = {};
+    component.model.fields = {};
 
-  //   fakestring = component.getPlaceholder();
-  //   expect(fakestring).toBeDefined();
-  //   expect(fakestring).toBe('');
-  // });
+    fakestring = component._placeholder;
+    expect(fakestring).toBeDefined();
+    expect(fakestring).toBe('');
+  });
 });

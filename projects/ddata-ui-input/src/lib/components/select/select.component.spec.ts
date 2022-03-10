@@ -25,7 +25,7 @@ class MockListComponent extends SelectableListComponent<MockModelInterace> {
     }
 }
 
-describe('SelectComponentMultipleSelect', () => {
+describe('SelectInputComponent', () => {
     let component: DdataSelectComponent;
     let fixture: ComponentFixture<DdataSelectComponent>;
 
