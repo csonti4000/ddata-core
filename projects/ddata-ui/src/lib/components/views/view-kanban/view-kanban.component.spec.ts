@@ -12,7 +12,7 @@ import { KanbanCasefile } from './../../models/kanban/casefile/kanban-casefile.m
 import { ViewKanban } from './../../models/view/kanban/view-kanban.model';
 import { ViewKanbanComponent } from './view-kanban.component';
 
-describe('ViewKanbanComponent', () => {
+xdescribe('ViewKanbanComponent', () => {
   let component: ViewKanbanComponent;
   let fixture: ComponentFixture<ViewKanbanComponent>;
 
@@ -78,7 +78,7 @@ describe('ViewKanbanComponent', () => {
 
     component = fixture.componentInstance;
     const dataset = component.convertToKanban(fakedata);
-    
+
     expect(dataset).toBeTruthy();
     expect(dataset.statuses.length).toBe(1);
   });

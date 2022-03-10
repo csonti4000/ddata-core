@@ -30,7 +30,7 @@ class FakeRenderer2 extends Renderer2 {
   listen(): () => void { throw new Error('Method not implemented.'); }
 }
 
-describe('TabButtonComponent', () => {
+xdescribe('TabButtonComponent', () => {
   let component: TabButtonComponent;
   let fixture: ComponentFixture<TabButtonComponent>;
   let debugElement;

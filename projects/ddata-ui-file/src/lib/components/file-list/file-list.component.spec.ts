@@ -6,7 +6,7 @@ import { FileModel } from './../../../models/file/file.model';
 import { FileListComponent } from './file-list.component';
 
 
-describe('FileListComponent', () => {
+xdescribe('FileListComponent', () => {
   let component: FileListComponent;
   let fixture: ComponentFixture<FileListComponent>;
 

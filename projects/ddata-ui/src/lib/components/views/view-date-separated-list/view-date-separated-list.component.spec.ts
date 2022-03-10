@@ -10,7 +10,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { Renderer2, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 
-describe('ViewDateSeparatedListComponent', () => {
+xdescribe('ViewDateSeparatedListComponent', () => {
   let component: ViewDateSeparatedListComponent;
   let fixture: ComponentFixture<ViewDateSeparatedListComponent>;
 

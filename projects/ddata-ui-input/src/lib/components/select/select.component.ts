@@ -206,6 +206,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   hideModal(): void {
     this.changeModalStatus();
     this.componentSubscription.unsubscribe();
+    this.componentSubscription = new Subscription();
   }
 
   showModal(method: 'create-edit' | 'list'): void {

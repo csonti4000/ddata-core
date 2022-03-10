@@ -37,7 +37,7 @@ import { CertificationScrappingProtocol } from 'src/app/models/certification/scr
 import { CertificateScrappingProtocolCreateEditComponent } from 'src/app/modules/warehouses/components/certification/scrapping/protocol/certificate-scrapping-protocol-create-edit/certificate-scrapping-protocol-create-edit.component';
 
 
-describe('ListDropdownComponent', () => {
+xdescribe('ListDropdownComponent', () => {
   let component: ListDropdownComponent;
   let fixture: ComponentFixture<ListDropdownComponent>;
 

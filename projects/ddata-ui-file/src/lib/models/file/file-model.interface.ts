@@ -1,4 +1,4 @@
-import { FolderInterface } from '../folder/folder.interface';
+// import { FolderInterface } from '../folder/folder.interface';
 // tslint:disable-next-line: max-line-length
 import { FileNameSlug, FileName, FileNameWithPath, FileSizeInByte, ID, BaseModelWithoutTypeDefinitionInterface, FieldsInterface, MimeType } from 'ddata-core';
 
@@ -20,5 +20,5 @@ FieldsInterface<FileModelUIFieldsInterface> {
   id: ID;
   is_image: boolean; // UI fields only
 
-  folder: FolderInterface;
+  // folder: FolderInterface;
 }

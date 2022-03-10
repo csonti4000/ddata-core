@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { faCalendar, faChevronDown, faChevronRight, faCircle, faCloudDownloadAlt, faCoins,
-  faDotCircle, faMars, faStar, faSyncAlt, faVenus, faColumns, faStream, faChevronLeft, faLayerGroup,
-  faDownload, faPaperclip, faCheck, faChevronUp, faEllipsisV, faBuilding, faStoreAlt, faCity,
-  faBoxOpen, faBoxes, faCogs, faShield, faPercent, faWarehouse, faClipboardList, faFileImport,
-  faFileExport, faCashRegister, faUniversity, faBriefcase, faUsers, faShoppingCart, faCog,
-  faFilter, faCheckSquare, faSpinner, faFile, faUser } from '@fortawesome/pro-regular-svg-icons';
-import { faCopy, faEye, faEyeSlash, faPencil, faPlus, faSearch, faSearchMinus, faSearchPlus,
-  faTag, faTimes, faTrashAlt, faMinus, faFolderOpen, faBarcodeRead, faExclamationTriangle,
-  faInfoCircle, faStar as fasStar, faFilePlus, faMinusCircle } from '@fortawesome/pro-solid-svg-icons';
+import { faBarcode, faBoxes, faBoxOpen, faBriefcase, faBuilding, faCalendar, faCashRegister, faCheck,
+  faCheckSquare, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faCircle, faCity,
+  faClipboardList, faCloudDownloadAlt, faCog, faCogs, faCoins, faColumns, faCopy, faDotCircle,
+  faDownload, faEllipsisV, faExclamationTriangle, faEye, faEyeSlash, faFile, faFileExport,
+  faFileImport, faFileUpload, faFilter, faFolderOpen, faInfoCircle, faLayerGroup, faMars, faMinus, faMinusCircle,
+  faPaperclip, faPencilAlt, faPercent, faPlus, faSearch, faSearchMinus, faSearchPlus, faShieldAlt, faShoppingCart, faSpinner,
+  faStar, faStoreAlt, faStream, faSyncAlt, faTag, faTimes, faTrashAlt, faUniversity, faUser, faUsers,
+  faVenus, faWarehouse } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +20,9 @@ export class Global {
     arrowUp: faChevronUp,
     attach: faPaperclip,
     bank_register: faUniversity,
-    barcode: faBarcodeRead,
+    barcode: faBarcode,
     basket: faShoppingCart,
-    brand: faShield,
+    brand: faShieldAlt,
     business_casefile: faBriefcase,
     crm_casefile: faBriefcase,
     calendar: faCalendar,
@@ -50,10 +49,10 @@ export class Global {
     eye: faEye,
     female: faVenus,
     file: faFile,
-    filePlus: faFilePlus,
+    filePlus: faFileUpload,
     filter: faFilter,
     folder: faFolderOpen,
-    fullStar: fasStar,
+    fullStar: faStar,
     hide: faSearchMinus,
     incoming_certificate: faFileImport,
     info: faInfoCircle,
@@ -63,7 +62,7 @@ export class Global {
     menu: faEllipsisV,
     minus: faMinus,
     outgoing_certificate: faFileExport,
-    pencil: faPencil,
+    pencil: faPencilAlt,
     plus: faPlus,
     product_category: faBoxes,
     product: faBoxOpen,

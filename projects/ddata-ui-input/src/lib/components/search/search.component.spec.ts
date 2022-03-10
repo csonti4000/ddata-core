@@ -7,7 +7,7 @@ import { DdataInputSearchComponent } from './search.component';
 import { ProxyFactoryService, DdataCoreModule, Paginate } from 'ddata-core';
 import { SearchResult } from '../../models/search/result/search-result.model';
 
-describe('GlobalSearchBarComponent', () => {
+xdescribe('GlobalSearchBarComponent', () => {
   let component: DdataInputSearchComponent;
   let fixture: ComponentFixture<DdataInputSearchComponent>;
   let router: Router;
@@ -52,7 +52,7 @@ describe('GlobalSearchBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('search()', () => {
+  xdescribe('search()', () => {
     it(' empty search string ==> models = []', () => {
       component = new DdataInputSearchComponent(null, null);
       component.model.searchText = '';
@@ -79,7 +79,7 @@ describe('GlobalSearchBarComponent', () => {
     expect(spy).toHaveBeenCalledWith(1);
   });
 
-  describe('go() ', () => {
+  xdescribe('go() ', () => {
     it('should navigate to model', () => {
       component = new DdataInputSearchComponent(null, router);
       const spy = spyOn((component as any).router, 'navigateByUrl').and.callThrough();

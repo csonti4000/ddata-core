@@ -2,7 +2,7 @@ import { ValidatorService } from './validator.service';
 
 const validator = new ValidatorService();
 
-describe('isString', () => {
+xdescribe('isString', () => {
   it('Should be false if parameter is null', () => {
     const result = validator.isString(null);
     expect(result).toBe(false);
@@ -19,7 +19,7 @@ describe('isString', () => {
   });
 });
 
-describe('isNumber', () => {
+xdescribe('isNumber', () => {
   it('Should be true if parameter is number', () => {
     const result = validator.isNumber(4);
     expect(result).toBe(true);
@@ -31,7 +31,7 @@ describe('isNumber', () => {
   });
 });
 
-describe('isBoolean', () => {
+xdescribe('isBoolean', () => {
   it('Should be true if parameter is boolean', () => {
     const result = validator.isBoolean(true);
     expect(result).toBe(true);
@@ -53,7 +53,7 @@ describe('isBoolean', () => {
   });
 });
 
-describe('isRequired', () => {
+xdescribe('isRequired', () => {
   it('Should be true if parameter is number', () => {
     const result = validator.isRequired(2);
     expect(result).toBe(true);
@@ -70,7 +70,7 @@ describe('isRequired', () => {
   });
 });
 
-describe('isInteger', () => {
+xdescribe('isInteger', () => {
   it('Should be true if parameter is number', () => {
     const result = validator.isInteger(20);
     expect(result).toBe(true);
@@ -92,7 +92,7 @@ describe('isInteger', () => {
   });
 });
 
-describe('isNotZero', () => {
+xdescribe('isNotZero', () => {
   it('Should be true if parameter is boolean', () => {
     const result = validator.isNotZero(true);
     expect(result).toBe(true);
@@ -109,7 +109,7 @@ describe('isNotZero', () => {
   });
 });
 
-describe('isregisterNumber', () => {
+xdescribe('isregisterNumber', () => {
   it('Should be true if parameter is register number', () => {
     const result = validator.isregisterNumber('12-12-123456');
     expect(result).toBe(true);
@@ -131,7 +131,7 @@ describe('isregisterNumber', () => {
   });
 });
 
-describe('isLang', () => {
+xdescribe('isLang', () => {
   it('Should be true if parameter is two large letters', () => {
     const result = validator.isLang('AA');
     expect(result).toBe(true);
@@ -168,7 +168,7 @@ describe('isLang', () => {
   });
 });
 
-describe('isName', () => {
+xdescribe('isName', () => {
   it('Should be true if parameter is full name', () => {
     const result = validator.isName('Teszt Elek');
     expect(result).toBe(true);
@@ -195,7 +195,7 @@ describe('isName', () => {
   });
 });
 
-describe('isEmail', () => {
+xdescribe('isEmail', () => {
   it('Should be true if parameter is valid email only letters', () => {
     const result = validator.isEmail('info@test.com');
     expect(result).toBe(true);
@@ -232,7 +232,7 @@ describe('isEmail', () => {
   });
 });
 
-describe('isDomain', () => {
+xdescribe('isDomain', () => {
   it('Should be true if parameter is valid domain name', () => {
     const result = validator.isDomain('google.com');
     expect(result).toBe(true);
@@ -259,7 +259,7 @@ describe('isDomain', () => {
   });
 });
 
-describe('isUrl', () => {
+xdescribe('isUrl', () => {
   it('Should be true if parameter is url with https://', () => {
     const result = validator.isUrl('https://www.google.com');
     expect(result).toBe(true);
@@ -276,7 +276,7 @@ describe('isUrl', () => {
   });
 });
 
-// describe('isSettlementName', () => {
+// xdescribe('isSettlementName', () => {
 //   it('Should be true if parameter is city', () => {
 //     const result = validator.isSettlementName('Salgótarján');
 //     expect(result).toBe(true);
@@ -303,7 +303,7 @@ describe('isUrl', () => {
 //   });
 // });
 
-describe('isIsoDate', () => {
+xdescribe('isIsoDate', () => {
   it('Should be true if parameter is valid date', () => {
     const result = validator.isIsoDate('2020.01.01');
     expect(result).toBe(true);
@@ -335,7 +335,7 @@ describe('isIsoDate', () => {
   });
 });
 
-describe('isDrivingLicencce', () => {
+xdescribe('isDrivingLicencce', () => {
   it('Should be true if parameter is valid driving licence', () => {
     const result = validator.isDrivingLicence('AA123456');
     expect(result).toBe(true);
@@ -362,7 +362,7 @@ describe('isDrivingLicencce', () => {
   });
 });
 
-describe('isIdCardNumber', () => {
+xdescribe('isIdCardNumber', () => {
   it('Should be true if parameter is valid id card number started with two large letters', () => {
     const result = validator.isIdCardNumber('MA123456');
     expect(result).toBe(true);
@@ -399,7 +399,7 @@ describe('isIdCardNumber', () => {
   });
 });
 
-describe('isAdressCardNumber', () => {
+xdescribe('isAdressCardNumber', () => {
   it('Should be true if parameter is card number started with two large letters', () => {
     const result = validator.isAddressCardNumber('MA123456');
     expect(result).toBe(true);
@@ -436,7 +436,7 @@ describe('isAdressCardNumber', () => {
   });
 });
 
-describe('isPhoneNumber', () => {
+xdescribe('isPhoneNumber', () => {
   it('Should be true if parameter is valid phone number', () => {
     const result = validator.isPhoneNumber('+1234567890');
     expect(result).toBe(true);
@@ -458,7 +458,7 @@ describe('isPhoneNumber', () => {
   });
 });
 
-describe('isBankAccount', () => {
+xdescribe('isBankAccount', () => {
   it('Should be true if parameter is valid bank account', () => {
     const result = validator.isBankAccount('12345678-12345678-12345678');
     expect(result).toBe(true);
@@ -490,7 +490,7 @@ describe('isBankAccount', () => {
   });
 });
 
-describe('isTaxNumber', () => {
+xdescribe('isTaxNumber', () => {
   it('Should be true if parameter is valid tax number', () => {
     const result = validator.isTaxNumber('12345678-1-12');
     expect(result).toBe(true);
@@ -517,7 +517,7 @@ describe('isTaxNumber', () => {
   });
 });
 
-describe('isSocialInsuranceNumber', () => {
+xdescribe('isSocialInsuranceNumber', () => {
   it('Should be true if parameter is valid social insurance number with hyphen', () => {
     const result = validator.isSocialInsuranceNumber('123-123-123');
     expect(result).toBe(true);
@@ -559,7 +559,7 @@ describe('isSocialInsuranceNumber', () => {
   });
 });
 
-describe('isCreditCardVisa', () => {
+xdescribe('isCreditCardVisa', () => {
   it('Should be true if parameter is valid Visa card', () => {
     const result = validator.isCreditCardVisa('4123456789012123');
     expect(result).toBe(true);
@@ -596,7 +596,7 @@ describe('isCreditCardVisa', () => {
   });
 });
 
-describe('isCreditCardMasterCard', () => {
+xdescribe('isCreditCardMasterCard', () => {
   it('Should be true if parameter is valid master card', () => {
     const result = validator.isCreditCardMastercard('5312345678901234');
     expect(result).toBe(true);
@@ -643,7 +643,7 @@ describe('isCreditCardMasterCard', () => {
   });
 });
 
-describe('isCreditCardAmericanExpress', () => {
+xdescribe('isCreditCardAmericanExpress', () => {
   it('Should be true if parameter is valid american express card', () => {
     const result = validator.isCreditCardAmericanExpress('341234567890123');
     expect(result).toBe(true);
@@ -675,7 +675,7 @@ describe('isCreditCardAmericanExpress', () => {
   });
 });
 
-describe('isCreditCardDiscover', () => {
+xdescribe('isCreditCardDiscover', () => {
   it('Should be true if parameter is valid discover card', () => {
     const result = validator.isCreditCardDiscover('6523123456789012');
     expect(result).toBe(true);
@@ -712,7 +712,7 @@ describe('isCreditCardDiscover', () => {
   });
 });
 
-describe('isArray', () => {
+xdescribe('isArray', () => {
   it('Should be true if parameter is array', () => {
     const result = validator.isArray(['test1', 'test2', 'test3', 2]);
     expect(result).toBe(true);
@@ -749,7 +749,7 @@ describe('isArray', () => {
   });
 });
 
-describe('isEmpty', () => {
+xdescribe('isEmpty', () => {
   it('Should be true if parameter is empty string', () => {
     const result = validator.isEmpty('');
     expect(result).toBe(true);
@@ -776,7 +776,7 @@ describe('isEmpty', () => {
   });
 });
 
-describe('isNotEmpty', () => {
+xdescribe('isNotEmpty', () => {
   it('Should be true if parameter is have anything', () => {
     const result = validator.isNotEmpty('aa');
     expect(result).toBe(true);
@@ -788,7 +788,7 @@ describe('isNotEmpty', () => {
   });
 });
 
-describe('isPersonTaxNumber', () => {
+xdescribe('isPersonTaxNumber', () => {
   it('Should be true if parameter is valid person tax number', () => {
     const result = validator.isPersonTaxNumber('1234567890');
     expect(result).toBe(true);
