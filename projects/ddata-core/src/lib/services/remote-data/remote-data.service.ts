@@ -448,7 +448,7 @@ export class RemoteDataService<T extends BaseModelInterface<T>>
   sendFiles(uri: string, id: number, files: Set<File>, data?: any): Observable<FileUploadProcessInterface>[] {
     // set up custom headers to post
     const customHeaders = new HttpHeaders({
-      Authorization: 'Bearer' + localStorage.getItem('token'),
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
       'Accepted-Encoding': 'application/json'
     });
 

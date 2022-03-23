@@ -1,6 +1,6 @@
 {
   "name": "ddata-core",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "DData Core module, models & services",
   "author": {
     "name": "Balázs Winkler",
