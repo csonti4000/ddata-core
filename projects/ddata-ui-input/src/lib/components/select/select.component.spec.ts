@@ -115,17 +115,17 @@ describe('SelectInputComponent', () => {
 
 
     it('should not show element after deleted', () => {
-        const mockMode1 = new MockModel().init({id: 1, name: 'test1'});
-        const mockMode2 = new MockModel().init({id: 2, name: 'test2'});
-        const mainMocModel = new MockModel().init({items: [mockMode1, mockMode2]});
+        const mockModel1 = new MockModel().init({id: 1, name: 'test1'});
+        const mockModel2 = new MockModel().init({id: 2, name: 'test2'});
+        const mainMockModel = new MockModel().init({items: [mockModel1, mockModel2]});
         component.multipleSelect = true;
-        component._model = mainMocModel;
+        component._model = mainMockModel;
         component._field = 'items';
         component.dialogSettings = {
             createEditComponent: null,
             listComponent: MockListComponent,
             listOptions: {
-                models: [mockMode1, mockMode2],
+                models: [mockModel1, mockModel2],
                 isModal: true,
                 multipleSelectEnabled: true,
                 isSelectionList: true,
@@ -136,13 +136,13 @@ describe('SelectInputComponent', () => {
 
         component.showModal('list');
 
-        component.componentRef.instance.select.next([mockMode1, mockMode2]);
+        component.componentRef.instance.select.next([mockModel1, mockModel2]);
 
-        component.deleteFromMultipleSelectedList(mockMode1);
+        component.deleteFromMultipleSelectedList(mockModel1);
 
         expect(component.dialogSettings.listOptions.selectedElements.length).toEqual(1);
 
-        expect(mainMocModel.items.length).toEqual(1);
+        expect(mainMockModel.items.length).toEqual(1);
 
         component.showModal('list');
 
