@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BaseModelInterface } from '../../models/base/base-model.model';
+import { SelectableInterface } from '../../models/selectable/selectable.interface';
 import { BaseListComponent } from './base-list.component';
 import { SelectableListComponentInterface } from './selectable-list.component.interface';
 
@@ -8,7 +9,7 @@ import { SelectableListComponentInterface } from './selectable-list.component.in
 @Component({
   template: '',
 })
-export abstract class SelectableListComponent<T extends BaseModelInterface<T>>
+export abstract class SelectableListComponent<T extends BaseModelInterface<T> & SelectableInterface>
   extends BaseListComponent<T>
   implements SelectableListComponentInterface<T> {
 
@@ -18,6 +19,13 @@ export abstract class SelectableListComponent<T extends BaseModelInterface<T>>
   @Input() isSelectionList = true;
   @Input() loadData = false;
   @Input() set selectedElements(value: T[]) {
+    this.models.map((obj: T) => obj.is_selected = false);
+    value.forEach((item: any) => {
+      const selectedModel = this.models.findIndex((obj: T) => obj.id == item.id);
+      if (selectedModel !== -1) {
+        this.models[selectedModel].is_selected = true;
+      }
+    });
     this._selectedElements = new Set(!!value.length ? value : []);
   }
   get selectedElements(): T[] {

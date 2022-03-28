@@ -3,7 +3,7 @@
 // tslint:disable: max-line-length
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface, SpinnerService } from 'ddata-core';
+import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface } from 'ddata-core';
 import { Subscription } from 'rxjs';
 import { DialogContentItem } from '../../models/dialog/content/dialog-content-item';
 import { DialogContentInterface, DialogContentWithOptionsInterface } from '../../models/dialog/content/dialog-content.interface';
@@ -154,8 +154,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   random: string = this.helperService.randChars();
 
   constructor(
-    private changeDetector: ChangeDetectorRef,
-    private spinerService: SpinnerService
+    private changeDetector: ChangeDetectorRef
   ) {
   }
 
@@ -210,10 +209,8 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   }
 
   showModal(method: 'create-edit' | 'list'): void {
-    this.spinerService.on('load modal component');
     this.changeModalStatus();
     this.renderComponent(method);
-    this.spinerService.off('load modal component');
   }
 
   private changeModalStatus(): void {
