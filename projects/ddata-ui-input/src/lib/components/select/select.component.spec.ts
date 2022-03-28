@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BaseModel, BaseModelInterface, DdataCoreModule, SelectableListComponent, ValidatorService } from 'ddata-core';
+import { BaseModel, BaseModelInterface, DdataCoreModule, ID, SelectableListComponent, ValidatorService } from 'ddata-core';
 import { DdataUiInputModule } from '../../ddata-ui-input.module';
 import { InputHelperService } from '../../services/input/helper/input-helper.service';
 import { DdataSelectComponent } from './select.component';
@@ -11,11 +11,14 @@ interface MockModelInterace extends BaseModelInterface<MockModelInterace> {
 }
 
 class MockModel extends BaseModel implements MockModelInterace {
+    id: ID;
     items: any[] = [];
     name: string;
-    init(data?: any): MockModelInterace {
+    init(data?: any): this {
         data = !!data ? data : {};
+        this.id = !!data.id ? data.id : 0;
         this.name = !!data.name ? data.name : '';
+        this.items = !!data.items ? data.items : [];
         return this;
     }
 }
@@ -106,5 +109,34 @@ describe('SelectInputComponent', () => {
         expect(component.isModalVisible).toBeFalse();
 
         expect((component._model as MockModel).items.length).toBe(2);
+    });
+
+
+    it('should not show element after deleted', () => {
+        const mockMode1 = new MockModel().init({id: 1, name: 'test1'});
+        const mockMode2 = new MockModel().init({id: 2, name: 'test2'});
+        component.multipleSelect = true;
+        component._model = new MockModel().init({items: [mockMode1, mockMode2]});
+        component._field = 'items';
+        component.dialogSettings = {
+            createEditComponent: null,
+            listComponent: MockListComponent,
+            listOptions: {
+                models: [mockMode1, mockMode2],
+                isModal: true,
+                multipleSelectEnabled: true,
+                isSelectionList: true,
+                loadData: false,
+                selectedElements: [mockMode1, mockMode2]
+            }
+        };
+
+        component.deleteFromMultipleSelectedList(mockMode1);
+
+        expect(component.dialogSettings.listOptions.selectedElements.length).toEqual(1);
+
+        component.showModal('list');
+
+        expect(component.componentRef.instance.selectedElements.length).toEqual(1);
     });
 });

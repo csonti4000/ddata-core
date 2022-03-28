@@ -1,9 +1,9 @@
 // tslint:disable: variable-name
 // tslint:disable: no-string-literal
 // tslint:disable: max-line-length
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface } from 'ddata-core';
+import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface, SpinnerService } from 'ddata-core';
 import { Subscription } from 'rxjs';
 import { DialogContentItem } from '../../models/dialog/content/dialog-content-item';
 import { DialogContentInterface, DialogContentWithOptionsInterface } from '../../models/dialog/content/dialog-content.interface';
@@ -154,8 +154,8 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   random: string = this.helperService.randChars();
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
     private changeDetector: ChangeDetectorRef,
+    private spinerService: SpinnerService
   ) {
   }
 
@@ -210,8 +210,10 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   }
 
   showModal(method: 'create-edit' | 'list'): void {
+    this.spinerService.on('load modal component');
     this.changeModalStatus();
     this.renderComponent(method);
+    this.spinerService.off('load modal component');
   }
 
   private changeModalStatus(): void {
@@ -223,11 +225,10 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
     const dialogContent: DialogContentItem = method === 'create-edit' ?
       new DialogContentItem(this.dialogSettings.createEditComponent, this.dialogSettings.createEditOptions) :
       new DialogContentItem(this.dialogSettings.listComponent, this.dialogSettings.listOptions);
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(dialogContent.component);
 
     this.dialogHost.clear();
 
-    this.componentRef = this.dialogHost.createComponent(componentFactory);
+    this.componentRef = this.dialogHost.createComponent(dialogContent.component);
 
     if (method === 'list') {
       this.setListComponent(dialogContent);
@@ -290,6 +291,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
           // a pipát azok eltűnjenek. Ennek érdekében kiürítjük a tömböt.
           if (this.multipleSelect && !this.fakeSingleSelect) {
             this._model[this._field] = [];
+            this.dialogSettings.listOptions.selectedElements = [];
           }
 
           if (!models) {
@@ -317,6 +319,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
                 }
 
                 this._model[this._field].push(model);
+                this.dialogSettings.listOptions.selectedElements.push(model);
               }
 
             }
@@ -333,6 +336,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
 
   deleteFromMultipleSelectedList(item: any): void {
     this._model[this._field].splice(this._model[this._field].indexOf(item), 1);
+    this.dialogSettings.listOptions.selectedElements.splice(this._model[this._field].indexOf(item), 1);
   }
 
   getModelField(): string {
