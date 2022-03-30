@@ -8,12 +8,14 @@ import { DdataSelectComponent } from './select.component';
 
 interface MockModelInterace extends BaseModelInterface<MockModelInterace> {
     name: string;
+    is_selected: boolean;
 }
 
 class MockModel extends BaseModel implements MockModelInterace {
     id: ID;
     items: any[] = [];
     name: string;
+    is_selected = false;
     init(data?: any): this {
         data = !!data ? data : {};
         this.id = !!data.id ? data.id : 0;
@@ -113,30 +115,41 @@ describe('SelectInputComponent', () => {
 
 
     it('should not show element after deleted', () => {
-        const mockMode1 = new MockModel().init({id: 1, name: 'test1'});
-        const mockMode2 = new MockModel().init({id: 2, name: 'test2'});
+        const mockModel1 = new MockModel().init({id: 1, name: 'test1'});
+        const mockModel2 = new MockModel().init({id: 2, name: 'test2'});
+        const mainMockModel = new MockModel().init({items: [mockModel1, mockModel2]});
         component.multipleSelect = true;
-        component._model = new MockModel().init({items: [mockMode1, mockMode2]});
+        component._model = mainMockModel;
         component._field = 'items';
         component.dialogSettings = {
             createEditComponent: null,
             listComponent: MockListComponent,
             listOptions: {
-                models: [mockMode1, mockMode2],
+                models: [mockModel1, mockModel2],
                 isModal: true,
                 multipleSelectEnabled: true,
                 isSelectionList: true,
                 loadData: false,
-                selectedElements: [mockMode1, mockMode2]
+                selectedElements: []
             }
         };
 
-        component.deleteFromMultipleSelectedList(mockMode1);
+        component.showModal('list');
+
+        component.componentRef.instance.select.next([mockModel1, mockModel2]);
+
+        component.deleteFromMultipleSelectedList(mockModel1);
 
         expect(component.dialogSettings.listOptions.selectedElements.length).toEqual(1);
+
+        expect(mainMockModel.items.length).toEqual(1);
 
         component.showModal('list');
 
         expect(component.componentRef.instance.selectedElements.length).toEqual(1);
+
+        const selectedItems = component.componentRef.instance.models.filter( (obj: MockModelInterace) => obj.is_selected);
+
+        expect(selectedItems.length).toEqual(1);
     });
 });
