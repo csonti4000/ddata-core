@@ -43,7 +43,7 @@ export class DdataUiCommonModule {
     DdataUiCommonModule.InjectorInstance = injector;
   }
 
-  static forRoot(config: ModuleConfiguration): ModuleWithProviders<any> {
+  public static forRoot(config: ModuleConfiguration): ModuleWithProviders<any> {
     return {
       ngModule: DdataUiCommonModule,
     };
