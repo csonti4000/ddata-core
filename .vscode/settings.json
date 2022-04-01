@@ -1,0 +1,10 @@
+{
+    "conventionalCommits.scopes": [
+        "ally",
+        "core",
+        "ui-common",
+        "ui-dialog",
+        "ui-input",
+        "ui-file",
+    ]
+}
