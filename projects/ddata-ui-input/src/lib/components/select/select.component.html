@@ -102,7 +102,7 @@
 <ng-container *ngIf="multipleSelect && !fakeSingleSelect">
   <div *ngIf="_model[_field].length > 0" class="d-flex justify-content-end">
     <ng-container *ngFor="let element of _model[_field]">
-      <div [class]="inputBlockClass">
+      <div [class]="inputBlockClass" [ngClass]="showLabel ? inputBlockExtraClass : ''">
         <dd-tag [tag]="element" [class]="'d-inline-block pl-2 mb-1 bg-light me-2'" [showIcon]="showIcon"
           (delete)="deleteFromMultipleSelectedList(element)"></dd-tag>
       </div>
