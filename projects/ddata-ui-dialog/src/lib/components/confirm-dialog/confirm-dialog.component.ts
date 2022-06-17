@@ -40,7 +40,7 @@ export class DdataUiConfirmDialogComponent implements OnInit {
   }
 
   confirmModal(): void {
-    this.pressed.emit(false);
+    this.pressed.emit(true);
     this.showDialog = false;
     this.confirm.emit();
   }

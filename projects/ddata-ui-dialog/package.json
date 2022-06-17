@@ -1,6 +1,6 @@
 {
   "name": "ddata-ui-dialog",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "peerDependencies": {
     "@angular/common": ">=10.0.2",
     "@angular/core": ">=10.0.2",
