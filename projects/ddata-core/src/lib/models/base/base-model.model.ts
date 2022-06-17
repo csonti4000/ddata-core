@@ -241,7 +241,7 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
     const result = {};
 
     Object.keys(fields).forEach((field: string) => {
-      result[field] = this[field] ?? fields[field] ?? '';
+      result[field] = this[field] ?? String(fields[field]) ?? '';
     });
 
     return result;
@@ -251,7 +251,7 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
     const result = {};
 
     Object.keys(fields).forEach((field: string) => {
-      result[field] = this[field] ?? fields[field] ?? 0;
+      result[field] = this[field] ?? Number(fields[field]) ?? 0;
     });
 
     return result;
@@ -261,7 +261,7 @@ export class BaseModel implements BaseModelInterface<ModelWithId> {
     const result = {};
 
     Object.keys(fields).forEach((field: string) => {
-      result[field] = this[field] ?? fields[field] ?? false;
+      result[field] = this[field] ?? Boolean(fields[field]) ?? false;
     });
 
     return result;
