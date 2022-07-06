@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseModel, BaseModelInterface, DdataCoreModule, ID, SelectableListComponent, ValidatorService } from 'ddata-core';
 import { DdataUiInputModule } from '../../ddata-ui-input.module';
@@ -16,11 +16,14 @@ class MockModel extends BaseModel implements MockModelInterace {
     items: any[] = [];
     name: string;
     is_selected = false;
+
     init(data?: any): this {
         data = !!data ? data : {};
+
         this.id = !!data.id ? data.id : 0;
         this.name = !!data.name ? data.name : '';
         this.items = !!data.items ? data.items : [];
+
         return this;
     }
 }
@@ -152,4 +155,23 @@ describe('SelectInputComponent', () => {
 
         expect(selectedItems.length).toEqual(1);
     });
+
+    it('should show name property of model if it is selected default', fakeAsync(() => {
+      const name = 'My Test Name';
+      const items = [
+        new MockModel().init({name})
+      ];
+
+      component.fakeSingleSelect = true;
+      component._model = new MockModel().init({name, items});
+      component._field = 'items';
+
+      component.ngOnInit();
+
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        expect(component._selectedModelName).toEqual(name);
+      });
+    }));
 });

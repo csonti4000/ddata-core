@@ -172,8 +172,11 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
     if (!!this.items) {
       this._selectedModel = this.items.find(item => item.id === this._model[this._field]);
     }
+
     if (this.fakeSingleSelect) {
-      this._selectedModelName = !!this._model[this.getObjectFieldName()] && !!this._model[this.getObjectFieldName()][0] ? this._model[this.getObjectFieldName()][this.text] : '';
+      this._selectedModelName = !!this._model[this.getObjectFieldName()] && !!this._model[this.getObjectFieldName()][0]
+        ? this._model[this.getObjectFieldName()][0][this.text]
+        : '';
     }
   }
 
