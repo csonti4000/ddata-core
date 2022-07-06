@@ -99,7 +99,7 @@
 </div>
 
 <!-- multiple select - selected items -->
-<ng-container *ngIf="multipleSelect && !fakeSingleSelect">
+<ng-container *ngIf="multipleSelect && !fakeSingleSelect && !disableShowSelectedItems">
   <div *ngIf="_model[_field].length > 0" class="d-flex justify-content-end">
     <div [class]="inputBlockClass" [ngClass]="showLabel ? inputBlockExtraClass : ''">
       <ng-container *ngFor="let element of _model[_field]">

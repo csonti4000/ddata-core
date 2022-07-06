@@ -104,6 +104,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   @Input() disabled = false;
   @Input() disabledAppearance = false;
   @Input() disableAdditionalModelUpdate = false;
+  @Input() disableShowSelectedItems = false;
   @Input() dialogSettings: DialogContentWithOptionsInterface;
   @Input() multipleSelect = false;
   @Input() fakeSingleSelect = false;
