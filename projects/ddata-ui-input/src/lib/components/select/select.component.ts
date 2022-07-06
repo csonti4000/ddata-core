@@ -112,7 +112,7 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
   @Input() showIcon = false;
   @Input() showLabel = true;
   @Input() labelClass = 'col-12 col-md-3 px-0 col-form-label';
-  @Input() inputBlockClass = 'col-12 d-flex px-0';
+  @Input() inputBlockClass = 'col-12 d-flex flex-wrap px-0';
   @Input() inputBlockExtraClass = 'col-md-9';
   @Input() viewOnlyClass = 'form-control border-0 bg-light';
   @Input() wrapperClass = 'd-flex flex-wrap';
