@@ -59,6 +59,11 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
     if (!!this._model && !!this._model.validationRules[this._field]) {
       this._isRequired = this.helperService.isRequired(this._model, this._field);
     }
+
+    // add 'name' property as default value on fake single select mode if model is set
+    if (!!this._model && this.fakeSingleSelect) {
+      this._selectedModelName = this._model['name'] ?? '';
+    }
   }
   get model(): BaseModelInterface<any> & FieldsInterface<any> {
     return this._model;
