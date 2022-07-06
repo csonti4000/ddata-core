@@ -101,7 +101,7 @@
 <!-- multiple select - selected items -->
 <ng-container *ngIf="multipleSelect && !fakeSingleSelect && !disableShowSelectedItems">
   <div *ngIf="_model[_field].length > 0" class="d-flex justify-content-end">
-    <div [class]="inputBlockClass" [ngClass]="showLabel ? inputBlockExtraClass : ''">
+    <div [class]="selectedElementsBlockClass" [ngClass]="showLabel ? selectedElementsBlockExtraClass : ''">
       <ng-container *ngFor="let element of _model[_field]">
         <dd-tag [tag]="element" [class]="'d-inline-block pl-2 mb-1 bg-light me-2'" [showIcon]="showIcon"
           (delete)="deleteFromMultipleSelectedList(element)"></dd-tag>
