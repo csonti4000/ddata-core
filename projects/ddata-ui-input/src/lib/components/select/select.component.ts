@@ -9,6 +9,7 @@ import { DialogContentItem } from '../../models/dialog/content/dialog-content-it
 import { DialogContentInterface, DialogContentWithOptionsInterface } from '../../models/dialog/content/dialog-content.interface';
 import { InputHelperServiceInterface } from '../../services/input/helper/input-helper-service.interface';
 import { InputHelperService } from '../../services/input/helper/input-helper.service';
+import pluralize from 'pluralize';
 
 @Component({
   selector: 'dd-select',
@@ -176,8 +177,8 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
     }
 
     if (this.fakeSingleSelect) {
-      this._selectedModelName = !!this._model[this.getObjectFieldName()] && !!this._model[this.getObjectFieldName()][0]
-        ? this._model[this.getObjectFieldName()][0][this.text]
+      this._selectedModelName = !!this._model[this.getObjectFieldNamePrular()] && !!this._model[this.getObjectFieldNamePrular()][0]
+        ? this._model[this.getObjectFieldNamePrular()][0][this.text]
         : '';
     }
   }
@@ -211,6 +212,10 @@ export class DdataSelectComponent implements OnInit, OnDestroy {
 
   private getObjectFieldName(): string {
     return this._field.split('_id')[0];
+  }
+
+  private getObjectFieldNamePrular(): string {
+    return pluralize(this.getObjectFieldName());
   }
 
   hideModal(): void {

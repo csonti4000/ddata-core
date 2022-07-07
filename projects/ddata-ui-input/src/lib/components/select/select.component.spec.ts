@@ -13,6 +13,7 @@ interface MockModelInterace extends BaseModelInterface<MockModelInterace> {
 
 class MockModel extends BaseModel implements MockModelInterace {
     id: ID;
+    item_id: ID;
     items: any[] = [];
     name: string;
     is_selected = false;
@@ -21,6 +22,7 @@ class MockModel extends BaseModel implements MockModelInterace {
         data = !!data ? data : {};
 
         this.id = !!data.id ? data.id : 0;
+        this.item_id = !!data.item_id ? data.item_id : 0;
         this.name = !!data.name ? data.name : '';
         this.items = !!data.items ? data.items : [];
 
@@ -158,20 +160,25 @@ describe('SelectInputComponent', () => {
 
     it('should show name property of model if it is selected default', fakeAsync(() => {
       const name = 'My Test Name';
+      const visibleName = 'This is the visible name';
       const items = [
-        new MockModel().init({name})
+        new MockModel().init({name: visibleName})
       ];
 
+      component.model = new MockModel().init({name, items});
+
+      component.field = 'item_id';
+
+      component.multipleSelect = true;
+
       component.fakeSingleSelect = true;
-      component._model = new MockModel().init({name, items});
-      component._field = 'items';
 
       component.ngOnInit();
 
       fixture.detectChanges();
 
       fixture.whenStable().then(() => {
-        expect(component._selectedModelName).toEqual(name);
+        expect(component._selectedModelName).toEqual(visibleName);
       });
     }));
 });
