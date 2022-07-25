@@ -18,7 +18,7 @@ The `ValidationError` model extends the `Error` interface.
 
 ## Initial Data model
 
-The `InitialData` model helps you to initialize your application when a user logging in. According to the idea the backend send the common used data pieces, what you store in the LocalStorage. The `InitialData` model and the `InitialDataService` helps you to do this easyly.
+The `InitialData` model helps you to initialize your application when a user logging in. According to the idea the backend send the common used data pieces, what you store in the LocalStorage. The `InitialData` model and the `InitialDataService` helps you to do this easily.
 
 | Field       | Type    |
 |-------------|---------|

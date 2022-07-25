@@ -49,7 +49,7 @@ export class MyCustomComponent {
     this.companies$ = pipe(
       tap(() => spinner.on('companies')),
       switchMap(() => this.companyService.getAll()),
-      tap(() => this.spinner.off('companies'),
+      tap(() => this.spinner.off('companies')),
     );
   }
 }

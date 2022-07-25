@@ -11,11 +11,11 @@ Create a list component, like this:
 
 ```typescript
 @Component({
-  selector: 'app-my-aweome-list',
-  templateUrl: './my-aweome-list.component.html',
-  styleUrls: ['./my-aweome-list.component.scss']
+  selector: 'app-my-awesome-list',
+  templateUrl: './my-awesome-list.component.html',
+  styleUrls: ['./my-awesome-list.component.scss']
 })
-export class MyAweomeListComponent extends SelectableListComponent<MyAweomeInterface> implements OnInit {
+export class MyAwesomeListComponent extends SelectableListComponent<MyAwesomeInterface> implements OnInit {
   // your custom defined codes here
 
   myCustomSelectionHandler(): void {

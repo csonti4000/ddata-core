@@ -1,7 +1,7 @@
 
 ## Services
 
-This package has a bunch of services, whitch works together to help you create large apllications in minutes and avoid several types of bugs.
+This package has a bunch of services, which works together to help you create large apllications in minutes and avoid several types of bugs.
 
 ### Service Layers
 
