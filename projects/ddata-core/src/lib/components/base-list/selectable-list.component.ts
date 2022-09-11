@@ -20,12 +20,15 @@ export abstract class SelectableListComponent<T extends BaseModelInterface<T> & 
   @Input() loadData = false;
   @Input() set selectedElements(value: T[]) {
     this.models.map((obj: T) => obj.is_selected = false);
+
     value.forEach((item: any) => {
       const selectedModel = this.models.findIndex((obj: T) => obj.id == item.id);
+
       if (selectedModel !== -1) {
         this.models[selectedModel].is_selected = true;
       }
     });
+
     this._selectedElements = new Set(!!value.length ? value : []);
   }
   get selectedElements(): T[] {
