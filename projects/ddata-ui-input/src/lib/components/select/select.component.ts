@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BaseModel, BaseModelInterface, DdataCoreModule, FieldsInterface } from 'ddata-core';
-import { DialogContentWithOptionsInterface } from 'ddata-ui-dialog';
+import { DialogContentWithOptionsInterface } from '../../models/dialog/content/dialog-content.interface';
 import { InputHelperServiceInterface } from '../../services/input/helper/input-helper-service.interface';
 import { InputHelperService } from '../../services/input/helper/input-helper.service';
 import { SelectType } from './select.type';
