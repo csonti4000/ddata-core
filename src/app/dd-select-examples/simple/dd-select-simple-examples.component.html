@@ -1,0 +1,34 @@
+<div id="example-simple-select">
+  <h2>Simple select</h2>
+
+  <p>
+    This is a simple HTML select element wrapped in dd-select. Most basic usage. You can pass a model, set
+    a field on the model as target field, and pass a list of selectable items.
+  </p>
+  <p>
+    In this example we have an address model with a country_id field and a set of countries. The user can select
+    only one country.
+  </p>
+
+  <p><strong>Usage:</strong></p>
+
+  <pre>
+    &lt;dd-select
+      mode="simple"
+      [model]="address"
+      field="country_id"
+      [items]="countries"
+    &gt;&lt;/dd-select&gt;
+  </pre>
+
+  <p><strong>Example:</strong></p>
+
+  <dd-select mode="simple" [model]="address" field="country_id" [items]="countries"></dd-select>
+
+  <div class="alert alert-info my-3">
+    <p><strong>Model:</strong></p>
+    <code>
+      {{ address | json }}
+    </code>
+  </div>
+</div>

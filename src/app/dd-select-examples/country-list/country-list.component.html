@@ -1,0 +1,39 @@
+
+<!-- do NOT show title if we show the list in a select dialog -->
+<ng-container *ngIf="!isSelectionList">
+  <h1>Country list</h1>
+</ng-container>
+
+<!-- emit seleted button -->
+<ng-container *ngIf="isSelectionList">
+  <button class="mr-1 btn btn-primary" type="button" (click)="chooseSelect()">
+    Choose selected
+  </button>
+</ng-container>
+
+<div class="row">
+  <div class="col-1 border-bottom" *ngIf="isSelectionList"></div>
+  <div class="col-2 border-bottom">ID</div>
+  <div class="col-9 border-bottom">Country name</div>
+</div>
+
+<div class="row" *ngFor="let model of models">
+  <div class="col-1" *ngIf="isSelectionList">
+    <!-- <input type="checkbox" [attr.checked]="model.is_selected ? true : null" (click)="selected(model)"> -->
+    <button
+      class="btn"
+      [ngClass]="{'btn-light': !model.is_selected, 'btn-primary': model.is_selected}"
+      (click)="selected(model)"
+    >
+      {{ model.is_selected ? '☑️' : '🟦' }}
+    </button>
+  </div>
+
+  <div class="col-2">
+    {{ model.id }}
+  </div>
+
+  <div class="col-9">
+    {{ model.name }}
+  </div>
+</div>
