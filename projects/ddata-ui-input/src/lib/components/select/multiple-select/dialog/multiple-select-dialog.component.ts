@@ -3,10 +3,11 @@ import {
 } from '@angular/core';
 import { BaseModelInterface, FieldsInterface } from 'ddata-core';
 import pluralize from 'pluralize';
-import { DialogContentInterface, DialogContentItem, DialogContentWithOptionsInterface } from 'projects/ddata-ui-input/src/public-api';
+import { DialogContentInterface, DialogContentWithOptionsInterface } from '../../../../models/dialog/content/dialog-content.interface';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { SelectType } from '../../select.type';
+import { DialogContentItem } from 'ddata-ui-dialog';
 
 @Component({
   selector: 'multiple-select-dialog',
