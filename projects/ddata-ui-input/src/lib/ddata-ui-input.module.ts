@@ -1,20 +1,23 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DdataUiCommonModule } from 'ddata-ui-common';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { DdataUiCommonModule } from 'ddata-ui-common';
 
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { DdataInputCheckboxComponent } from './components/checkbox/checkbox.component';
 import { DdataInputColorComponent } from './components/color/color-input.component';
-import { DdataInputComponent } from './components/input/input.component';
 import { DdataInputDateComponent } from './components/date/date-input.component';
+import { DdataInputComponent } from './components/input/input.component';
 import { DdataInputSearchComponent } from './components/search/search.component';
-import { DdataInputTimeComponent } from './components/time/time-input.component';
-import { DdataTextareaComponent } from './components/textarea/textarea.component';
+import { DdataMultipleSelectDialogComponent } from './components/select/multiple-select/dialog/multiple-select-dialog.component';
+import { DdataMultipleSelectComponent } from './components/select/multiple-select/multiple-select.component';
 import { DdataSelectComponent } from './components/select/select.component';
-import { NgbDatepickerModule, NgbInputDatepicker, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DdataSimpleSelectComponent } from './components/select/simple-select/simple-select.component';
+import { DdataTextareaComponent } from './components/textarea/textarea.component';
+import { DdataInputTimeComponent } from './components/time/time-input.component';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import { NgbDatepickerModule, NgbInputDatepicker, NgbModule } from '@ng-bootstra
     DdataInputSearchComponent,
     DdataInputTimeComponent,
     DdataSelectComponent,
-    DdataTextareaComponent
+    DdataTextareaComponent,
+    DdataSimpleSelectComponent,
+    DdataMultipleSelectComponent,
+    DdataMultipleSelectDialogComponent,
   ],
   imports: [
     ColorPickerModule,

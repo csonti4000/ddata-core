@@ -1,129 +1,76 @@
-<div [class]="wrapperClass">
-  <label [class]="labelClass" [for]="_field + '_' + random" *ngIf="showLabel">
-    {{ _label }}:
-    <span *ngIf="_isRequired"> *</span>
-  </label>
-  <div [class]="inputBlockClass" [ngClass]="showLabel ? inputBlockExtraClass : ''">
+<ng-container *ngIf="_mode === 'multiple'">
+  <multiple-select
+    mode="multiple"
+    [wrapperClass]="wrapperClass"
+    [isRequired]="_isRequired"
+    [disabledAppearance]="disabledAppearance"
+    [disabled]="disabled"
+    [addEmptyOption]="addEmptyOption"
+    [labelClass]="labelClass"
+    [showLabel]="showLabel"
+    [labelText]="_label"
+    [prepend]="_prepend"
+    [append]="_append"
+    [model]="_model"
+    [field]="_field"
+    [items]="items"
+    [dialogSettings]="dialogSettings"
+    [text]="text"
+    [valueField]="valueField"
+    [disableShowSelectedItems]="disableShowSelectedItems"
+    [selectedElementsBlockClass]="selectedElementsBlockClass"
+    [selectedElementsBlockExtraClass]="selectedElementsBlockExtraClass"
+    [showIcon]="showIcon"
 
-    <!-- prepend -->
-    <div class="input-group-prepend" *ngIf=" _prepend != '' ">
-      <div class="input-group-text">{{ _prepend }}</div>
-    </div>
-
-    <!-- single select -->
-    <select class="form-select"
-      *ngIf="!multipleSelect && !isViewOnly"
-      (change)="selectItem($event)"
-      [(ngModel)]="_model[_field]"
-      [class.invalid]="_model.validationErrors.includes(_field)"
-      [class.disable-appearance]="disabledAppearance"
-      [disabled]="disabled">
-
-      <option *ngIf="addEmptyOption" data-default value="0">-- {{ unselectedText }} --</option>
-
-      <ng-container *ngFor="let item of items">
-        <option *ngIf="multilanguage" [value]="item[valueField]">{{ item.names[0][text] }}</option>
-        <option *ngIf="!multilanguage" [value]="item[valueField]" [selected]="item[valueField] === _model[_field]">{{ item[text] }}</option>
-      </ng-container>
-    </select>
-
-    <!-- isViewOnly - input-like div -->
-    <div *ngIf="!multipleSelect && isViewOnly" [class]="viewOnlyClass">
-      {{ getModelField() }}
-    </div>
-
-    <!-- multiple select - clickable input-like div -->
-    <div *ngIf="multipleSelect" class="form-control multiple-select text-muted" [ngClass]="{'disabled': disabled}" (click)="showModal('list')">
-      <!-- if there isn't any selected items -->
-      <ng-container *ngIf="!_model[_field] || _model[_field].length === 0">
-        {{ '-- ' + unselectedText + ' --' }}
-      </ng-container>
-
-      <!-- if there is a selected item and it don't need to look like a single select (shown as a simple multiple select) -->
-      <ng-container *ngIf="!!_model[_field] && _model[_field].length !== 0 && !fakeSingleSelect">
-        {{ _model[_field].length + ' elem kiválasztva' }}
-      </ng-container>
-
-      <!-- if there is a selected element, working as multiple select, but looks like single select and can be modify -->
-      <ng-container *ngIf="!!_model[_field] && _model[_field].length !== 0 && fakeSingleSelect && !disabled">
-        {{ _selectedModelName }}
-      </ng-container>
-
-      <!-- if there is a selected element, working as multiple select, but looks like single select and disabled -->
-      <ng-container *ngIf="!!_model[_field] && _model[_field].length !== 0 && fakeSingleSelect && (disabled || isViewOnly)">
-        {{ modelField() }}
-      </ng-container>
-    </div>
-
-    <!-- append -->
-    <div class="input-group-append" *ngIf="_append != ''">
-      <div class="input-group-text">{{ _append }}</div>
-    </div>
-
-    <!-- dropdown menu -->
-    <div class="input-group-append" *ngIf="!hideButton && !disabled && !isViewOnly">
-      <button type="button" class="btn btn-light" id="selectDropdown"
-        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <fa-icon [icon]="icon.menu"></fa-icon>
-      </button>
-
-      <div class="dropdown-menu m-0 p-1 select-dropdown-menu" aria-labelledby="selectDropdown">
-        <button
-          class="btn btn-light dropdown-item p-2"
-          tabindex="-1"
-          (click)="showModal('create-edit')"
-          *ngIf="!hideAdd">
-
-          {{ menuLabels.add }}
-        </button>
-        <button
-          class="btn btn-light dropdown-item p-2"
-          tabindex="-1"
-          (click)="showModal('create-edit')"
-          *ngIf="!!_model[_field] && !hideEdit && !multipleSelect">
-
-          {{ menuLabels.edit }}
-        </button>
-        <button
-          class="btn btn-light dropdown-item p-2"
-          tabindex="-1"
-          (click)="showModal('list')"
-          *ngIf="!hideList">
-
-          {{ menuLabels.search }}
-        </button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- multiple select - selected items -->
-<ng-container *ngIf="multipleSelect && !fakeSingleSelect && !disableShowSelectedItems">
-  <div *ngIf="_model[_field].length > 0" class="d-flex justify-content-end">
-    <div [class]="selectedElementsBlockClass" [ngClass]="showLabel ? selectedElementsBlockExtraClass : ''">
-      <ng-container *ngFor="let element of _model[_field]">
-        <dd-tag [tag]="element" [class]="'d-inline-block pl-2 mb-1 bg-light me-2'" [showIcon]="showIcon"
-          (delete)="deleteFromMultipleSelectedList(element)"></dd-tag>
-      </ng-container>
-    </div>
-  </div>
+    (selected)="selectedEmit($event)"
+    (selectModel)="selectModelEmit($event)"
+  ></multiple-select>
 </ng-container>
 
-<!-- modal -->
-<div class="modal-overlay" [class.active]="isModalVisible"></div>
-<div *ngIf="isModalVisible" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ modalTitle }}</h5>
-        <button type="button" class="close" (click)="hideModal()" aria-label="Bezárás">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ng-template #dialogHost></ng-template>
-      </div>
-    </div>
-  </div>
-</div>
+<ng-container *ngIf="_mode === 'single'">
+  <multiple-select
+    mode="single"
+    [wrapperClass]="wrapperClass"
+    [isRequired]="_isRequired"
+    [disabledAppearance]="disabledAppearance"
+    [disabled]="disabled"
+    [addEmptyOption]="addEmptyOption"
+    [labelClass]="labelClass"
+    [showLabel]="showLabel"
+    [labelText]="_label"
+    [prepend]="_prepend"
+    [append]="_append"
+    [model]="_model"
+    [field]="_field"
+    [items]="items"
+    [dialogSettings]="dialogSettings"
+    [text]="text"
+    [valueField]="valueField"
+    [disableShowSelectedItems]="disableShowSelectedItems"
+    [showIcon]="showIcon"
+
+    (selected)="selectedEmit($event)"
+    (selectModel)="selectModelEmit($event)"
+  ></multiple-select>
+</ng-container>
+
+<ng-container *ngIf="_mode === 'simple'">
+  <simple-select
+    [wrapperClass]="wrapperClass"
+    [isRequired]="_isRequired"
+    [disabledAppearance]="disabledAppearance"
+    [disabled]="disabled"
+    [addEmptyOption]="addEmptyOption"
+    [labelClass]="labelClass"
+    [showLabel]="showLabel"
+    [labelText]="_label"
+    [prepend]="_prepend"
+    [append]="_append"
+    [model]="_model"
+    [field]="_field"
+    [items]="items"
+
+    (selected)="selectedEmit($event)"
+    (selectModel)="selectModelEmit($event)"
+  ></simple-select>
+</ng-container>

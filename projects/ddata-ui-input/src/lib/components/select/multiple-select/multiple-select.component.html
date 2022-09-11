@@ -1,0 +1,87 @@
+<div [class]="wrapperClass">
+  <!-- label -->
+  <label
+    [class]="labelClass"
+    [for]="id"
+    *ngIf="showLabel"
+  >
+    {{ labelText }}:
+
+    <span *ngIf="isRequired"> *</span>
+  </label>
+
+  <div
+    [class]="inputBlockClass"
+    [ngClass]="showLabel ? inputBlockExtraClass : ''"
+  >
+    <!-- prepend -->
+    <div class="input-group-prepend" *ngIf="!!prepend">
+      <div class="input-group-text">{{ prepend }}</div>
+    </div>
+
+    <!-- select -->
+    <div
+      class="form-control multiple-select text-muted"
+      [ngClass]="{'disabled': disabled}"
+      (click)="showModal('list')"
+    >
+      <!-- if there isn't any selected items -->
+      <ng-container *ngIf="!model[field] || model[field].length === 0">
+        {{ '-- ' + unselectedText + ' --' }}
+      </ng-container>
+
+      <!-- if there is a selected item and it don't need to look like a single select (shown as a simple multiple select) -->
+      <ng-container *ngIf="!!model[field] && model[field].length !== 0 && mode === 'multiple'">
+        {{ model[field].length + ' elem kiválasztva' }}
+      </ng-container>
+
+      <ng-container *ngIf="mode === 'single'">
+        <!-- if there is a selected element, working as multiple select, but looks like single select and can be modify -->
+        <ng-container *ngIf="!!model[field] && model[field].length !== 0 && !disabled">
+          {{ selectedModelName }}
+        </ng-container>
+
+        <!-- if there is a selected element, working as multiple select, but looks like single select and disabled -->
+        <ng-container *ngIf="!!model[field] && model[field].length !== 0 && (disabled || isViewOnly)">
+          {{ modelField() }}
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <!-- append -->
+    <div class="input-group-append" *ngIf="!!append">
+      <div class="input-group-text">{{ append }}</div>
+    </div>
+  </div>
+
+</div>
+<!-- multiple select - selected items -->
+<ng-container *ngIf="mode === 'multiple' && !disableShowSelectedItems">
+  <div *ngIf="model[field].length > 0" class="d-flex justify-content-end">
+    <div [class]="selectedElementsBlockClass" [ngClass]="showLabel ? selectedElementsBlockExtraClass : ''">
+      <ng-container *ngFor="let element of model[field]">
+        <dd-tag
+          [tag]="element"
+          [class]="'d-inline-block pl-2 mb-1 bg-light me-2'"
+          [showIcon]="showIcon"
+          (delete)="deleteFromMultipleSelectedList(element)"
+        ></dd-tag>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isModalVisible">
+  <multiple-select-dialog
+    [settings]="_dialogSettings"
+    [method]="'list'"
+    [mode]="mode"
+    [model]="model"
+    [field]="field"
+    [items]="items"
+    [text]="text"
+    [valueField]="valueField"
+
+    (selectionFinished)="hideModal()"
+    ></multiple-select-dialog>
+</ng-container>
