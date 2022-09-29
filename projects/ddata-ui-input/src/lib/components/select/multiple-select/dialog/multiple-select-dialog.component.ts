@@ -157,7 +157,7 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
 
       if (models.length === 1 && this.mode === 'single') {
         // single select - only a single element can be selected
-        this.model[this.valueField] = model.id;
+        this.model[this.field] = model.id;
         this.model[this.getObjectFieldName()] = model;
         this.setSelected(model[this.valueField], false, model);
         this.selected.emit(model[this.valueField]);
