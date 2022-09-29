@@ -1,4 +1,4 @@
-import { BaseModel, FieldContainerInterface } from 'ddata-core';
+import { BaseModel, FieldContainerInterface, ID } from 'ddata-core';
 import { AddressInterface, AddressUIFieldsInterface } from './address.interface';
 import { CountryInterface } from './country.interface';
 import { Country } from './country.model';
@@ -7,6 +7,7 @@ import { TagInterface } from './tag.interface';
 export class Address extends BaseModel implements AddressInterface {
   readonly api_endpoint = '/api/address';
   readonly model_name = 'Address';
+  id = 0 as ID;
   zip: string;
   settlement: string;
   street: string;

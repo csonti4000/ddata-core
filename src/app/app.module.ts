@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { DdSelectSingleExamplesComponent } from './dd-select-examples/single/dd-select-single-examples.component';
 import { CountryListComponent } from './dd-select-examples/country-list/country-list.component';
+import { ClearModelPipe } from './pipes/clear-model.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CountryListComponent } from './dd-select-examples/country-list/country-
     DdSelectSingleExamplesComponent,
     TagListComponent,
     CountryListComponent,
+    ClearModelPipe,
   ],
   imports: [
     BrowserModule,
