@@ -26,26 +26,21 @@
       (click)="showModal('list')"
     >
       <!-- if there isn't any selected items -->
-      <ng-container *ngIf="!model[field] || model[field].length === 0">
+      <ng-container *ngIf="!model[field] || model[field].length === 0; else hasSelectedItems">
         {{ '-- ' + unselectedText + ' --' }}
       </ng-container>
 
-      <!-- if there is a selected item and it don't need to look like a single select (shown as a simple multiple select) -->
-      <ng-container *ngIf="!!model[field] && model[field].length !== 0 && mode === 'multiple'">
-        {{ model[field].length + ' elem kiválasztva' }}
-      </ng-container>
+      <ng-template #hasSelectedItems>
+        <!-- multiple select mode -->
+        <ng-container *ngIf="mode === 'multiple'">
+          {{ model[field].length + ' elem kiválasztva' }}
+        </ng-container>
 
-      <ng-container *ngIf="mode === 'single'">
-        <!-- if there is a selected element, working as multiple select, but looks like single select and can be modify -->
-        <ng-container *ngIf="!!model[field] && model[field].length !== 0 && !disabled">
+        <!-- single select mode -->
+        <ng-container *ngIf="mode === 'single'">
           {{ selectedModelName }}
         </ng-container>
-
-        <!-- if there is a selected element, working as multiple select, but looks like single select and disabled -->
-        <ng-container *ngIf="!!model[field] && model[field].length !== 0 && (disabled || isViewOnly)">
-          {{ modelField() }}
-        </ng-container>
-      </ng-container>
+      </ng-template>
     </div>
 
     <!-- append -->
