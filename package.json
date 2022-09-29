@@ -28,7 +28,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@ng-bootstrap/ng-bootstrap": "^11.0.0",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "ngx-color-picker": "^10.1.0",
     "ngx-daterangepicker-material": "^5.0.1",
     "ngx-material-timepicker": "^5.5.3",
@@ -37,7 +37,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.2.4",
+    "@angular-devkit/build-angular": "~13.3.9",
     "@angular/cli": "~13.2.4",
     "@angular/compiler-cli": "~13.2.3",
     "@types/jasmine": "~3.6.0",

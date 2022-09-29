@@ -1,10 +1,9 @@
 # Expectetions for backend
 
 This package built for Laravel backend applications, but the package has some extra expectations over the basic
-operatin of Laravel.
+operation of Laravel.
 
-Of course your backend can be written in any languages, or any frameworks. This package can work with if the backend
-satisfy the package's needs.
+Of course your backend can be written in any languages, or any frameworks. This package can work with if the backend satisfy the package's needs.
 
 ## API endpoints
 
@@ -24,7 +23,7 @@ You MUST define in your backend these API endpoints:
 
 ## Implement in Laravel 6.x
 
-In your `ResourceRegistrar.php` file define these as minimum. Be careful, becasue this list of resource defaults
+In your `ResourceRegister.php` file define these as minimum. Be careful, becasue this list of resource defaults
 are less than Laravel's default - but my package use only these endpoints.
 
 ```php
