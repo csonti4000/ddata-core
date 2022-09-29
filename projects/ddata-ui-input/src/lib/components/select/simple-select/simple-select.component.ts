@@ -51,17 +51,9 @@ export class DdataSimpleSelectComponent {
   }
 
   selectItem(): void {
-    this.setSelected(this.model[this.field]);
-  }
+    this.selectedModel = this.items.find(item => item[this.field] === this.model[this.field]);
 
-  private setSelected(selectedValue: any, emit: boolean = true, model?: any): void {
-    this.model[this.field] = selectedValue;
-
-    this.selectedModel = this.items.find(item => item[this.field] === selectedValue);
-
-    if (emit) {
-      this.selected.emit(selectedValue);
-      this.selectModel.emit(this.selectedModel);
-    }
+    this.selected.emit(this.model[this.field]);
+    this.selectModel.emit(this.selectedModel);
   }
 }
