@@ -76,7 +76,7 @@ Returns Observable, PaginateInterface with initialized `T` type objects.
 ### `getAllWithoutPaginate()`
 
 Send HTTP GET request to the API endpoint where can get the all items of requested resource without PaginateInterface.
-In Laravel 6.x you need to create a new resurce in the ResourceRegistrar.
+In Laravel 6.x you need to create a new resource in the ResourceRegistrar.
 
 The requested URL will be constructed like this: `{environment.apiUrl}/{model.api_endpoint}/list`
 

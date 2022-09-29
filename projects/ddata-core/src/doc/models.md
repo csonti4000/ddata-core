@@ -86,7 +86,7 @@ prepareToSave(): any;
 | `model_name` | string | It should be `readonly`. Unique name of your model in the application. Neccessary to avoid bugs in production version. | `NotDefined` | `Company` |
 | `id` | [`ID`](src/doc/custom-types.md) | Unique ID of the model instance. If it's `0` the save will do a `POST` request, otherwise `PUT`. | `0` | `42` |
 | `isValid` | boolean | Current state of model based on `validationRules`. You can use `validate()` built-in method to validate the model. | `false` | |
-| `validationErrors` | string[] | Containes the result of `validate()` method. If `validate()` found errors, it will be add it to this array. | `[]` | |
+| `validationErrors` | string[] | Contains the result of `validate()` method. If `validate()` found errors, it will be add it to this array. | `[]` | |
 | `validationRules` | [`ValidationRuleInterface`](src/doc/validation-rules.md) | Validation rule collection to validate the model's fields. | `{}` | [Examples](src/doc/validation-rules.md) |
 | `fields` | [`FieldContainerInterface<T>`](src/doc/field-container.md) | You can set language parameters to your model's fields. | `{}` | [Examples](src/doc/field-container.md) |
 
@@ -95,11 +95,11 @@ prepareToSave(): any;
 | Name | Description | Result |
 |------|-------------|--------|
 | `init()` | This method initialize your model with given datas. It MUST handle `undefined` and `null` incoming datas, and replace it to a correct default value. | MUST return the type of your model. [See examples here](src/doc/model-init.md) |
-| `prepareToSave()` | This method prepare the datas from the model to save. This method MUST handle array and child models too. | Pure JSON object from your model. [See examplex here](src/doc/model-preapretosave.md) |
+| `prepareToSave()` | This method prepare the datas from the model to save. This method MUST handle array and child models too. | Pure JSON object from your model. [See examples here](src/doc/model-preapretosave.md) |
 
 ## Your custom model
 
-If you use this package, you can create your custom models. In this case you need to follow some rules. If you follow these rules then you can easyly use my other packages to build your application.
+If you use this package, you can create your custom models. In this case you need to follow some rules. If you follow these rules then you can easily use my other packages to build your application.
 
 ### Use interfaces
 
@@ -131,7 +131,7 @@ export interface CompanyInterface extends
 
 #### UI Fields Interface
 
-This interface define fields what your users can modify. This interface can NOT contain methods or hidden fields. The fields what are defined here sould show to your users.
+This interface define fields what your users can modify. This interface can NOT contain methods or hidden fields. The fields what are defined here should show to your users.
 
 The naming convention in this type of interfaces is the `UIFieldsInterface` ending. For example:
 
@@ -197,10 +197,10 @@ To create this type of interfaces follow these rules:
 
 1. Boolean fields always start with `is` prefix. Fox example: `is_active`, `is_handle_storage`, `is_draft`.
 2. `_id` suffixed fields must have a pair without suffix. For example: `user_id` - `user`, `warehouse_id` - `warehouse`, `parent_category_id` - `parent_category`.
-3. Array calld always pluralized. For example: `users: UserInterface[];`, `companies: CompanyInterface[];`, `categories: CategoryInterface[];`
+3. Array names are always plural. For example: `users: UserInterface[];`, `companies: CompanyInterface[];`, `categories: CategoryInterface[];`
 
 ## Other built-in models
 
-This package arrives with few type of built-in models like `Pagination` or `Notifiaction`, etc.
+This package arrives with few types of built-in models like `Pagination` or `Notifiaction`, etc.
 
 [Read more here.](models-built-in.md)

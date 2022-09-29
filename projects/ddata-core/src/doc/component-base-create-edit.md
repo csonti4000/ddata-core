@@ -86,12 +86,12 @@ So to use the `BaseCreateEditComponent` you need to define a [model](models.md) 
 [interface](models.md#use-interfaces). Another important thing is to send the model with `super()` call
 to the `BaseCreateEditComponent`.
 
-The `implement OnInit` isn't neccessary at this point, but it's useful to leavs a reminder in the
-code: this component is implement `OnInit`, and don't overwrite it if you don't want to lose their built-in
+The `implement OnInit` isn't neccessary at this point, but it's useful to leaves a reminder in the
+code: this component is implement `OnInit`, and don't overwrite it if you don't want to loose their built-in
 functionality.
 
 
-### What's the functionality of built-in `OnInit`?
+## What's the functionality of built-in `OnInit`?
 
 That's it:
 

@@ -1,7 +1,7 @@
 # Field Container
 
-Many times we wan to control the texts of input fields like title, label and placeholder.
-Basicly you write these texts into your HTML template, but if your application size grown,
+Many times we want to control the texts of input fields like title, label and placeholder.
+Basicly you write these texts into your HTML template, but if your size of application grown,
 you need to think about how to reduce it.
 
 This solution helps you optimize your app's size and keep your texts in one place. Helps to
@@ -188,7 +188,7 @@ export class Company extends BaseModel implements CompanyInterface {
 
 ## Localize
 
-Of course if you use language files probale you use multiple languages in your application's UI.
+Of course if you use language files probable you use multiple languages in your application's UI.
 
 You can import language constats dynamically like this:
 
