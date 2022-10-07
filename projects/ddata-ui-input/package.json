@@ -1,6 +1,6 @@
 {
   "name": "ddata-ui-input",
-  "version": "0.3.2",
+  "version": "0.3.5",
   "description": "DData UI Input module, components, models & services",
   "author": {
     "name": "Balázs Winkler",
@@ -34,8 +34,8 @@
     "moment": "^2.27.0",
     "ngx-color-picker": "^10.0.1",
     "ngx-material-timepicker": "^5.5.3",
-    "@ng-bootstrap/ng-bootstrap": "^12.0.0",
-    "@angular/localize": "^12.2.11",
+    "@ng-bootstrap/ng-bootstrap": ">=12.0.0",
+    "@angular/localize": ">=12.2.11",
     "pluralize": "^8.0.0"
   },
   "dependencies": {
