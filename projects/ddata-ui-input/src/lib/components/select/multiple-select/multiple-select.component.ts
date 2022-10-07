@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BaseModelInterface, DdataCoreModule, FieldsInterface } from 'ddata-core';
 import { DialogContentWithOptionsInterface } from '../../../models/dialog/content/dialog-content.interface';
 import { InputHelperServiceInterface } from '../../../services/input/helper/input-helper-service.interface';
@@ -60,6 +60,9 @@ export class DdataMultipleSelectComponent implements OnInit {
     this._dialogSettings = value;
   }
 
+  @Output() selected: EventEmitter<any> = new EventEmitter<any>();
+  @Output() selectModel: EventEmitter<any> = new EventEmitter<any>();
+
   get id(): string {
     return `${this.field}_${this.random}`;
   }
@@ -84,6 +87,14 @@ export class DdataMultipleSelectComponent implements OnInit {
 
   hideModal(): void {
     this.isModalVisible = false;
+  }
+
+  selectedEmit(event: any): void {
+    this.selected.emit(event);
+  }
+
+  selectModelEmit(event: any): void {
+    this.selectModel.emit(event);
   }
 
   deleteFromMultipleSelectedList(item: any): void {

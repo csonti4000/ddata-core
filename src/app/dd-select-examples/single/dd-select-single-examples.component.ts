@@ -28,4 +28,8 @@ export class DdSelectSingleExamplesComponent {
       }
     };
   }
+
+  log(event: any, type: string): void {
+    console.log('emit', type, event);
+  }
 }

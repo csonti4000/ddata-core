@@ -78,5 +78,7 @@
     [valueField]="valueField"
 
     (selectionFinished)="hideModal()"
+    (selected)="selectedEmit($event)"
+    (selectModel)="selectModelEmit($event)"
     ></multiple-select-dialog>
 </ng-container>

@@ -32,6 +32,8 @@
     [model]="address"
     field="country_id"
     [dialogSettings]="dialogSettings"
+    (selected)="log($event, 'selected')"
+    (selectModel)="log($event, 'selectModel')"
   ></dd-select>
 
   <div class="alert alert-info my-3">

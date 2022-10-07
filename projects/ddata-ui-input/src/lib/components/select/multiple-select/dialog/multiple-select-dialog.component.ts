@@ -159,8 +159,7 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
         // single select - only a single element can be selected
         this.model[this.field] = model.id;
         this.model[this.getObjectFieldName()] = model;
-        this.setSelected(model[this.valueField], false, model);
-        this.selected.emit(model[this.valueField]);
+        this.setSelected(model[this.valueField], true, model);
       } else if (this.mode === 'multiple') {
         if (!(this.model[this.field] instanceof Array)) {
           console.error(`The ${this.model.model_name}'s ${this.field} field is not an array. If you use select-box as multipleSelect, then the 'field' parameter must be array.`);
