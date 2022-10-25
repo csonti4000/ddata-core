@@ -135,4 +135,8 @@ export class DdataInputDateComponent implements OnInit {
       this.changed.emit(this._model);
     }
   }
+
+  typeChange(event: any): void {
+    this._model[this._field] = event.target.value;
+  }
 }
