@@ -25,7 +25,8 @@
           type="text"
           ngbDatepicker
           #d="ngbDatepicker"
-          (click)="d.toggle()">
+          (click)="d.toggle()"
+          (change)="typeChange($event)">
 
     </ng-container>
 
