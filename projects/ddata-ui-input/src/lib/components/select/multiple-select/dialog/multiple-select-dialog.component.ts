@@ -195,7 +195,7 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
       this.selected.emit(model[this.valueField]);
     }
 
-    this.selectModel.emit(model);
+    this.selectModel.emit(this.selectedModel);
 
     this.selectionFinished.emit(this.model[this.field]);
   }
@@ -204,11 +204,6 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
     this.model[this.field] = selectedValue;
 
     this.selectedModel = this.items.find(item => item[this.field] === selectedValue);
-
-    if (emit) {
-      this.selected.emit(selectedValue);
-      this.selectModel.emit(this.selectedModel);
-    }
   }
 
 }
