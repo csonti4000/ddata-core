@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { DialogContentWithOptionsInterface } from 'ddata-ui-input';
+import { DialogContentWithOptionsInterface } from 'projects/ddata-ui-input/src/public-api';
 import { AddressInterface } from '../address.interface';
 import { Address } from '../address.model';
 import { CountryListComponent } from '../country-list/country-list.component';
