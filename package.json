@@ -9,7 +9,19 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "publish:ddata-core:patch-version": "cd projects/ddata-core && npm version patch && cd ../.. && ng build ddata-core --configuration production && cd dist/ddata-core && npm publish && cd ../..",
-    "publish:ddata-ui:patch-version": "cd projects/ddata-ui && npm version patch && cd ../.. && ng build ddata-ui --configuration production && cd dist/ddata-ui && npm publish && cd ../.."
+    "publish:ddata-ui:patch-version": "cd projects/ddata-ui && npm version patch && cd ../.. && ng build ddata-ui --configuration production && cd dist/ddata-ui && npm publish && cd ../..",
+    "build:a11y": "ng build ddata-a11y --configuration production",
+    "build:core": "ng build ddata-core --configuration production",
+    "build:ui-common": "ng build ddata-ui-common --configuration production",
+    "build:ui-dialog": "ng build ddata-ui-dialog --configuration production",
+    "build:ui-file": "ng build ddata-ui-file --configuration production",
+    "build:ui-input": "ng build ddata-ui-input --configuration production",
+    "publish:a11y": "cd dist/ddata-a11y && npm publish && cd ../..",
+    "publish:core": "cd dist/ddata-core && npm publish && cd ../..",
+    "publish:ui-common": "cd dist/ddata-ui-common && npm publish && cd ../..",
+    "publish:ui-dialog": "cd dist/ddata-ui-dialog && npm publish && cd ../..",
+    "publish:ui-file": "cd dist/ddata-ui-file && npm publish && cd ../..",
+    "publish:ui-input": "cd dist/ddata-ui-input && npm publish && cd ../.."
   },
   "private": true,
   "dependencies": {
