@@ -186,13 +186,11 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
 
   private setModel(model: any): any {
     if (!!model) {
+      model.is_selected = true;
+
       if (this.mode === 'single') {
         this.model[this.field.split('_id')[0]] = model;
         this.model[this.field] = model.id;
-      }
-
-      if (this.mode === 'multiple') {
-        this.items.push(model);
       }
 
       this.selectedModel = model;
