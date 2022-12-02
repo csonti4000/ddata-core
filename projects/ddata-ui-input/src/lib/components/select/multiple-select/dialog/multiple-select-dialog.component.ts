@@ -174,7 +174,6 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
     });
 
     this.selectionFinished.emit(models);
-
   }
 
   private getObjectFieldName(): string {
@@ -187,9 +186,15 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
 
   private setModel(model: any): any {
     if (!!model) {
-      this.model[this.field.split('_id')[0]] = model;
-      this.model[this.field] = model.id;
-      this.items.push(model);
+      if (this.mode === 'single') {
+        this.model[this.field.split('_id')[0]] = model;
+        this.model[this.field] = model.id;
+      }
+
+      if (this.mode === 'multiple') {
+        this.items.push(model);
+      }
+
       this.selectedModel = model;
 
       this.selected.emit(model[this.valueField]);
