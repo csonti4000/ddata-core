@@ -2,12 +2,11 @@ import {
   ChangeDetectorRef, Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild, ViewContainerRef
 } from '@angular/core';
 import { BaseModelInterface, FieldsInterface } from 'ddata-core';
-import pluralize from 'pluralize';
-import { DialogContentInterface, DialogContentWithOptionsInterface } from '../../../../models/dialog/content/dialog-content.interface';
+import { ComponentRendererService } from 'projects/ddata-ui-input/src/lib/services/select/component-renderer.service';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { DialogContentWithOptionsInterface } from '../../../../models/dialog/content/dialog-content.interface';
 import { SelectType } from '../../select.type';
-import { DialogContentItem } from 'ddata-ui-dialog';
 
 @Component({
   selector: 'multiple-select-dialog',
@@ -15,18 +14,28 @@ import { DialogContentItem } from 'ddata-ui-dialog';
   styleUrls: ['./multiple-select-dialog.component.scss']
 })
 export class DdataMultipleSelectDialogComponent implements OnInit {
+  private componentRendererService: ComponentRendererService;
   private componentRef: any;
   private subscription: Subscription = new Subscription();
-  private selectedModelName = '';
   private selectedModel: any;
 
   @Input() settings: DialogContentWithOptionsInterface;
   @Input() method: 'create-edit' | 'list' = 'list';
   @Input() mode: SelectType = 'multiple';
+
+  // for example: an Address model
   @Input() model: BaseModelInterface<any> & FieldsInterface<any>;
+
+  // for example: tag_id
   @Input() field = 'id';
+
+  // for example: tag's name
   @Input() text = 'name';
+
+  // for example: tag.id
   @Input() valueField = 'id';
+
+  // for example: Array of Tag
   @Input() items: any[] = [];
   @Input() modalTitle = 'Dialog';
 
@@ -41,134 +50,92 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
     this.selectionFinished.emit();
   }
 
-  constructor(private readonly changeDetector: ChangeDetectorRef) {
+  constructor(readonly changeDetector: ChangeDetectorRef) {
+    this.componentRendererService = new ComponentRendererService(changeDetector);
   }
 
   ngOnInit(): void {
-    if (!!this.items) {
-      this.selectedModel = this.items.find(item => item.id === this.model[this.field]);
+    // get selected items from model's field
+    this.getSelectedItems();
+  }
+
+  ngAfterViewInit(): void {
+    // render component in dialog
+    const instance = this.componentRendererService
+      .setMethod(this.method)
+      .setSettings(this.settings)
+      .setDialogHost(this.dialogHost)
+      .setComponentRef(this.componentRef)
+      .render();
+
+    if (!instance) {
+      console.error('Component for dialog is not defined');
+
+      return;
     }
 
     if (this.mode === 'single') {
-      const pluralFieldName = this.getObjectFieldNamePrular();
+      const selectedModel = this.model[this.getObjectFieldName()];
 
-      this.selectedModelName = !!this.model[pluralFieldName] && !!this.model[pluralFieldName][0]
-        ? this.model[pluralFieldName][0][this.text]
-        : '';
+      if (!!selectedModel) {
+        this.componentRendererService.setSelectedModels([
+          selectedModel
+        ]);
+      }
     }
 
-    this.renderComponent(this.method);
+    if (this.mode === 'multiple') {
+      this.componentRendererService.setSelectedModels(
+        this.model[this.field]
+      );
+    }
+
+    // for edit component
+    this.subscription.add(instance.saveModel.subscribe((model: any) => this.setModel(model)));
+
+    this.subscription.add(
+      instance.select.pipe(
+        tap(() => {
+          console.log('list select');
+          if (this.mode === 'multiple') {
+            this.model[this.field] = [];
+            this.settings.listOptions.selectedElements = [];
+          }
+        }),
+
+        map((models: any[]) => {
+          if (models === null) {
+            return models;
+          }
+
+          this.emitEvents(models);
+
+          return models;
+        }),
+      ).subscribe()
+    );
+  }
+
+  private getSelectedItems(): void {
+    if (this.mode === 'single') {
+      this.selectedModel = this.model[this.field];
+    }
   }
 
   hideModal(): void {
-    const instance = this.componentRef.instance as DialogContentInterface;
+    // get dialog component instance
+    const selectedElements = this.componentRendererService.getSelectedModels();
 
-    this.emitEvents(instance.selectedElements);
-  }
+    // emit selected elements
+    this.emitEvents(selectedElements);
 
-  private renderComponent(method: 'create-edit' | 'list' = 'list'): void {
-    const dialogContent: DialogContentItem = method === 'create-edit' ?
-      new DialogContentItem(this.settings?.createEditComponent, this.settings?.createEditOptions) :
-      new DialogContentItem(this.settings?.listComponent, this.settings?.listOptions);
-
-    this.changeDetector.detectChanges();
-
-    this.dialogHost.clear();
-
-    this.componentRef = this.dialogHost.createComponent(dialogContent.component);
-
-    if (!this.componentRef) {
-      console.error('componentRef is not set', this.componentRef);
-
-      return;
-    }
-
-    if (method === 'list') {
-      this.setListComponent(dialogContent);
-    }
-
-    this.componentRef.instance.model = dialogContent.data.model;
-
-    const instance = this.componentRef.instance as DialogContentInterface;
-
-    instance.isModal = true;
-
-    this.subscription.add(instance.saveModel.subscribe((model: any) => this.setModel(model)));
-  }
-
-  private setListComponent(dialogContent: DialogContentItem): void {
-    if (!this.settings || !this.settings.listComponent) {
-      return;
-    }
-
-    if (!!dialogContent.data) {
-      const instance = this.componentRef.instance as DialogContentInterface;
-
-      instance.isModal = true;
-      instance.multipleSelectEnabled = dialogContent.data.multipleSelectEnabled;
-      instance.isSelectionList = dialogContent.data.isSelectionList;
-      instance.loadData = dialogContent.data.loadData;
-      instance.filter = dialogContent.data.filter ?? {};
-
-      // if there is preset models
-      if (!dialogContent.data.loadData && !!dialogContent.data.models) {
-        // set preset models
-        instance.models = dialogContent.data.models;
-
-        // send a notification to the list component to update their material table and other things
-        instance.datasArrived.next(Math.random());
-      }
-
-      // if there is selected elements...
-      if (this.mode === 'multiple') {
-        instance.selectedElements = [...this.model[this.field]];
-      } else {
-        instance.selectedElements = this.model[this.field] !== 0
-          ? [this.model[this.getObjectFieldName()]]
-          : [];
-      }
-
-      this.subscription.add(
-        instance.select.pipe(
-          tap(() => {
-            if (this.mode === 'multiple') {
-              this.model[this.field] = [];
-              this.settings.listOptions.selectedElements = [];
-            }
-          }),
-
-          map((models: any[]) => {
-            if (models === null) {
-              return models;
-            }
-
-            this.emitEvents(models);
-
-            return models;
-          }),
-        ).subscribe()
-      );
-    }
+    // reset selected elements
+    this.componentRendererService.resetSelectedModels();
   }
 
   private emitEvents(models: any[]): void {
+    console.log('emitEvents', models);
     models.forEach((model: any) => {
-      this.selectedModelName = model[this.text];
-
-      if (models.length === 1 && this.mode === 'single') {
-        // single select - only a single element can be selected
-        this.model[this.field] = model.id;
-        this.model[this.getObjectFieldName()] = model;
-        this.setSelected(model[this.valueField], true, model);
-      } else if (this.mode === 'multiple') {
-        if (!(this.model[this.field] instanceof Array)) {
-          console.error(`The ${this.model.model_name}'s ${this.field} field is not an array. If you use select-box as multipleSelect, then the 'field' parameter must be array.`);
-        }
-
-        this.model[this.field].push(model);
-        this.settings.listOptions.selectedElements.push(model);
-      }
-
       // this must be happen on multiple select and on signle select case too
       this.selectModel.emit(model);
     });
@@ -180,33 +147,7 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
     return this.field.split('_id')[0];
   }
 
-  private getObjectFieldNamePrular(): string {
-    return pluralize(this.getObjectFieldName());
-  }
-
   private setModel(model: any): any {
-    if (!!model) {
-      model.is_selected = true;
-
-      if (this.mode === 'single') {
-        this.model[this.field.split('_id')[0]] = model;
-        this.model[this.field] = model.id;
-      }
-
-      this.selectedModel = model;
-
-      this.selected.emit(model[this.valueField]);
-    }
-
-    this.selectModel.emit(this.selectedModel);
-
-    this.selectionFinished.emit(this.model[this.field]);
+    console.log('setModel', model);
   }
-
-  private setSelected(selectedValue: any, emit: boolean = true, model?: any): void {
-    this.model[this.field] = selectedValue;
-
-    this.selectedModel = this.items.find(item => item[this.field] === selectedValue);
-  }
-
 }
