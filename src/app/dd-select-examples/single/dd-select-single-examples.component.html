@@ -25,21 +25,47 @@
     &gt;&lt;/dd-select&gt;
   </pre>
 
-  <p><strong>Example:</strong></p>
+  <p><strong>Example 1. - select from predefined :</strong></p>
 
   <dd-select
     mode="single"
-    [model]="address"
+    [model]="address1"
     field="country_id"
-    [dialogSettings]="dialogSettings"
+    [dialogSettings]="countryDialogSettings"
     (selected)="log($event, 'selected')"
     (selectModel)="log($event, 'selectModel')"
   ></dd-select>
 
   <div class="alert alert-info my-3">
     <p><strong>Model:</strong></p>
-    <code>
-      {{ address | clearModel | json }}
-    </code>
+    <pre>{{ address1 | clearModel | json | prettyJson }}</pre>
+  </div>
+
+  <p><strong>Example 2. - select from loaded data list:</strong></p>
+
+  <dd-select
+    mode="single"
+    [model]="address2"
+    field="tag_id"
+    [dialogSettings]="tagDialogSettings2"
+  ></dd-select>
+
+  <div class="alert alert-info my-3">
+    <p><strong>Model:</strong></p>
+    <pre>{{ address2 | clearModel | json | prettyJson }}</pre>
+  </div>
+
+  <p><strong>Example 3. - select from loaded data list - predefined selected elements:</strong></p>
+
+  <dd-select
+    mode="single"
+    [model]="address3"
+    field="tag_id"
+    [dialogSettings]="tagDialogSettings3"
+  ></dd-select>
+
+  <div class="alert alert-info my-3">
+    <p><strong>Model:</strong></p>
+    <pre>{{ address3 | clearModel | json | prettyJson }}</pre>
   </div>
 </div>

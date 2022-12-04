@@ -19,7 +19,7 @@ export class ClearModelPipe implements PipeTransform {
     model = this.removeProperties(model);
 
     Object.keys(model).forEach(key => {
-      if (typeof model[key] === 'object') {
+      if (model[key] instanceof Object) {
         model[key] = this.removeProperties(model[key]);
       }
     });

@@ -13,7 +13,9 @@ export class Address extends BaseModel implements AddressInterface {
   street: string;
   country_id = 0;
   country: CountryInterface = new Country().init();
-  tags: TagInterface[] = [];
+  tag_id = 0; // for single select demo
+  tag: TagInterface = null; // for single select demo
+  tags: TagInterface[] = []; // for multiple select demo
 
   fields: FieldContainerInterface<AddressUIFieldsInterface> = {
     zip: undefined,
@@ -22,6 +24,11 @@ export class Address extends BaseModel implements AddressInterface {
     country_id: {
       label: 'Country',
       title: 'Choose a country'
+    },
+    tag_id: {
+      label: 'Tag',
+      title: 'Choose a tag',
+      placeholder: 'Choose a tag'
     },
     tags: {
       label: 'Tags',

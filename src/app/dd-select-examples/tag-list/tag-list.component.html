@@ -19,7 +19,11 @@
 
 <div class="row" *ngFor="let model of models">
   <div class="col-1" *ngIf="isSelectionList">
-    <input type="checkbox" [attr.checked]="model.is_selected ? true : null" (click)="selected(model)">
+    <input
+      type="checkbox"
+      [attr.checked]="model.is_selected ? true : null"
+      (click)="toggleSelect(model)"
+    >
   </div>
 
   <div class="col-2">

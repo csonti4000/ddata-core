@@ -38,8 +38,6 @@
 
   <div class="alert alert-info my-3">
     <p><strong>Model:</strong></p>
-    <code>
-      {{ address | clearModel | json }}
-    </code>
+    <pre>{{ address | clearModel | json | prettyJson }}</pre>
   </div>
 </div>
