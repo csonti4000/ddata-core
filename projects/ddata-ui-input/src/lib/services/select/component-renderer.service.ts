@@ -1,6 +1,7 @@
-import { ChangeDetectorRef } from "@angular/core";
-import { DialogContentInterface, DialogContentItem, DialogContentWithOptionsInterface } from "ddata-ui-input";
-import { BaseModelInterface } from "projects/ddata-core/src/public-api";
+import { ChangeDetectorRef } from '@angular/core';
+import { BaseModelInterface } from 'ddata-core';
+import { DialogContentItem } from '../../models/dialog/content/dialog-content-item';
+import { DialogContentInterface, DialogContentWithOptionsInterface } from '../../models/dialog/content/dialog-content.interface';
 
 export class ComponentRendererService {
   method: 'create-edit' | 'list' = 'list';

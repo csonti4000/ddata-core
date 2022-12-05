@@ -2,7 +2,7 @@ import {
   ChangeDetectorRef, Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild, ViewContainerRef
 } from '@angular/core';
 import { BaseModelInterface, FieldsInterface } from 'ddata-core';
-import { ComponentRendererService } from 'projects/ddata-ui-input/src/lib/services/select/component-renderer.service';
+import { ComponentRendererService } from '../../../../services/select/component-renderer.service';
 import { Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { DialogContentWithOptionsInterface } from '../../../../models/dialog/content/dialog-content.interface';
