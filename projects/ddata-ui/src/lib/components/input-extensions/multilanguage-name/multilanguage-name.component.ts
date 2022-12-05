@@ -7,7 +7,7 @@ import { LangService } from 'src/app/services/lang/lang.service';
 import { LangInterface } from 'src/app/models/lang/lang.interface';
 import { trigger, state, style } from '@angular/animations';
 import { Global } from 'src/app/models/global.model';
-import { getMatTooltipInvalidPositionError } from '@angular/material/tooltip';
+import { getMatLegacyTooltipInvalidPositionError as getMatTooltipInvalidPositionError } from '@angular/material/legacy-tooltip';
 
 @Component({
   selector: 'app-multilanguage-name',
