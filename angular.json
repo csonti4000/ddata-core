@@ -313,6 +313,6 @@
           }
         }
       }
-    }},
-  "defaultProject": "ddata-lib"
+    }
+  }
 }
