@@ -96,7 +96,6 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
     this.subscription.add(
       instance.select.pipe(
         tap(() => {
-          console.log('list select');
           if (this.mode === 'multiple') {
             this.model[this.field] = [];
             this.settings.listOptions.selectedElements = [];
@@ -134,7 +133,6 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
   }
 
   private emitEvents(models: any[]): void {
-    console.log('emitEvents', models);
     models.forEach((model: any) => {
       // this must be happen on multiple select and on signle select case too
       this.selectModel.emit(model);
@@ -148,6 +146,6 @@ export class DdataMultipleSelectDialogComponent implements OnInit {
   }
 
   private setModel(model: any): any {
-    console.log('setModel', model);
+    // TODO test this on edit case
   }
 }
