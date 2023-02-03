@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectableListComponent } from 'ddata-core';
 import { TagInterface } from 'src/app/dd-select-examples/tag.interface';
+import { DdSelectExampleService } from '../dd-select-example.service';
 import { Tag } from '../tag.model';
 
 @Component({
@@ -8,23 +9,17 @@ import { Tag } from '../tag.model';
   templateUrl: './tag-list.component.html',
 })
 export class TagListComponent extends SelectableListComponent<TagInterface> implements OnInit {
-  tags: TagInterface[] = [];
-
-  constructor() {
+  constructor(private readonly service: DdSelectExampleService) {
     super(Tag);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.models = this.service.getAllTags();
+  }
 
   load(): void {}
 
-  selected(model: TagInterface): void {
-    model.is_selected = !model.is_selected;
-
-    if (model.is_selected) {
-      this._selectedElements.add(model);
-    } else {
-      this._selectedElements.delete(model);
-    }
+  toggleSelect(model: TagInterface): void {
+    super.toggleSelect(model);
   }
 }

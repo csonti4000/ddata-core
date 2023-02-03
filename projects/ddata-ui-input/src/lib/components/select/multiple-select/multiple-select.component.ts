@@ -94,6 +94,18 @@ export class DdataMultipleSelectComponent implements OnInit {
   }
 
   selectModelEmit(event: any): void {
+    event.is_selected = true;
+
+    if (this.mode === 'single') {
+      this.model[this.getObjectFieldName()] = event;
+      this.model[this.field] = event.id;
+    }
+
+    if (this.mode === 'multiple') {
+      // TODO avoid duplicate add
+      this.model[this.getObjectFieldName()].push(event);
+    }
+
     this.selectModel.emit(event);
   }
 

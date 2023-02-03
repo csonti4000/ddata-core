@@ -3,7 +3,7 @@
 
   <span> {{ tag.name }} </span>
 
-  <button class="btn btn-xs btn-light" type="button">
-    <fa-icon [icon]="icon.times" (click)="deleteTag()"></fa-icon>
+  <button class="btn btn-xs btn-light" type="button" (click)="deleteTag()">
+    <fa-icon [icon]="icon.times"></fa-icon>
   </button>
 </span>

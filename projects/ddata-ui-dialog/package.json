@@ -1,14 +1,14 @@
 {
   "name": "ddata-ui-dialog",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "peerDependencies": {
     "@angular/common": ">=10.0.2",
     "@angular/core": ">=10.0.2",
     "@fortawesome/angular-fontawesome": ">=0.7.0",
     "@fortawesome/fontawesome-svg-core": ">=1.2.30",
     "@fortawesome/free-solid-svg-icons": ">=5.14.0",
-    "ddata-core": "^0.3.6",
-    "ddata-ui-common": "^0.1.13"
+    "ddata-core": "^0.3.8",
+    "ddata-ui-common": "^0.1.16"
   },
   "dependencies": {
     "tslib": "^2.0.0"

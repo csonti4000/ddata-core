@@ -7,7 +7,8 @@ export interface AddressUIFieldsInterface {
   settlement: string;
   street: string;
   country_id: number;
-  tags: TagInterface[];
+  tag_id: number; // for single select demo
+  tags: TagInterface[]; // for multiple select demo
 }
 
 export interface AddressInterface
@@ -16,4 +17,5 @@ export interface AddressInterface
     BaseModelInterface<AddressInterface> {
       id: ID;
       country: CountryInterface;
+      tag: TagInterface; // for single select demo
     }

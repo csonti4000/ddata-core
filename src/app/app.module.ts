@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DdSelectSingleExamplesComponent } from './dd-select-examples/single/dd-select-single-examples.component';
 import { CountryListComponent } from './dd-select-examples/country-list/country-list.component';
 import { ClearModelPipe } from './pipes/clear-model.pipe';
+import { PrettyJsonPipe } from './pipes/pretty-json.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ClearModelPipe } from './pipes/clear-model.pipe';
     TagListComponent,
     CountryListComponent,
     ClearModelPipe,
+    PrettyJsonPipe,
   ],
   imports: [
     BrowserModule,
