@@ -75,6 +75,7 @@ export class LocalDataService<T extends BaseModelInterface<T>>
 
   updateLocalstorage(data: T[]): void {
     this.storageService.setItem(this.localStorageItemName, JSON.stringify(data));
+    this.allFromLocal();
     this.storageSubject.next(true);
   }
 
