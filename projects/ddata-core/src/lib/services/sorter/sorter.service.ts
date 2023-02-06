@@ -3,17 +3,15 @@ import { SorterServiceInterface } from './sorter-service.interface';
 
 @Injectable()
 export class SorterService<T> implements SorterServiceInterface<T> {
-  sortBy(objects: T[], key: string): T[] {
-    const elements = !!objects ? objects : [];
-
-    if (elements === []) {
+  sortBy(objects: Array<T>, key: string): Array<T> {
+    if (objects instanceof Array === false) {
       return [];
     }
 
-    elements.sort((a: T, b: T) => (!!a[key] ?
+    objects.sort((a: T, b: T) => (!!a[key] ?
       a[key].toString().localeCompare(b[key].toString(), 'hu', {numeric: true}) : 0));
 
-    return elements;
+    return objects;
   }
 
   sortByDesc(objects: T[], key: string): T[] {

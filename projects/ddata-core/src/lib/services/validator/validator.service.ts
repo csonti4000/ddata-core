@@ -202,7 +202,16 @@ export class ValidatorService {
   }
 
   isRequired(data: any): boolean {
-    if (data !== undefined && data !== null && data !== '' && data !== [] && data !== {}) {
+
+    if (data instanceof Array && data.length === 0) {
+      return false;
+    }
+
+    if (data instanceof Object && Object.keys(data).length === 0) {
+      return false;
+    }
+
+    if (data !== undefined && data !== null && data !== '') {
       return true;
     }
 
