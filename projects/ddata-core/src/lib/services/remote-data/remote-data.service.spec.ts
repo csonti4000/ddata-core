@@ -6,12 +6,12 @@ import { async, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { DdataCoreModule } from '../../ddata-core.module';
 import { ID } from '../../models/base/base-data.type';
-import { BaseModel, BaseModelWithoutTypeDefinitionInterface } from '../../models/base/base-model.model';
+import { BaseModel, BaseModelInterface, BaseModelWithoutTypeDefinitionInterface } from '../../models/base/base-model.model';
 import { PaginateInterface } from '../../models/paginate/paginate.interface';
 import { Paginate } from '../../models/paginate/paginate.model';
 import { RemoteDataService } from './remote-data.service';
 
-interface DummyDataInterface extends BaseModelWithoutTypeDefinitionInterface {
+interface DummyDataInterface extends BaseModelWithoutTypeDefinitionInterface, BaseModelInterface<DummyDataInterface> {
   id: ID;
   name: string;
 
@@ -172,7 +172,7 @@ xdescribe('RemoteDataService', () => {
   ], (
     httpMock: HttpTestingController,
   ) => {
-    const fake = [
+    const fake: Array<DummyDataInterface> = [
       new DummyData().init({ id: 1 as ID}),
       new DummyData().init({id: 2 as ID}),
     ];

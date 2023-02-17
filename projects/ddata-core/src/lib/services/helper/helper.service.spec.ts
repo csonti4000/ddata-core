@@ -5,21 +5,27 @@ import { Injector } from '@angular/core';
 import { async, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { AppModule } from 'src/app/app.module';
-import { ID, TagName } from 'src/app/models/base-model/base-data-type.model';
-import { PaginateInterface } from 'src/app/models/paginate/paginate.interface';
-import { Paginate } from 'src/app/models/paginate/paginate.model';
-import { TagInterface } from 'src/app/models/tag/tag.interface';
-import { Tag } from 'src/app/models/tag/tag.model';
+// import { ID, TagName } from 'src/app/models/base-model/base-data-type.model';
+// import { PaginateInterface } from 'src/app/models/paginate/paginate.interface';
+// import { Paginate } from 'src/app/models/paginate/paginate.model';
+// import { TagInterface } from 'src/app/models/tag/tag.interface';
+// import { Tag } from 'src/app/models/tag/tag.model';
 import { HelperService } from './helper.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProxyService } from '../proxy/proxy.service';
-import { tag_type } from 'src/app/i18n/tag.lang';
+// import { tag_type } from 'src/app/i18n/tag.lang';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { request } from 'http';
 import { EventEmitter } from 'protractor';
-import { model } from 'src/app/i18n/product-category.lang';
+// import { model } from 'src/app/i18n/product-category.lang';
 import { emit } from 'process';
+import { DdataCoreModule } from '../../ddata-core.module';
+import { Tag } from 'src/app/dd-select-examples/tag.model';
+import { TagInterface } from 'src/app/dd-select-examples/tag.interface';
+import { Paginate } from '../../models/paginate/paginate.model';
+import { ID } from '../../models/base/base-data.type';
+import { PaginateInterface } from '../../models/paginate/paginate.interface';
 
 
 class FakeProxy {
@@ -77,13 +83,13 @@ xdescribe('HelperService', () => {
   }));
 
   beforeEach(() => {
-    AppModule.InjectorInstance = TestBed;
+    DdataCoreModule.InjectorInstance = TestBed;
     TestBed.inject(HelperService);
     TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
-    const service: HelperService<Tag> = TestBed.inject(HelperService);
+    const service: HelperService<TagInterface> = TestBed.inject(HelperService);
     expect(service).toBeTruthy();
   });
 
@@ -163,9 +169,9 @@ xdescribe('HelperService', () => {
     RouterTestingModule,
     ProxyService
   ], () => {
-    const service = new HelperService(new Tag());
+    const service = new HelperService<TagInterface>(new Tag());
     (service as any).proxy = new FakeProxy();
-    const models: Tag[] = [
+    const models: TagInterface[] = [
       new Tag().init(),
       new Tag().init()
     ];
@@ -191,11 +197,11 @@ xdescribe('HelperService', () => {
     HttpTestingController,
     RouterTestingModule
   ], (done, httpMock: HttpTestingController) => {
-    const fakeData: Tag[] = [
+    const fakeData: TagInterface[] = [
       new Tag().init(),
       new Tag().init()
     ];
-    const service = new HelperService(new Tag().init());
+    const service = new HelperService<TagInterface>(new Tag().init());
     (service as any).proxy = new FakeProxy();
     const reference = {
       isModal: false,
@@ -216,7 +222,7 @@ xdescribe('HelperService', () => {
     HttpTestingController,
     RouterTestingModule
   ], () => {
-    const fakeData: Tag = new Tag().init();
+    const fakeData: TagInterface = new Tag().init();
     const service = new HelperService(new Tag().init());
     (service as any).proxy = new FakeProxy();
     const reference = {

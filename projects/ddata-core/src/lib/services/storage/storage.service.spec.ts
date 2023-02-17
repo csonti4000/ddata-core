@@ -1,12 +1,12 @@
 
 import 'zone.js/testing';
-import { TestBed, inject, async } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { StorageService } from './storage.service';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Injector } from '@angular/core';
-import { EmployeeService } from '../employee/employee.service';
 import { AppModule } from 'src/app/app.module';
+import { DdataCoreModule } from '../../ddata-core.module';
 
 xdescribe('StorageService', () => {
   beforeAll(() => {
@@ -31,7 +31,7 @@ xdescribe('StorageService', () => {
     });
   }));
   beforeEach(() => {
-    AppModule.InjectorInstance = TestBed;
+    DdataCoreModule.InjectorInstance = TestBed;
     TestBed.inject(StorageService);
   });
 
